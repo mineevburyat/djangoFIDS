@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<REPORT type="SPP">
+    <FLY number="ЮТ-282">
+        <AD>0</AD>
+        <AIRCRAFT>ATR-72</AIRCRAFT>
+        <PORTDIST>МОСКВА (ВНК)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>ЮТЭЙР</CARRNAME>
+        <DPLAN>19.06.2016</DPLAN>
+        <TPLAN>20:25</TPLAN>
+        <DEXP>19.06.2016</DEXP>
+        <TEXP>20:25</TEXP>
+        <DFACT>19.06.2016</DFACT>
+        <TFACT>20:25</TFACT>
+        <STATUS>Вылетел в 20:25</STATUS>
+    </FLY>
+    <FLY number="S7-234">
+        <AD>0</AD>
+        <AIRCRAFT>А-319100</AIRCRAFT>
+        <PORTDIST>МОСКВА (ДМД)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>S7</CARRNAME>
+        <DPLAN>19.06.2016</DPLAN>
+        <TPLAN>20:55</TPLAN>
+        <DEXP>19.06.2016</DEXP>
+        <TEXP>20:55</TEXP>
+        <DFACT>19.06.2016</DFACT>
+        <TFACT>20:56</TFACT>
+        <STATUS>Вылетел в 20:56</STATUS>
+    </FLY>
+    <FLY number="ЮВ-546">
+        <AD>0</AD>
+        <AIRCRAFT>CRJ200</AIRCRAFT>
+        <PORTDIST>КАЗАНЬ</PORTDIST>
+        <PUNKTDIST>Казань</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>ЮВТ АЭРО</CARRNAME>
+        <DPLAN>19.06.2016</DPLAN>
+        <TPLAN>23:40</TPLAN>
+        <DEXP>19.06.2016</DEXP>
+        <TEXP>23:40</TEXP>
+        <DFACT>19.06.2016</DFACT>
+        <TFACT>23:53</TFACT>
+        <STATUS>Вылетел в 23:53</STATUS>
+    </FLY>
+    <FLY number="РГ-547">
+        <AD>0</AD>
+        <AIRCRAFT>CRJ200</AIRCRAFT>
+        <PORTDIST>ЕКАТЕРИНБУРГ</PORTDIST>
+        <PUNKTDIST>Екатеринбург</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>РУСЛАЙН</CARRNAME>
+        <DPLAN>20.06.2016</DPLAN>
+        <TPLAN>01:40</TPLAN>
+        <DEXP>20.06.2016</DEXP>
+        <TEXP>01:40</TEXP>
+        <DFACT>20.06.2016</DFACT>
+        <TFACT>01:40</TFACT>
+        <STATUS>Вылетел в 01:40</STATUS>
+    </FLY>
+    <FLY number="РГ-556">
+        <AD>0</AD>
+        <AIRCRAFT>CRJ200</AIRCRAFT>
+        <PORTDIST>МОСКВА (ДМД)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>РУСЛАЙН</CARRNAME>
+        <DPLAN>20.06.2016</DPLAN>
+        <TPLAN>06:55</TPLAN>
+        <DEXP>20.06.2016</DEXP>
+        <TEXP>06:55</TEXP>
+        <DFACT>20.06.2016</DFACT>
+        <TFACT>06:50</TFACT>
+        <STATUS>Вылетел в 06:50</STATUS>
+    </FLY>
+    <FLY number="СУ-1353">
+        <AD>0</AD>
+        <AIRCRAFT>SU-9</AIRCRAFT>
+        <PORTDIST>МОСКВА (ШРМ)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>АЭРОФЛОТ</CARRNAME>
+        <DPLAN>20.06.2016</DPLAN>
+        <TPLAN>07:20</TPLAN>
+        <DEXP>20.06.2016</DEXP>
+        <TEXP>07:20</TEXP>
+        <DFACT>20.06.2016</DFACT>
+        <TFACT>07:24</TFACT>
+        <STATUS>Вылетел в 07:24</STATUS>
+    </FLY>
+    <FLY number="РГ-554">
+        <AD>0</AD>
+        <AIRCRAFT>CRJ200</AIRCRAFT>
+        <PORTDIST>СТ.-ПЕТЕРБУРГ(ПЛК)</PORTDIST>
+        <PUNKTDIST>Санкт-Петербург</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>РУСЛАЙН</CARRNAME>
+        <DPLAN>20.06.2016</DPLAN>
+        <TPLAN>07:40</TPLAN>
+        <DEXP>20.06.2016</DEXP>
+        <TEXP>07:40</TEXP>
+        <DFACT>20.06.2016</DFACT>
+        <TFACT>07:37</TFACT>
+        <STATUS>Вылетел в 07:37</STATUS>
+    </FLY>
+    <FLY number="5F-112">
+        <AD>0</AD>
+        <AIRCRAFT>А-320200</AIRCRAFT>
+        <PORTDIST>КИШИНЕВ</PORTDIST>
+        <PUNKTDIST>Кишинев</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>FLY ONE</CARRNAME>
+        <DPLAN>20.06.2016</DPLAN>
+        <TPLAN>10:20</TPLAN>
+        <DEXP>20.06.2016</DEXP>
+        <TEXP>10:20</TEXP>
+        <DFACT>20.06.2016</DFACT>
+        <TFACT>10:18</TFACT>
+        <STATUS>Вылетел в 10:18</STATUS>
+    </FLY>
+    <FLY number="S7-232">
+        <AD>0</AD>
+        <AIRCRAFT>А-319100</AIRCRAFT>
+        <PORTDIST>МОСКВА (ДМД)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>S7</CARRNAME>
+        <DPLAN>20.06.2016</DPLAN>
+        <TPLAN>10:35</TPLAN>
+        <DEXP>20.06.2016</DEXP>
+        <TEXP>10:35</TEXP>
+        <DFACT>20.06.2016</DFACT>
+        <TFACT>10:35</TFACT>
+        <STATUS>Вылетел в 10:35</STATUS>
+    </FLY>
+    <FLY number="СУ-1351">
+        <AD>0</AD>
+        <AIRCRAFT>SU-9</AIRCRAFT>
+        <PORTDIST>МОСКВА (ШРМ)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>АЭРОФЛОТ</CARRNAME>
+        <DPLAN>20.06.2016</DPLAN>
+        <TPLAN>11:20</TPLAN>
+        <DEXP>20.06.2016</DEXP>
+        <TEXP>11:20</TEXP>
+        <DFACT>20.06.2016</DFACT>
+        <TFACT>11:23</TFACT>
+        <STATUS>Вылетел в 11:23</STATUS>
+    </FLY>
+    <FLY number="ГГ-735">
+        <AD>0</AD>
+        <AIRCRAFT>Як-42</AIRCRAFT>
+        <PORTDIST>СИМФЕРОПОЛЬ</PORTDIST>
+        <PUNKTDIST>Симферополь</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>ГРОЗНЫЙ-АВИА</CARRNAME>
+        <DPLAN>20.06.2016</DPLAN>
+        <TPLAN>12:20</TPLAN>
+        <DEXP>20.06.2016</DEXP>
+        <TEXP>12:20</TEXP>
+        <DFACT>20.06.2016</DFACT>
+        <TFACT>12:34</TFACT>
+        <STATUS>Вылетел в 12:34</STATUS>
+    </FLY>
+    <FLY number="WZ-5804">
+        <AD>0</AD>
+        <AIRCRAFT>Б-737500</AIRCRAFT>
+        <PORTDIST>СОЧИ</PORTDIST>
+        <PUNKTDIST>Сочи</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>НОРДАВИА</CARRNAME>
+        <DPLAN>20.06.2016</DPLAN>
+        <TPLAN>14:00</TPLAN>
+        <DEXP>20.06.2016</DEXP>
+        <TEXP>14:00</TEXP>
+        <DFACT>20.06.2016</DFACT>
+        <TFACT>14:04</TFACT>
+        <STATUS>Вылетел в 14:04</STATUS>
+    </FLY>
+    <FLY number="ЮТ-198">
+        <AD>0</AD>
+        <AIRCRAFT>ATR-72</AIRCRAFT>
+        <PORTDIST>МОСКВА (ВНК)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>ЮТЭЙР</CARRNAME>
+        <DPLAN>20.06.2016</DPLAN>
+        <TPLAN>15:40</TPLAN>
+        <DEXP>20.06.2016</DEXP>
+        <TEXP>15:40</TEXP>
+        <DFACT>20.06.2016</DFACT>
+        <TFACT>15:40</TFACT>
+        <STATUS>Вылетел в 15:40</STATUS>
+    </FLY>
+    <FLY number="РГ-558">
+        <AD>0</AD>
+        <AIRCRAFT>CRJ200</AIRCRAFT>
+        <PORTDIST>МОСКВА (ДМД)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>РУСЛАЙН</CARRNAME>
+        <DPLAN>20.06.2016</DPLAN>
+        <TPLAN>16:15</TPLAN>
+        <DEXP>20.06.2016</DEXP>
+        <TEXP>16:15</TEXP>
+        <DFACT>20.06.2016</DFACT>
+        <TFACT>16:14</TFACT>
+        <STATUS>Вылетел в 16:14</STATUS>
+    </FLY>
+    <FLY number="ЮТ-282">
+        <AD>0</AD>
+        <AIRCRAFT>ATR-72</AIRCRAFT>
+        <PORTDIST>МОСКВА (ВНК)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>ЮТЭЙР</CARRNAME>
+        <DPLAN>20.06.2016</DPLAN>
+        <TPLAN>20:25</TPLAN>
+        <DEXP>20.06.2016</DEXP>
+        <TEXP>20:25</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS>Идет регистрация</STATUS>
+    </FLY>
+    <FLY number="S7-234">
+        <AD>0</AD>
+        <AIRCRAFT>А-319100</AIRCRAFT>
+        <PORTDIST>МОСКВА (ДМД)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>S7</CARRNAME>
+        <DPLAN>20.06.2016</DPLAN>
+        <TPLAN>20:55</TPLAN>
+        <DEXP>20.06.2016</DEXP>
+        <TEXP>20:55</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS>Идет регистрация</STATUS>
+    </FLY>
+    <FLY number="РГ-556">
+        <AD>0</AD>
+        <AIRCRAFT>CRJ200</AIRCRAFT>
+        <PORTDIST>МОСКВА (ДМД)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>РУСЛАЙН</CARRNAME>
+        <DPLAN>21.06.2016</DPLAN>
+        <TPLAN>06:55</TPLAN>
+        <DEXP>21.06.2016</DEXP>
+        <TEXP>06:55</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="СУ-1353">
+        <AD>0</AD>
+        <AIRCRAFT>SU-9</AIRCRAFT>
+        <PORTDIST>МОСКВА (ШРМ)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>АЭРОФЛОТ</CARRNAME>
+        <DPLAN>21.06.2016</DPLAN>
+        <TPLAN>07:20</TPLAN>
+        <DEXP>21.06.2016</DEXP>
+        <TEXP>07:20</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="РГ-554">
+        <AD>0</AD>
+        <AIRCRAFT>CRJ200</AIRCRAFT>
+        <PORTDIST>СТ.-ПЕТЕРБУРГ(ПЛК)</PORTDIST>
+        <PUNKTDIST>Санкт-Петербург</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>РУСЛАЙН</CARRNAME>
+        <DPLAN>21.06.2016</DPLAN>
+        <TPLAN>07:40</TPLAN>
+        <DEXP>21.06.2016</DEXP>
+        <TEXP>07:40</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="S7-232">
+        <AD>0</AD>
+        <AIRCRAFT>А-319100</AIRCRAFT>
+        <PORTDIST>МОСКВА (ДМД)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>S7</CARRNAME>
+        <DPLAN>21.06.2016</DPLAN>
+        <TPLAN>10:35</TPLAN>
+        <DEXP>21.06.2016</DEXP>
+        <TEXP>10:35</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="СУ-1351">
+        <AD>0</AD>
+        <AIRCRAFT>SU-9</AIRCRAFT>
+        <PORTDIST>МОСКВА (ШРМ)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>АЭРОФЛОТ</CARRNAME>
+        <DPLAN>21.06.2016</DPLAN>
+        <TPLAN>11:20</TPLAN>
+        <DEXP>21.06.2016</DEXP>
+        <TEXP>11:20</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="ЮТ-198">
+        <AD>0</AD>
+        <AIRCRAFT>ATR-72</AIRCRAFT>
+        <PORTDIST>МОСКВА (ВНК)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>ЮТЭЙР</CARRNAME>
+        <DPLAN>21.06.2016</DPLAN>
+        <TPLAN>15:40</TPLAN>
+        <DEXP>21.06.2016</DEXP>
+        <TEXP>15:40</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="РГ-558">
+        <AD>0</AD>
+        <AIRCRAFT>CRJ200</AIRCRAFT>
+        <PORTDIST>МОСКВА (ДМД)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>РУСЛАЙН</CARRNAME>
+        <DPLAN>21.06.2016</DPLAN>
+        <TPLAN>16:15</TPLAN>
+        <DEXP>21.06.2016</DEXP>
+        <TEXP>16:15</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="ЮТ-282">
+        <AD>0</AD>
+        <AIRCRAFT>ATR-72</AIRCRAFT>
+        <PORTDIST>МОСКВА (ВНК)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>ЮТЭЙР</CARRNAME>
+        <DPLAN>21.06.2016</DPLAN>
+        <TPLAN>20:25</TPLAN>
+        <DEXP>21.06.2016</DEXP>
+        <TEXP>20:25</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="S7-234">
+        <AD>0</AD>
+        <AIRCRAFT>А-319100</AIRCRAFT>
+        <PORTDIST>МОСКВА (ДМД)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>S7</CARRNAME>
+        <DPLAN>21.06.2016</DPLAN>
+        <TPLAN>20:55</TPLAN>
+        <DEXP>21.06.2016</DEXP>
+        <TEXP>20:55</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="HY-716">
+        <AD>0</AD>
+        <AIRCRAFT>А-320200</AIRCRAFT>
+        <PORTDIST>ТАШКЕНТ</PORTDIST>
+        <PUNKTDIST>Ташкент</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>UZBEKISTAN airways</CARRNAME>
+        <DPLAN>21.06.2016</DPLAN>
+        <TPLAN>23:00</TPLAN>
+        <DEXP>21.06.2016</DEXP>
+        <TEXP>23:00</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="РГ-556">
+        <AD>0</AD>
+        <AIRCRAFT>CRJ200</AIRCRAFT>
+        <PORTDIST>МОСКВА (ДМД)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>РУСЛАЙН</CARRNAME>
+        <DPLAN>22.06.2016</DPLAN>
+        <TPLAN>06:55</TPLAN>
+        <DEXP>22.06.2016</DEXP>
+        <TEXP>06:55</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="СУ-1353">
+        <AD>0</AD>
+        <AIRCRAFT>SU-9</AIRCRAFT>
+        <PORTDIST>МОСКВА (ШРМ)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>АЭРОФЛОТ</CARRNAME>
+        <DPLAN>22.06.2016</DPLAN>
+        <TPLAN>07:20</TPLAN>
+        <DEXP>22.06.2016</DEXP>
+        <TEXP>07:20</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="РГ-554">
+        <AD>0</AD>
+        <AIRCRAFT>CRJ200</AIRCRAFT>
+        <PORTDIST>СТ.-ПЕТЕРБУРГ(ПЛК)</PORTDIST>
+        <PUNKTDIST>Санкт-Петербург</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>РУСЛАЙН</CARRNAME>
+        <DPLAN>22.06.2016</DPLAN>
+        <TPLAN>07:40</TPLAN>
+        <DEXP>22.06.2016</DEXP>
+        <TEXP>07:40</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="5F-112">
+        <AD>0</AD>
+        <AIRCRAFT>А-320200</AIRCRAFT>
+        <PORTDIST>КИШИНЕВ</PORTDIST>
+        <PUNKTDIST>Кишинев</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>FLY ONE</CARRNAME>
+        <DPLAN>22.06.2016</DPLAN>
+        <TPLAN>10:20</TPLAN>
+        <DEXP>22.06.2016</DEXP>
+        <TEXP>10:20</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="S7-232">
+        <AD>0</AD>
+        <AIRCRAFT>А-319100</AIRCRAFT>
+        <PORTDIST>МОСКВА (ДМД)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>S7</CARRNAME>
+        <DPLAN>22.06.2016</DPLAN>
+        <TPLAN>10:35</TPLAN>
+        <DEXP>22.06.2016</DEXP>
+        <TEXP>10:35</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="СУ-1351">
+        <AD>0</AD>
+        <AIRCRAFT>SU-9</AIRCRAFT>
+        <PORTDIST>МОСКВА (ШРМ)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>АЭРОФЛОТ</CARRNAME>
+        <DPLAN>22.06.2016</DPLAN>
+        <TPLAN>11:20</TPLAN>
+        <DEXP>22.06.2016</DEXP>
+        <TEXP>11:20</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="ГГ-735">
+        <AD>0</AD>
+        <AIRCRAFT>Як-42</AIRCRAFT>
+        <PORTDIST>СИМФЕРОПОЛЬ</PORTDIST>
+        <PUNKTDIST>Симферополь</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>ГРОЗНЫЙ-АВИА</CARRNAME>
+        <DPLAN>22.06.2016</DPLAN>
+        <TPLAN>12:20</TPLAN>
+        <DEXP>22.06.2016</DEXP>
+        <TEXP>12:20</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="ЮТ-198">
+        <AD>0</AD>
+        <AIRCRAFT>ATR-72</AIRCRAFT>
+        <PORTDIST>МОСКВА (ВНК)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>ЮТЭЙР</CARRNAME>
+        <DPLAN>22.06.2016</DPLAN>
+        <TPLAN>15:40</TPLAN>
+        <DEXP>22.06.2016</DEXP>
+        <TEXP>15:40</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="РГ-558">
+        <AD>0</AD>
+        <AIRCRAFT>CRJ200</AIRCRAFT>
+        <PORTDIST>МОСКВА (ДМД)</PORTDIST>
+        <PUNKTDIST>Москва</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>РУСЛАЙН</CARRNAME>
+        <DPLAN>22.06.2016</DPLAN>
+        <TPLAN>16:15</TPLAN>
+        <DEXP>22.06.2016</DEXP>
+        <TEXP>16:15</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
+    </FLY>
+</REPORT>

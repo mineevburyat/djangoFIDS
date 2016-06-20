@@ -1,0 +1,42 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Текущие рейсы</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div>
+        <h1>Список рейсов (регулярные и чартерные)</h1>
+    </div>
+    <div>
+        <table class="table">
+            <tr>
+                <th> </th>
+                <th>Рейс</th>
+                <th>Направления</th>
+                <th width="150">По расписанию</th>
+                <th width="150">Расчетное<br>время</th>
+                <th width="150">Фактическое<br>время</th>
+                <th>Статус</th>
+            </tr>
+        {% for flight in flights %}
+
+            <tr>
+                <td> </td>
+                <td><a href="">{{ flight.fly }}</a></td>
+                <td>{{ flight.portdist }}</td>
+                <td>{{ flight.timeplan }}</td>
+                <td>{{ flight.timeexp }}</td>
+                <td>{{ flight.timefact }}</td>
+                <td>{{ flight.status }}</td>
+            </tr>
+
+        {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
