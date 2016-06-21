@@ -8,24 +8,12 @@ if int(sys.version_info[0]) == 3:
 else:
     raise Exception("Version python less then 3")
 import sqlite3
-
+'''
 class Flights(list):
-    '''Info about air flight. Structure:
-    [
-      {'AD': ' ', FLY': '  ', 'AIRCRAFT': '  ', 'PUNKTDIST': '  ',
-      'PORTDIST': '   ', 'CARRNAME': '   ', 'TPLAN': '   ', 'DPLAN': '   ',
-      'TEXP': '', 'DEXP': '', 'TFACT': '', 'DFACT': '', 'STATUS': '', #this is xml data
-      'TIMEFACT': '', 'TIMEPLAN': '  ', 'TIMEEXP': '' # datatime formats
-      },
-                                             {...}, ...
-                                        ]
-    '''
-
     def __init__(self):
         self = []
 
     def getfromxml(self, filename):
-        '''начать парсить xml файл в удобную структуру'''
         flightinfo = {}
         tree = parse(filename)
         for fly in tree.findall('FLY'):
@@ -194,8 +182,7 @@ class Flights(list):
         return flag
 
     def converttoHTML(self, template):
-        '''get and dileved template and return string in HTML. Where template is name of file. Template is frie parts: start
-        , body whith data and end'''
+
         partlines = ''
         parts = []
         fdiscript = open(template, 'r')
@@ -240,8 +227,7 @@ def sendfilestoftp(filenamelist, server, username=None, password=None):
     return True
 
 def getxmlfromserver(filename, server, port, request):
-    '''запросить xml и сохранить в файл'''
-    if int(sys.version_info[0]) == 3:
+   if int(sys.version_info[0]) == 3:
         conector = HTTPConnection(server, port)
         conector.request("GET", request)
         result = conector.getresponse()
@@ -312,13 +298,180 @@ def updatedb(db, newflights):
     conn.close()
 '''
 
-#arrivalxmlreqreg = ('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:1,0")
-#arrivalxmlreqchart = ('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:1,1")'''
+class FlightsDB(dict):
+    def __init__(self):
+        self = {}
 
-arrivalxmlreqreg = ('93.157.148.58', 7777, '/pls/apex/f?p=1511:1:0:::NO:LAND,VID:0,0')
-arrivalxmlfile = 'arrivals.xml'
-getxmlfromserver(arrivalxmlfile, *arrivalxmlreqreg)
-arrivals = Flights()
-arrivals.getfromxml(arrivalxmlfile)
+    def getfromdb(self, dbfile):
+        conn = sqlite3.connect(dbfile)
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM flightinfosystem_flights")
+        info = {}
+        dbrow = cursor.fetchone()
+        while dbrow is not None:
+            for key in dbrow.keys():
+                if key != 'id':
+                    info[key] = dbrow[key]
+                id = dbrow['id']
+            self.setdefault(id, info)
+            info = {}
+            dbrow = cursor.fetchone()
 
-updatedb('../db.sqlite3',arrivals)
+class FlightsXML(list):
+    def __init__(self):
+        self = []
+
+    def getfromxml(self, xmlfile):
+        '''начать парсить xml файл в удобную структуру'''
+        flightinfo = {}
+        tree = parse(xmlfile)
+        for fly in tree.findall('FLY'):
+            flightinfo['fly'] = fly.attrib['number']
+            airportdist = ''
+            destinetion = ''
+            for flightparam in fly.getchildren():
+                if flightparam.tag.find('PORTDIST') != -1:
+                    if flightparam.text is not None:
+                        if airportdist == '':
+                            airportdist = flightparam.text
+                        else:
+                            airportdist += ' - ' + flightparam.text
+                    continue
+                if flightparam.tag.find('PUNKTDIST') != -1:
+                    if flightparam.text is not None:
+                        if destinetion == '':
+                            destinetion = flightparam.text
+                        else:
+                            destinetion += ' - ' + flightparam.text
+                    continue
+                flightinfo.setdefault(flightparam.tag, flightparam.text)
+            flightinfo['portdist'] = airportdist
+            flightinfo['punktdist'] = destinetion
+            # перевести дату и время в удобный формат
+            if flightinfo['TPLAN'] is None or flightinfo['DPLAN'] is None:
+                flightinfo['timeplan'] = None
+            else:
+                flightinfo['timeplan'] = DT.datetime.strptime(flightinfo['DPLAN'] + ' ' + flightinfo['TPLAN'],
+                                                              '%d.%m.%Y %H:%M')
+            if flightinfo['TEXP'] is None or flightinfo['DEXP'] is None:
+                flightinfo['timeexp'] = None
+            else:
+                flightinfo['timeexp'] = DT.datetime.strptime(flightinfo['DEXP'] + ' ' + flightinfo['TEXP'],
+                                                             '%d.%m.%Y %H:%M')
+            if flightinfo['TFACT'] is None or flightinfo['DFACT'] is None:
+                flightinfo['timefact'] = None
+            else:
+                flightinfo['timefact'] = DT.datetime.strptime(flightinfo['DFACT'] + ' ' + flightinfo['TFACT'],
+                                                              '%d.%m.%Y %H:%M')
+            convertdic = {}
+            for key in flightinfo:
+                expectlst = ['TPLAN', 'DPLAN', 'TEXP', 'DEXP', 'TFACT', 'DFACT']
+                if key in expectlst:
+                    continue
+                else:
+                    convertdic[key.lower()] = flightinfo[key]
+            for key in ['timeplan','timeexp','timefact']:
+                if convertdic[key] is not None:
+                    convertdic[key] = DT.datetime.strftime(convertdic[key], '%Y-%m-%d %H:%M:%S')
+            convertdic['ad'] = int(convertdic['ad'])
+            if convertdic['status'] is None:
+                convertdic['status'] = ''
+            self.append(convertdic)
+            flightinfo = {}
+
+    def gettuplelst(self):
+        lst = []
+        for flight in self:
+            lst.append((flight['fly'], flight['timeplan']))
+        return lst
+
+class DictDiffer(object):
+    """
+    Calculate the difference between two dictionaries as:
+    (1) items added
+    (2) items removed
+    (3) keys same in both but changed values
+    (4) keys same in both and unchanged values
+    """
+    def __init__(self, current_dict, past_dict):
+        self.current_dict, self.past_dict = current_dict, past_dict
+        self.set_current, self.set_past = set(current_dict.keys()), set(past_dict.keys())
+        self.intersect = self.set_current.intersection(self.set_past)
+    def added(self):
+        return self.set_current - self.intersect
+    def removed(self):
+        return self.set_past - self.intersect
+    def changed(self):
+        return set(o for o in self.intersect if self.past_dict[o] != self.current_dict[o])
+    def unchanged(self):
+        return set(o for o in self.intersect if self.past_dict[o] == self.current_dict[o])
+
+
+def getxmlfromserver(filename, server, port, request):
+   if int(sys.version_info[0]) == 3:
+       conector = HTTPConnection(server, port)
+       conector.request("GET", request)
+       result = conector.getresponse()
+       file = open(filename, "w")
+       file.write(result.read().decode("utf-8"))
+       conector.close()
+       file.close()
+   else:
+       raise Exception("Python version less then 3")
+
+
+def updatedb(xmlflights, dbfile):
+    conn = sqlite3.connect(dbfile)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    for flight in xmlflights:
+        cursor.execute("SELECT id FROM flightinfosystem_flights WHERE fly=? AND timeplan=?;",(flight['fly'], flight['timeplan']))
+        row = cursor.fetchone()
+        if row is None:
+            print('insert: ', flight)
+            cursor.execute("INSERT INTO flightinfosystem_flights "
+                           "(fly, ad, aircraft, carrname, status, timeexp, timefact, "
+                           "timeplan, portdist, punktdist) VALUES (:fly, :ad, :aircraft,"
+                           ":carrname, :status, :timeexp, :timefact, :timeplan, :portdist,"
+                           ":punktdist)", flight)
+            cursor.fetchone()
+            conn.commit()
+        else:
+            print(row[0], 'update: ', flight)
+            tmp = flight.copy()
+            tmp['id'] = row[0]
+            cursor.execute("UPDATE flightinfosystem_flights SET fly=:fly, ad=:ad, "
+                           "aircraft=:aircraft, carrname=:carrname, status=:status,"
+                           "timeexp=:timeexp, timefact=timefact, timeplan=:timeplan,"
+                           "portdist=:portdist, punktdist=:punktdist WHERE id=:id",
+                           tmp)
+            cursor.fetchone()
+            conn.commit()
+    cursor.execute("SELECT id, fly, timeplan FROM flightinfosystem_flights")
+    rows = cursor.fetchall()
+    lst = xmlflight.gettuplelst()
+    for row in rows:
+        if (row['fly'], row['timeplan']) not in lst:
+            print('delete ', row['id'], row['fly'], row['timeplan'])
+            cursor.execute("DELETE FROM flightinfosystem_flights WHERE id=?", [row['id']])
+            cursor.fetchone()
+            conn.commit()
+
+
+xmlrequests = (('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:1,0"),
+               ('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:1,1"),
+               ('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:0,0"),
+               ('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:0,1"),
+             )
+
+xmlfile = 'tmpxmlfile.xml'
+xmlflight = FlightsXML()
+for request in xmlrequests:
+    getxmlfromserver(xmlfile, *request)
+    xmlflight.getfromxml(xmlfile)
+
+dbfile ='../db.sqlite3'
+#dbflight = FlightsDB()
+#dbflight.getfromdb(dbfile)
+updatedb(xmlflight, dbfile)

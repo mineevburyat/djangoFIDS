@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5da3a9ec-9e08-4c39-956a-2aaa15980aef" name="Default" comment="" />
+    <list default="true" id="5da3a9ec-9e08-4c39-956a-2aaa15980aef" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../untitled/.idea/encodings.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/flightinfosystem/arrivals.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/FlightInformDisplaySystem.iml" afterPath="$PROJECT_DIR$/.idea/FlightInformDisplaySystem.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flightinfosystem/clflights.py" afterPath="$PROJECT_DIR$/flightinfosystem/clflights.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../untitled/.idea/vcs.xml" afterPath="$PROJECT_DIR$/../untitled/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../untitled/flightinfo.py" afterPath="$PROJECT_DIR$/../untitled/flightinfo.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../untitled/tmpxmlstructure.xml" afterPath="$PROJECT_DIR$/../untitled/tmpxmlstructure.xml" />
+    </list>
     <ignored path="FlightInformDisplaySystem.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -16,6 +29,8 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/FlightInformDisplaySystem$clflights.coverage" NAME="clflights Coverage Results" MODIFIED="1466439455376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flightinfosystem" />
     <SUITE FILE_PATH="coverage/FlightInformDisplaySystem$Test__templates_flightinfosystem_flight_list_html.coverage" NAME="Test: templates.flightinfosystem.flight_list.html Coverage Results" MODIFIED="1466346485881" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/djangoFIDS$flightinfo.coverage" NAME="flightinfo Coverage Results" MODIFIED="1466500639040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../untitled" />
+    <SUITE FILE_PATH="coverage/djangoFIDS$clflights.coverage" NAME="clflights Coverage Results" MODIFIED="1466508431788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flightinfosystem" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -29,26 +44,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FlightInformDisplaySystem/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
-              <caret line="104" column="46" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flightinfosystem/static/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flightinfosystem/models.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -86,7 +81,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flightinfosystem/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
+            <state relative-caret-position="30">
               <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
@@ -120,33 +115,49 @@
       <file leaf-file-name="clflights.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/flightinfosystem/clflights.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="263" column="21" selection-start-line="263" selection-start-column="21" selection-end-line="263" selection-end-column="21" />
+            <state relative-caret-position="327">
+              <caret line="464" column="80" selection-start-line="464" selection-start-column="80" selection-end-line="464" selection-end-column="80" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#2970#5421#0" expanded="false" />
-                <element signature="e#5454#5540#0" expanded="false" />
-                <element signature="e#5571#6199#0" expanded="false" />
-                <element signature="e#6234#6931#0" expanded="false" />
-                <element signature="e#6965#7662#0" expanded="false" />
-                <element signature="e#7702#7775#0" expanded="false" />
-                <element signature="e#7815#7965#0" expanded="false" />
-                <element signature="e#8014#8310#0" expanded="false" />
-                <element signature="e#8359#9298#0" expanded="false" />
-                <element signature="e#9509#9610#0" expanded="false" />
-                <element signature="e#9688#9902#0" expanded="false" />
-                <element signature="e#9963#10363#0" expanded="false" />
-                <marker date="1466439455301" expanded="true" signature="10531:10580" placeholder="SELECT id, t... flightinfosystem_flights" />
-                <marker date="1466439455301" expanded="true" signature="11689:11817" placeholder="UPDATE fligh... " />
-                <marker date="1466439455301" expanded="true" signature="11689:11863" placeholder="UPDATE fligh... " />
-                <marker date="1466439455301" expanded="true" signature="11689:11864" placeholder="UPDATE fligh... " />
-                <marker date="1466439455301" expanded="true" signature="11689:11873" placeholder="UPDATE fligh... " />
-                <marker date="1466439455301" expanded="true" signature="12114:12151" placeholder="INSERT INTO flightinfosystem_flights... " />
-                <marker date="1466439455301" expanded="true" signature="12114:12296" placeholder="INSERT INTO flightinfosystem_flights... " />
-                <marker date="1466439455301" expanded="true" signature="12482:12531" placeholder="select timep... flightinfosystem_flights" />
-                <marker date="1466439455301" expanded="true" signature="12789:12826" placeholder="DELETE FROM " />
-                <marker date="1466439455301" expanded="true" signature="12789:12836" placeholder="DELETE FROM " />
+                <marker date="1466508431743" expanded="false" signature="4923:5018" ph="..." />
+                <marker date="1466508431743" expanded="false" signature="5040:5677" ph="..." />
+                <marker date="1466508431743" expanded="false" signature="5703:6409" ph="..." />
+                <marker date="1466508431743" expanded="false" signature="6434:7140" ph="..." />
+                <marker date="1466508431743" expanded="false" signature="7171:7253" ph="..." />
+                <marker date="1466508431743" expanded="false" signature="7284:7443" ph="..." />
+                <marker date="1466508431743" expanded="false" signature="7483:7788" ph="..." />
+                <marker date="1466508431743" expanded="false" signature="8817:8927" ph="..." />
+                <marker date="1466508431743" expanded="false" signature="9000:9219" ph="..." />
+                <marker date="1466508431743" expanded="true" signature="9804:9853" ph="SELECT id, t... flightinfosystem_flights" />
+                <marker date="1466508431743" expanded="true" signature="10962:11146" ph="UPDATE fligh... " />
+                <marker date="1466508431743" expanded="true" signature="11387:11569" ph="INSERT INTO flightinfosystem_flights... " />
+                <marker date="1466508431743" expanded="true" signature="11755:11804" ph="select id, t... flightinfosystem_flights" />
+                <marker date="1466508431743" expanded="true" signature="12062:12109" ph="DELETE FROM " />
+                <marker date="1466508431743" expanded="true" signature="12436:12474" ph="SELECT * FRO... flightinfosystem_flights" />
+                <marker date="1466508431743" expanded="true" signature="17449:17488" ph="SELECT * FRO... flightinfosystem_flights" />
+                <marker date="1466508431743" expanded="true" signature="17449:17515" ph="SELECT id FR... flightinfosystem_flights" />
+                <marker date="1466508431743" expanded="true" signature="17677:17931" ph="INSERT INTO flightinfosystem_flights... " />
+                <marker date="1466508431743" expanded="true" signature="17677:18024" ph="INSERT INTO flightinfosystem_flights... " />
+                <marker date="1466508431743" expanded="true" signature="17677:18026" ph="INSERT INTO flightinfosystem_flights... " />
+                <marker date="1466508431743" expanded="true" signature="18242:18277" ph="UPDATE fligh... " />
+                <marker date="1466508431743" expanded="true" signature="18242:18447" ph="UPDATE fligh... " />
+                <marker date="1466508431743" expanded="true" signature="18242:18537" ph="UPDATE fligh... " />
+                <marker date="1466508431743" expanded="true" signature="18242:18543" ph="UPDATE fligh... " />
+                <marker date="1466508431743" expanded="true" signature="18242:18547" ph="UPDATE fligh... " />
+                <marker date="1466508431743" expanded="true" signature="18242:18550" ph="UPDATE fligh... " />
+                <marker date="1466508431743" expanded="true" signature="18661:18715" ph="SELECT fly, flightinfosystem_flights" />
+                <marker date="1466508431743" expanded="true" signature="18952:18999" ph="DELETE FROM " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="xmldata.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../untitled/xmldata.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -162,6 +173,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -175,6 +189,7 @@
         <option value="$PROJECT_DIR$/templates/flightinfosystem/flight_list.html" />
         <option value="$PROJECT_DIR$/flightinfosystem/models.py" />
         <option value="$PROJECT_DIR$/flightinfosystem/views.py" />
+        <option value="$PROJECT_DIR$/../untitled/flightinfo.py" />
         <option value="$PROJECT_DIR$/flightinfosystem/clflights.py" />
       </list>
     </option>
@@ -186,12 +201,12 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="48" />
-    <option name="y" value="27" />
-    <option name="width" value="1632" />
-    <option name="height" value="1023" />
+    <option name="x" value="37" />
+    <option name="y" value="24" />
+    <option name="width" value="987" />
+    <option name="height" value="744" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -216,62 +231,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlightInformDisplaySystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlightInformDisplaySystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlightInformDisplaySystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlightInformDisplaySystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlightInformDisplaySystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flightinfosystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlightInformDisplaySystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlightInformDisplaySystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flightinfosystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -286,13 +245,71 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="djangoFIDS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="djangoFIDS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="djangoFIDS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="djangoFIDS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="djangoFIDS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="djangoFIDS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flightinfosystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="djangoFIDS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="djangoFIDS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightInformDisplaySystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$USER_HOME$/AirportProject" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../untitled" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
@@ -339,6 +356,24 @@
       <module name="FlightInformDisplaySystem" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/flightinfosystem/clflights.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="flightinfo" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.5" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../untitled" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="untitled" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../untitled/flightinfo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -506,9 +541,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <i>
-        <array />
-      </i>
       <g>
         <array />
       </g>
@@ -710,15 +742,17 @@
       <option name="customRunCommand" value="" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Django server.FlightInformDisplaySystem" />
       <item index="1" class="java.lang.String" itemvalue="Django tests.Test: templates.flightinfosystem.flight_list.html" />
       <item index="2" class="java.lang.String" itemvalue="Python.clflights" />
+      <item index="3" class="java.lang.String" itemvalue="Python.flightinfo" />
     </list>
     <recent_temporary>
-      <list size="2">
+      <list size="3">
         <item index="0" class="java.lang.String" itemvalue="Python.clflights" />
-        <item index="1" class="java.lang.String" itemvalue="Django tests.Test: templates.flightinfosystem.flight_list.html" />
+        <item index="1" class="java.lang.String" itemvalue="Python.flightinfo" />
+        <item index="2" class="java.lang.String" itemvalue="Django tests.Test: templates.flightinfosystem.flight_list.html" />
       </list>
     </recent_temporary>
   </component>
@@ -744,19 +778,19 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="48" y="27" width="1632" height="1023" extended-state="6" />
-    <editor active="true" />
+    <frame x="37" y="24" width="987" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24924012" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32947367" sideWeight="0.50490195" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935917" sideWeight="0.5126646" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947367" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935917" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32947367" sideWeight="0.49509802" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25633383" sideWeight="0.48733535" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947367" sideWeight="0.49754903" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935917" sideWeight="0.49754903" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -779,10 +813,122 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/FlightInformDisplaySystem/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1560">
+          <caret line="104" column="46" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flightinfosystem/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flightinfosystem/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flightinfosystem/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="3" column="44" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlightInformDisplaySystem/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="52" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flightinfosystem/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/flightinfosystem/flight_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flightinfosystem/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flightinfosystem/clflights.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1466508431743" expanded="false" signature="4923:5018" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="5040:5677" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="5703:6409" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="6434:7140" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="7171:7253" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="7284:7443" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="7483:7788" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="8817:8927" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="9000:9219" ph="..." />
+            <marker date="1466508431743" expanded="true" signature="9804:9853" ph="SELECT id, t... flightinfosystem_flights" />
+            <marker date="1466508431743" expanded="true" signature="10962:11146" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="11387:11569" ph="INSERT INTO flightinfosystem_flights... " />
+            <marker date="1466508431743" expanded="true" signature="11755:11804" ph="select id, t... flightinfosystem_flights" />
+            <marker date="1466508431743" expanded="true" signature="12062:12109" ph="DELETE FROM " />
+            <marker date="1466508431743" expanded="true" signature="12436:12474" ph="SELECT * FRO... flightinfosystem_flights" />
+            <marker date="1466508431743" expanded="true" signature="17449:17488" ph="SELECT * FRO... flightinfosystem_flights" />
+            <marker date="1466508431743" expanded="true" signature="17449:17515" ph="SELECT id FR... flightinfosystem_flights" />
+            <marker date="1466508431743" expanded="true" signature="17677:17931" ph="INSERT INTO flightinfosystem_flights... " />
+            <marker date="1466508431743" expanded="true" signature="17677:18024" ph="INSERT INTO flightinfosystem_flights... " />
+            <marker date="1466508431743" expanded="true" signature="17677:18026" ph="INSERT INTO flightinfosystem_flights... " />
+            <marker date="1466508431743" expanded="true" signature="18242:18277" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="18242:18447" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="18242:18537" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="18242:18543" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="18242:18547" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="18242:18550" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="18661:18715" ph="SELECT fly, flightinfosystem_flights" />
+            <marker date="1466508431743" expanded="true" signature="18952:18999" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/FlightInformDisplaySystem/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1560">
@@ -828,7 +974,7 @@
     <entry file="file://$PROJECT_DIR$/flightinfosystem/templates/flightinfosystem/flight_list.html" />
     <entry file="file://$PROJECT_DIR$/FlightInformDisplaySystem/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
+        <state relative-caret-position="1560">
           <caret line="104" column="46" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
           <folding />
         </state>
@@ -882,7 +1028,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/flightinfosystem/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
+        <state relative-caret-position="30">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
@@ -898,34 +1044,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/flightinfosystem/arrivals.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../untitled/xmldata.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../untitled/flightinfo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="133" column="12" selection-start-line="133" selection-start-column="12" selection-end-line="133" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/flightinfosystem/clflights.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="263" column="21" selection-start-line="263" selection-start-column="21" selection-end-line="263" selection-end-column="21" />
+        <state relative-caret-position="327">
+          <caret line="464" column="80" selection-start-line="464" selection-start-column="80" selection-end-line="464" selection-end-column="80" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#2970#5421#0" expanded="false" />
-            <element signature="e#5454#5540#0" expanded="false" />
-            <element signature="e#5571#6199#0" expanded="false" />
-            <element signature="e#6234#6931#0" expanded="false" />
-            <element signature="e#6965#7662#0" expanded="false" />
-            <element signature="e#7702#7775#0" expanded="false" />
-            <element signature="e#7815#7965#0" expanded="false" />
-            <element signature="e#8014#8310#0" expanded="false" />
-            <element signature="e#8359#9298#0" expanded="false" />
-            <element signature="e#9509#9610#0" expanded="false" />
-            <element signature="e#9688#9902#0" expanded="false" />
-            <element signature="e#9963#10363#0" expanded="false" />
-            <marker date="1466439455301" expanded="true" signature="10531:10580" placeholder="SELECT id, t... flightinfosystem_flights" />
-            <marker date="1466439455301" expanded="true" signature="11689:11817" placeholder="UPDATE fligh... " />
-            <marker date="1466439455301" expanded="true" signature="11689:11863" placeholder="UPDATE fligh... " />
-            <marker date="1466439455301" expanded="true" signature="11689:11864" placeholder="UPDATE fligh... " />
-            <marker date="1466439455301" expanded="true" signature="11689:11873" placeholder="UPDATE fligh... " />
-            <marker date="1466439455301" expanded="true" signature="12114:12151" placeholder="INSERT INTO flightinfosystem_flights... " />
-            <marker date="1466439455301" expanded="true" signature="12114:12296" placeholder="INSERT INTO flightinfosystem_flights... " />
-            <marker date="1466439455301" expanded="true" signature="12482:12531" placeholder="select timep... flightinfosystem_flights" />
-            <marker date="1466439455301" expanded="true" signature="12789:12826" placeholder="DELETE FROM " />
-            <marker date="1466439455301" expanded="true" signature="12789:12836" placeholder="DELETE FROM " />
+            <marker date="1466508431743" expanded="false" signature="4923:5018" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="5040:5677" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="5703:6409" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="6434:7140" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="7171:7253" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="7284:7443" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="7483:7788" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="8817:8927" ph="..." />
+            <marker date="1466508431743" expanded="false" signature="9000:9219" ph="..." />
+            <marker date="1466508431743" expanded="true" signature="9804:9853" ph="SELECT id, t... flightinfosystem_flights" />
+            <marker date="1466508431743" expanded="true" signature="10962:11146" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="11387:11569" ph="INSERT INTO flightinfosystem_flights... " />
+            <marker date="1466508431743" expanded="true" signature="11755:11804" ph="select id, t... flightinfosystem_flights" />
+            <marker date="1466508431743" expanded="true" signature="12062:12109" ph="DELETE FROM " />
+            <marker date="1466508431743" expanded="true" signature="12436:12474" ph="SELECT * FRO... flightinfosystem_flights" />
+            <marker date="1466508431743" expanded="true" signature="17449:17488" ph="SELECT * FRO... flightinfosystem_flights" />
+            <marker date="1466508431743" expanded="true" signature="17449:17515" ph="SELECT id FR... flightinfosystem_flights" />
+            <marker date="1466508431743" expanded="true" signature="17677:17931" ph="INSERT INTO flightinfosystem_flights... " />
+            <marker date="1466508431743" expanded="true" signature="17677:18024" ph="INSERT INTO flightinfosystem_flights... " />
+            <marker date="1466508431743" expanded="true" signature="17677:18026" ph="INSERT INTO flightinfosystem_flights... " />
+            <marker date="1466508431743" expanded="true" signature="18242:18277" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="18242:18447" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="18242:18537" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="18242:18543" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="18242:18547" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="18242:18550" ph="UPDATE fligh... " />
+            <marker date="1466508431743" expanded="true" signature="18661:18715" ph="SELECT fly, flightinfosystem_flights" />
+            <marker date="1466508431743" expanded="true" signature="18952:18999" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
