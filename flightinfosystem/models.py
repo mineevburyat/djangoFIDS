@@ -15,7 +15,22 @@ class Flights(models.Model):
     timefact = models.DateTimeField("Время по факту", null=True, blank=True)
 
     def __str__(self):
-        return 'рейс: ' + self.fly + ' на ' + self.timeplan.strftime('%d.%m.%y %H:%M')
+        if self.ad == 1:
+            ad = 'прилетающий'
+        else:
+            ad = 'вылетающий'
+        return ad + ' рейс: ' + self.fly + ' на ' + self.timeplan.strftime('%d.%m.%y %H:%M')
+
+    def isdeparture(self):
+        if self.ad == 0:
+            return True
+        else:
+            return False
+    def isarrive(self):
+        if self.ad == 1:
+            return True
+        else:
+            return False
 
 class FlightsStatus(models.Model):
     fly = models.ForeignKey('Flights', verbose_name="Рейс")
@@ -28,3 +43,13 @@ class FlightsStatus(models.Model):
 
     def __str__(self):
         return str(self.fly)
+
+class Checkin(models.Model):
+    FULLNAME = ['Внутренних линий ', 'Международных линий ']
+    SHORTNAME = ['ВВЛ ', 'МВЛ ']
+    num = models.IntegerField("Номер стойки")
+    fullname = models.CharField("Полное имя стойки", max_length=21)
+    shortname = models.CharField("Короткое имя стойки", max_length=5)
+
+    def __str__(self):
+        return 'Стойка регистрации ' + self.shortname + ' ' + str(self.num)

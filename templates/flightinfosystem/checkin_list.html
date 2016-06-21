@@ -1,0 +1,23 @@
+{% extends 'flightinfosystem/base.html' %}
+
+{% block content %}
+    <div>
+        <h2>Список существующих стоек регистрации</h2>
+    </div>
+    <div>
+        <table class="table">
+            <tr>
+                <th width="250">Зал вылета</th>
+                <th width="50">Короткое имя</th>
+                <th width="30">Номер</th>
+            </tr>
+        {% for checkin in checkins %}
+            <tr>
+                <td>{{ checkin.fullname }}</td>
+                <td>{{ checkin.shortname }}</td>
+                <td><a href="{% url 'check' id=checkin.id %}">{{ checkin.num }}</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+{% endblock content %}

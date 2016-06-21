@@ -1,21 +1,13 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Текущие рейсы</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
+{% extends 'flightinfosystem/base.html' %}
+
+{% block content %}
     <div>
-        <h1>Список рейсов (регулярные и чартерные)</h1>
+        <h2>Список рейсов (регулярные и чартерные)</h2>
     </div>
     <div>
         <table class="table">
             <tr>
-                <th> </th>
+                <th></th>
                 <th>Рейс</th>
                 <th>Направления</th>
                 <th width="150">По расписанию</th>
@@ -26,8 +18,14 @@
         {% for flight in flights %}
 
             <tr>
-                <td> </td>
-                <td><a href="">{{ flight.fly }}</a></td>
+                <td>
+                    {% if flight.isarrive  %}
+                    Прилет
+                    {% elif flight.isdeparture%}
+                    Вылет
+                    {% endif %}
+                </td>
+                <td><a href="{% url 'flight_detail' id=flight.id%}">{{ flight.fly }}</a></td>
                 <td>{{ flight.portdist }}</td>
                 <td>{{ flight.timeplan }}</td>
                 <td>{{ flight.timeexp }}</td>
@@ -38,5 +36,4 @@
         {% endfor %}
         </table>
     </div>
-</body>
-</html>
+{% endblock content %}

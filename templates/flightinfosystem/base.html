@@ -1,0 +1,21 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FIDS Airport Baikal</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="page-header">
+        <h1><a href="/fids">Аэропорт Байкал FIDS</a></h1>
+        <p>Flight Information Display System - Система информирования пассажиров о рейсах</p>
+    </div>
+    <div class="content container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

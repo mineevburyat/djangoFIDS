@@ -1,0 +1,18 @@
+{% extends 'flightinfosystem/base.html' %}
+
+{% block content %}
+    <div>
+        <h2>Подробно о рейсе
+            {% if flight.isarrive %}
+                прилета
+            {% elif flight.isdeparture %}
+                вылета
+            {% else %}
+                непонятно
+            {% endif %}
+            {{ flight.fly }} на {{ flight.timeplan }}</h2>
+    </div>
+    <div>
+        Описываем параметры рейса и текущий статус по обслуживанию
+    </div>
+{% endblock content %}
