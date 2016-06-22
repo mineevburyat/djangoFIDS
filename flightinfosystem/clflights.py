@@ -429,7 +429,7 @@ def updatedb(xmlflights, dbfile):
         cursor.execute("SELECT id FROM flightinfosystem_flights WHERE fly=? AND timeplan=?;",(flight['fly'], flight['timeplan']))
         row = cursor.fetchone()
         if row is None:
-            print('insert: ', flight)
+            #print('insert: ', flight)
             cursor.execute("INSERT INTO flightinfosystem_flights "
                            "(fly, ad, aircraft, carrname, status, timeexp, timefact, "
                            "timeplan, portdist, punktdist) VALUES (:fly, :ad, :aircraft,"
@@ -438,12 +438,12 @@ def updatedb(xmlflights, dbfile):
             cursor.fetchone()
             conn.commit()
         else:
-            print(row[0], 'update: ', flight)
+            #print(row[0], 'update: ', flight)
             tmp = flight.copy()
             tmp['id'] = row[0]
             cursor.execute("UPDATE flightinfosystem_flights SET fly=:fly, ad=:ad, "
                            "aircraft=:aircraft, carrname=:carrname, status=:status,"
-                           "timeexp=:timeexp, timefact=timefact, timeplan=:timeplan,"
+                           "timeexp=:timeexp, timefact=:timefact, timeplan=:timeplan,"
                            "portdist=:portdist, punktdist=:punktdist WHERE id=:id",
                            tmp)
             cursor.fetchone()
@@ -453,7 +453,7 @@ def updatedb(xmlflights, dbfile):
     lst = xmlflight.gettuplelst()
     for row in rows:
         if (row['fly'], row['timeplan']) not in lst:
-            print('delete ', row['id'], row['fly'], row['timeplan'])
+            #print('delete ', row['id'], row['fly'], row['timeplan'])
             cursor.execute("DELETE FROM flightinfosystem_flights WHERE id=?", [row['id']])
             cursor.fetchone()
             conn.commit()

@@ -45,8 +45,6 @@ class FlightsStatus(models.Model):
         return str(self.fly)
 
 class Checkin(models.Model):
-    FULLNAME = ['Внутренних линий ', 'Международных линий ']
-    SHORTNAME = ['ВВЛ ', 'МВЛ ']
     num = models.IntegerField("Номер стойки")
     fullname = models.CharField("Полное имя стойки", max_length=21)
     shortname = models.CharField("Короткое имя стойки", max_length=5)

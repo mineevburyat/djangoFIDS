@@ -2,10 +2,49 @@
 
 {% block content %}
     <div>
-        <h2>Стойка регистрации ВВЛ № 1</h2>
+        <h2>Стойка регистрации {{ check.shortname }} № {{ check.num }}</h2>
+        <h3>Зал {{ check.fullname }}</h3>
     </div>
     <div>
+        <FORM id="rowEditForm" ACTION="" method="POST">
+        <TABLE class="sop" border="1" id="demoTable" >
+            <tr>
+                <th><b>Рейс</b></th>
+                <th WIDTH=220><b>Направление</b></th>
+                <th><b>Начало<br>регистрации</b></th>
+                <th><b>Окончание<br>регистрации</b></th>
+                <th><b>Класс</b></th>
+                <th width='25px'>Окончить<br>регистрацию</th>
+            </tr>
+            <tr>
+                <td style="background: #eee";></td>
+                <td>
 
-
+                </td>
+                <td>
+                    <input style="width: 100px" id="nreg" type="time" name="nreg" class="POST" value=""/>
+                </td>
+                <td>
+                    <input style="width: 100px" id="okreg" type="time" name="okreg" class="POST" value=""/>
+                </td>
+                <td>
+                    <SELECT NAME="class" id="class">
+                        <option  selected VALUE=""</option>
+                        <OPTION VALUE="Economy">Economy</option>
+                        <OPTION VALUE="Business">Business</option>
+                        <OPTION VALUE="Discount ">Discount </option>
+                    </SELECT>
+                </td>
+                <td>
+                    <input title='Очистить строку' type="image" src="../../img/work/del.gif" OnClick="" onmouseover="" onmouseout="">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <INPUT class="button" TYPE="submit" name="confirm" VALUE="Начать регистрацию" style="width:150px; height:30px;border-radius: 4px;">
+        <br>
+        <br>
+            &copy; Copyright
+        </FORM>
     </div>
 {% endblock content %}
