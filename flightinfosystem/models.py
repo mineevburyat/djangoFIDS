@@ -48,6 +48,7 @@ class Checkin(models.Model):
     num = models.IntegerField("Номер стойки")
     fullname = models.CharField("Полное имя стойки", max_length=21)
     shortname = models.CharField("Короткое имя стойки", max_length=5)
+    flightstatus = models.ForeignKey('FlightsStatus', verbose_name='Рейс', null=True)
 
     def __str__(self):
         return 'Стойка регистрации ' + self.shortname + ' ' + str(self.num)

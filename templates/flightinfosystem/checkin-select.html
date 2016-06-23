@@ -1,0 +1,46 @@
+{% extends 'flightinfosystem/base.html' %}
+
+{% block content %}
+    <div>
+        <h2>Стойка регистрации {{ check.shortname }} № {{ check.num }}</h2>
+        <h3>Зал {{ check.fullname }}</h3>
+    </div>
+    <div>
+        <FORM method="POST">{% csrf_token %}
+        <TABLE class="sop" border="1" id="demoTable" >
+            <tr>
+                <th> - </th>
+                <th><b>Код рейса</b></th>
+                <th WIDTH=220><b>Направление</b></th>
+                <th><b>Начало<br>регистрации</b></th>
+                <th><b>Окончание<br>регистрации</b></th>
+                <th><b>Класс <br>регистрации</b></th>
+            </tr>
+            {% for foo in depart %}
+            <tr>
+                <td style="background: #eee";>
+                    <input type="radio" name="id" value="{{ foo.id }}">
+                </td>
+                <td> {{ foo.fly }} </td>
+                <td> {{ foo.portdist }} </td>
+                <td> {{ foo.timeexp }}</td>
+                <td> {{ foo.timeexp }}</td>
+                <td>
+                    <SELECT NAME="class" id="class">
+                        <!--<option  selected VALUE="Economy"</option> -->
+                        <OPTION VALUE="Economy">Economy</option>
+                        <OPTION VALUE="Business">Business</option>
+                        <OPTION VALUE="Discount ">Discount </option>
+                    </SELECT>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <INPUT class="button" TYPE="submit" name="confirm" VALUE="Начать регистрацию" style="width:150px; height:30px;border-radius: 4px;">
+        <br>
+        <br>
+            &copy; Copyright
+        </FORM>
+    </div>
+{% endblock content %}

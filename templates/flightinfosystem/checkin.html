@@ -17,7 +17,14 @@
                 <th width='25px'>Окончить<br>регистрацию</th>
             </tr>
             <tr>
-                <td style="background: #eee";></td>
+                <td style="background: #eee";>
+                    <SELECT NAME="reise_id" id="reise_id">
+                        <!--<option  selected VALUE=""</option> -->
+                        {% for foo in depart %}
+                            <OPTION VALUE="{{ foo.id }}">{{ foo }}</option>
+                        {% endfor %}
+                    </SELECT>
+                </td>
                 <td>
 
                 </td>
@@ -46,5 +53,11 @@
         <br>
             &copy; Copyright
         </FORM>
+    {% for dep in depart %}
+        {{ dep.id }} - {{ dep.fly }} - {{ dep.timeplan }} <br>
+    {% endfor %}
+    {% for stat in status %}
+        {{ stat.id }} - {{ stat.fly }} - {{ stat.checkin_set }}
+    {% endfor %}
     </div>
 {% endblock content %}
