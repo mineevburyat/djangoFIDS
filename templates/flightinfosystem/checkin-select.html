@@ -6,7 +6,8 @@
         <h3>Зал {{ check.fullname }}</h3>
     </div>
     <div>
-        <FORM method="POST">{% csrf_token %}
+        <FORM action="{% url 'checkin' check.id %}"method="POST">
+        {% csrf_token %}
         <TABLE class="sop" border="1" id="demoTable" >
             <tr>
                 <th> - </th>
@@ -14,7 +15,7 @@
                 <th WIDTH=220><b>Направление</b></th>
                 <th><b>Начало<br>регистрации</b></th>
                 <th><b>Окончание<br>регистрации</b></th>
-                <th><b>Класс <br>регистрации</b></th>
+                <th><b>Класс<br>регистрации</b></th>
             </tr>
             {% for foo in depart %}
             <tr>
@@ -37,7 +38,7 @@
             {% endfor %}
         </table>
         <br>
-        <INPUT class="button" TYPE="submit" name="confirm" VALUE="Начать регистрацию" style="width:150px; height:30px;border-radius: 4px;">
+        <INPUT class="button" TYPE="submit" name="confirm" VALUE="Выбрать рейс" style="width:150px; height:30px;border-radius: 4px;">
         <br>
         <br>
             &copy; Copyright

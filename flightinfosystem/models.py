@@ -34,7 +34,10 @@ class Flights(models.Model):
 
 class FlightsStatus(models.Model):
     fly = models.ForeignKey('Flights', verbose_name="Рейс")
-    statuscheckin = models.BooleanField("Статус регистрации пассажиров", default=False)
+    statuscheckin = models.BooleanField("Статус процесса регистрации", default=False)
+    checkinclass = models.CharField("Класс регистрации", blank=True, max_length=15)
+    starchecktime = models.TimeField("Начало регистрации", null=True)
+    endchecktime = models.TimeField("Конец регистрации", null=True)
     statusboard = models.BooleanField("Статус посадки пассажиров", default=False)
     statusbaggage = models.BooleanField("Статус выдачи багажа", default=False)
     checkins = models.CharField("Используемые стойки регистрации", max_length=13, blank=True)
