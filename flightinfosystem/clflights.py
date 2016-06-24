@@ -327,7 +327,11 @@ class FlightsXML(list):
         flightinfo = {}
         tree = parse(xmlfile)
         for fly in tree.findall('FLY'):
-            flightinfo['fly'] = fly.attrib['number']
+            flycod = fly.attrib['number']
+            if flycod is '':
+                print(flycod, '-')
+                continue
+            flightinfo['fly'] = flycod
             airportdist = ''
             destinetion = ''
             for flightparam in fly.getchildren():

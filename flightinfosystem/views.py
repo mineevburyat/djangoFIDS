@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.utils import timezone
-from .models import FlightsStatus, Flights, Checkin
+from .models import CheckinFlightStatus, Flights, \
+    FlightsStatus,BaggegeFlightStatus, BoardFlightStatus, Checkin
 
 
 # Create your views here.
@@ -23,7 +24,7 @@ def checkin_list(request):
 def checkin(request, id):
     check = get_object_or_404(Checkin, id=id)
     if request.method == 'GET':
-        if check.flightstatus is None:
+        if check.checkinfly_id is None:
             #Отобразить рейсы 3 часа вперед и три часа назад от текущего времени,
             # возможность выбора рейса
             departureflight = Flights.objects.filter(ad=0).order_by('timeplan')
@@ -31,21 +32,26 @@ def checkin(request, id):
                                                                  'depart': departureflight})
         else:
             #Отобразить статусы рейса прикрепленного к стойке и возможность закрыть регистрацию на стойке
-            flightstatus = check.flightstatus
-            return render(request, 'flightinfosystem/checkin-status.html', {'flightstatus': flightstatus})
+            idfly = check.checkinfly_id
+            return render(request, 'flightinfosystem/checkin-status.html',
+                          {'check': check, 'idfly': idfly})
     elif request.method == 'POST':
-        if check.flightstatus is None:
+        if check.checkinfly is None:
             # Внести данные в flightinfo и переслать на страницу статуса рейса превязанного к стойке
-            selected_flight = get_object_or_404(Flights,id=request.POST['id'])
+            flightid = request.POST['id']
+            selectflight = get_object_or_404(Flights, id=flightid)
             flightstatus = FlightsStatus()
-            flightstatus.fly_id = int(request.POST['id'])
             flightstatus.statuscheckin = True
-            flightstatus.checkinclass = request.POST['class']
-            flightstatus.starchecktime = timezone.now().time()
-            flightstatus.endchecktime = selected_flight.timeexp.time()
-            flightstatus.statuscheckin = "Регистрация на стойках: " + check.shortname + ' ' + str(check.num)
+            flightstatus.fly_id = selectflight.id
             flightstatus.save()
-            check.flightstatus = flightstatus
+            checkinflight = CheckinFlightStatus()
+            checkinflight.fly_id = selectflight.id
+            checkinflight.starchecktime = timezone.now()
+            checkinflight.endchecktime = selectflight.timeexp
+            checkinflight.checkins = "cтойки: " + check.shortname + ' ' + str(check.num)
+            checkinflight.save()
+            check.checkinfly_id = selectflight.id
+            check.classcheckin = request.POST['class']
             check.save()
             return redirect('flightinfosystem.views.checkin', id=check.id)
         else:

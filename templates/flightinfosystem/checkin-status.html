@@ -5,7 +5,32 @@
         <h2>Стойка регистрации {{ check.shortname }} № {{ check.num }}</h2>
         <h3>Зал {{ check.fullname }}</h3>
     </div>
+    <hr>
     <div>
-        {{ flightstatus }}
+        <div> {{ idfly }}
+           <!-- <h4>Регистрируется
+                {% if flight.isdeparture %}
+                    вылетающий
+                {% else %}
+                    прилетающий
+                {% endif %}
+                рейс {{ flight.fly }} </h4>
+            <p>Маршрут {{ flight.portdist }}</p>
+            <p>Пункт назначений {{ flight.punktdist }}</p>
+            <p>Статус из AODB {{ flight.status }}</p>
+            <p>Время вылета по плану: {{ flight.timeplan }}</p>
+            <p>Расчетное время вылета: {{ flight.timeexp }}</p>
+        </div>
+        <div>
+            <h4>Статус обслуживания вылетающего рейса {{ flight.fly }}</h4>
+            <p>Регистрация на рейс: {{ flightstatus.statuscheckin }}</p>
+            <p>Время начала регистрации: {{ flightstatus.starchecktime }}</p>
+            <p>Время окончания регистрации: {{ flightstatus.endchecktime }}</p>
+            <p>Стойки регистрации: {{ flightstatus.checkins }}</p>
+            <p>Классность стойки: {{ flightstatus.checkinclass }}</p> -->
+        </div>
+
+    <br>
+
     </div>
 {% endblock content %}

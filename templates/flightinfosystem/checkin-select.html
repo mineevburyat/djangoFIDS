@@ -6,6 +6,7 @@
         <h3>Зал {{ check.fullname }}</h3>
     </div>
     <div>
+        <h4>Выберите рейс и классность стойки регистрации:</h4>
         <FORM action="{% url 'checkin' check.id %}"method="POST">
         {% csrf_token %}
         <TABLE class="sop" border="1" id="demoTable" >
@@ -13,8 +14,9 @@
                 <th> - </th>
                 <th><b>Код рейса</b></th>
                 <th WIDTH=220><b>Направление</b></th>
+                <th><b>Время<br>вылета</b></th>
                 <th><b>Начало<br>регистрации</b></th>
-                <th><b>Окончание<br>регистрации</b></th>
+                <th><b>Конец<br>регистрации</b></th>
                 <th><b>Класс<br>регистрации</b></th>
             </tr>
             {% for foo in depart %}
@@ -24,8 +26,9 @@
                 </td>
                 <td> {{ foo.fly }} </td>
                 <td> {{ foo.portdist }} </td>
-                <td> {{ foo.timeexp }}</td>
-                <td> {{ foo.timeexp }}</td>
+                <td> {{ foo.timeplan }}</td>
+                <td> {{ foo.timestartcheckin }}</td>
+                <td> {{ foo.timestopcheckin }}</td>
                 <td>
                     <SELECT NAME="class" id="class">
                         <!--<option  selected VALUE="Economy"</option> -->
