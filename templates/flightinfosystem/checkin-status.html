@@ -7,8 +7,8 @@
     </div>
     <hr>
     <div>
-        <div> {{ idfly }}
-           <!-- <h4>Регистрируется
+        <div>
+            <h4>Регистрируется
                 {% if flight.isdeparture %}
                     вылетающий
                 {% else %}
@@ -23,7 +23,10 @@
         </div>
         <div>
             <h4>Статус обслуживания вылетающего рейса {{ flight.fly }}</h4>
-            <p>Регистрация на рейс: {{ flightstatus.statuscheckin }}</p>
+            {{ statuscheck.starchecktime }}<br>
+            {{ statuscheck.endchecktime }}<br>
+            {{ statuscheck.checkins }}
+            <!--<p>Регистрация на рейс: {{ flightstatus.statuscheckin }}</p>
             <p>Время начала регистрации: {{ flightstatus.starchecktime }}</p>
             <p>Время окончания регистрации: {{ flightstatus.endchecktime }}</p>
             <p>Стойки регистрации: {{ flightstatus.checkins }}</p>

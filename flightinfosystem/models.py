@@ -41,18 +41,18 @@ class Flights(models.Model):
         return (self.timeexp - datetime.timedelta(seconds=2400)).time()
 
 class FlightsStatus(models.Model):
-    fly = models.ForeignKey('Flights', verbose_name="Рейс")
+    fly = models.OneToOneField('Flights', verbose_name="Рейс")
     statuscheckin = models.BooleanField("Статус процесса регистрации", default=False)
     statusboard = models.BooleanField("Статус посадки пассажиров", default=False)
     statusbaggage = models.BooleanField("Статус выдачи багажа", default=False)
 
 class CheckinFlightStatus(models.Model):
-    fly = models.ForeignKey('Flights', verbose_name="Рейс")
+    fly = models.OneToOneField('Flights', verbose_name="Рейс", )
     starchecktime = models.TimeField("Начало регистрации", null=True)
     endchecktime = models.TimeField("Конец регистрации", null=True)
     checkins = models.CharField("Используемые стойки регистрации", max_length=13, blank=True)
 
-class BoardFlightStatus(models.Model):
+'''class BoardFlightStatus(models.Model):
     fly = models.ForeignKey('Flights', verbose_name="Рейс")
     starchecktime = models.TimeField("Начало посадки", null=True)
     endchecktime = models.TimeField("Конец посадки", null=True)
@@ -62,13 +62,13 @@ class BaggegeFlightStatus(models.Model):
     fly = models.ForeignKey('Flights', verbose_name="Рейс")
     starchecktime = models.TimeField("Начало выдачи", null=True)
     endchecktime = models.TimeField("Конец выдачи", null=True)
-    checkins = models.CharField("Используемая карусель", max_length=13, blank=True)
+    checkins = models.CharField("Используемая карусель", max_length=13, blank=True) '''
 
 class Checkin(models.Model):
-    num = models.IntegerField("Номер стойки")
-    fullname = models.CharField("Полное имя стойки", max_length=21)
-    shortname = models.CharField("Короткое имя стойки", max_length=5)
-    checkinfly = models.ForeignKey('CheckinFlightStatus', verbose_name='Рейс', null=True)
+    num = models.IntegerField("Номер стойки", editable=False)
+    fullname = models.CharField("Полное имя стойки", max_length=21, editable=False)
+    shortname = models.CharField("Короткое имя стойки", max_length=5, editable=False)
+    checkinfly = models.ForeignKey('CheckinFlightStatus', verbose_name='Рейс', null=True, on_delete=models.SET_NULL)
     classcheckin = models.CharField("Классность", max_length=15, blank=True)
     def __str__(self):
         return 'Стойка регистрации ' + self.shortname + ' ' + str(self.num)

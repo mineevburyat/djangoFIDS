@@ -1,8 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from django.utils import timezone
-from .models import CheckinFlightStatus, Flights, \
-    FlightsStatus,BaggegeFlightStatus, BoardFlightStatus, Checkin
+import datetime
+from .models import CheckinFlightStatus, Flights, FlightsStatus, Checkin
 
 
 # Create your views here.
@@ -32,25 +31,23 @@ def checkin(request, id):
                                                                  'depart': departureflight})
         else:
             #Отобразить статусы рейса прикрепленного к стойке и возможность закрыть регистрацию на стойке
-            idfly = check.checkinfly_id
+            flystatuscheckin = check.checkinfly
+            flight = flystatuscheckin.fly
             return render(request, 'flightinfosystem/checkin-status.html',
-                          {'check': check, 'idfly': idfly})
+                          {'check': check, 'flight': flight, 'statuscheck':flystatuscheckin})
     elif request.method == 'POST':
         if check.checkinfly is None:
             # Внести данные в flightinfo и переслать на страницу статуса рейса превязанного к стойке
             flightid = request.POST['id']
             selectflight = get_object_or_404(Flights, id=flightid)
-            flightstatus = FlightsStatus()
-            flightstatus.statuscheckin = True
-            flightstatus.fly_id = selectflight.id
+            flightstatus = FlightsStatus(statuscheckin=True, fly_id=selectflight.id)
             flightstatus.save()
-            checkinflight = CheckinFlightStatus()
-            checkinflight.fly_id = selectflight.id
-            checkinflight.starchecktime = timezone.now()
-            checkinflight.endchecktime = selectflight.timeexp
-            checkinflight.checkins = "cтойки: " + check.shortname + ' ' + str(check.num)
+            txt = "cтойки: " + check.shortname + ' ' + str(check.num)
+            checkinflight = CheckinFlightStatus(fly_id=selectflight.id, starchecktime=datetime.datetime.now(),
+                                                endchecktime=selectflight.timestopcheckin(),
+                                                checkins=txt)
             checkinflight.save()
-            check.checkinfly_id = selectflight.id
+            check.checkinfly_id = checkinflight.id
             check.classcheckin = request.POST['class']
             check.save()
             return redirect('flightinfosystem.views.checkin', id=check.id)
