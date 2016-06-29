@@ -40,13 +40,23 @@ def checkin(request, id):
             # Внести данные в flightinfo и переслать на страницу статуса рейса превязанного к стойке
             flightid = request.POST['id']
             selectflight = get_object_or_404(Flights, id=flightid)
-            flightstatus = FlightsStatus(statuscheckin=True, fly_id=selectflight.id)
-            flightstatus.save()
-            txt = "cтойки: " + check.shortname + ' ' + str(check.num)
-            checkinflight = CheckinFlightStatus(fly_id=selectflight.id, starchecktime=datetime.datetime.now(),
+            try:
+                flightstatus = FlightsStatus.objects.get(fly_id=flightid)
+            except FlightsStatus.DoesNotExist:
+                flightstatus = FlightsStatus(statuscheckin=True, fly_id=selectflight.id)
+                flightstatus.save()
+            try:
+                checkinflight = CheckinFlightStatus.objects.get(fly_id=flightid)
+            except CheckinFlightStatus.DoesNotExist:
+                txt = "cтойки: " + check.shortname + ' ' + str(check.num)
+                checkinflight = CheckinFlightStatus(fly_id=selectflight.id, starchecktime=datetime.datetime.now(),
                                                 endchecktime=selectflight.timestopcheckin(),
                                                 checkins=txt)
-            checkinflight.save()
+                checkinflight.save()
+            else:
+                txt = checkinflight.checkins
+                checkinflight.checkins = txt + ', ' + str(check.num)
+                checkinflight.save()
             check.checkinfly_id = checkinflight.id
             check.classcheckin = request.POST['class']
             check.save()
