@@ -3,7 +3,7 @@ import datetime
 #from django.utils import timezone
 # Create your models here.
 
-class Flights(models.Model):
+class Flight(models.Model):
     fly = models.CharField("Рейс", max_length=9)
     ad = models.IntegerField("Направление")
     punktdist = models.CharField("Маршрут", max_length=100, blank=True)
@@ -35,22 +35,33 @@ class Flights(models.Model):
             return False
 
     def timestartcheckin(self):
+
         return (self.timeexp - datetime.timedelta(seconds=7200)).time()
 
     def timestopcheckin(self):
         return (self.timeexp - datetime.timedelta(seconds=2400)).time()
 
-class FlightsStatus(models.Model):
+class FlightStatus(models.Model):
     fly = models.OneToOneField('Flights', verbose_name="Рейс")
-    statuscheckin = models.BooleanField("Статус процесса регистрации", default=False)
-    statusboard = models.BooleanField("Статус посадки пассажиров", default=False)
-    statusbaggage = models.BooleanField("Статус выдачи багажа", default=False)
+    checkin = models.BooleanField("Статус процесса регистрации", default=False)
+    board = models.BooleanField("Статус посадки пассажиров", default=False)
+    baggage = models.BooleanField("Статус выдачи багажа", default=False)
+    changeboard = models.BooleanField("Статус замены борта", default=False)
 
 class CheckinFlightStatus(models.Model):
     fly = models.OneToOneField('Flights', verbose_name="Рейс", )
     starchecktime = models.TimeField("Начало регистрации", null=True)
     endchecktime = models.TimeField("Конец регистрации", null=True)
     checkins = models.CharField("Используемые стойки регистрации", max_length=13, blank=True)
+
+class Checkin(models.Model):
+    num = models.IntegerField("Номер стойки")
+    fullname = models.CharField("Полное имя стойки", max_length=21)
+    shortname = models.CharField("Короткое имя стойки", max_length=5)
+    checkinfly = models.ForeignKey('СheckinFlightStatus', verbose_name='Рейс', blank=True, null=True, on_delete=models.SET_NULL)
+    classcheckin = models.CharField("Классность", max_length=15, blank=True)
+    def __str__(self):
+        return 'Стойка регистрации ' + self.shortname + ' ' + str(self.num)
 
 '''class BoardFlightStatus(models.Model):
     fly = models.ForeignKey('Flights', verbose_name="Рейс")
@@ -63,12 +74,3 @@ class BaggegeFlightStatus(models.Model):
     starchecktime = models.TimeField("Начало выдачи", null=True)
     endchecktime = models.TimeField("Конец выдачи", null=True)
     checkins = models.CharField("Используемая карусель", max_length=13, blank=True) '''
-
-class Checkin(models.Model):
-    num = models.IntegerField("Номер стойки")
-    fullname = models.CharField("Полное имя стойки", max_length=21)
-    shortname = models.CharField("Короткое имя стойки", max_length=5)
-    checkinfly = models.ForeignKey('CheckinFlightStatus', verbose_name='Рейс', blank=True, null=True, on_delete=models.SET_NULL)
-    classcheckin = models.CharField("Классность", max_length=15, blank=True)
-    def __str__(self):
-        return 'Стойка регистрации ' + self.shortname + ' ' + str(self.num)
