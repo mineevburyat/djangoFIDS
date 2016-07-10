@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Flights, FlightsStatus, Checkin
+from .models import Flight, FlightStatus, Checkin
 # Register your models here.
-admin.site.register((Flights, FlightsStatus, Checkin))
+admin.site.register((Flight, FlightStatus, Checkin))

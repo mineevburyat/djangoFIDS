@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 import datetime
-from .models import CheckinFlightStatus, Flights, FlightsStatus, Checkin
+from .models import Event, EventLog, Flight, FlightStatus, Checkin
 
 
 # Create your views here.
@@ -9,11 +9,11 @@ def index(request):
     return HttpResponse('This is flight information system for airport Baikal')
 
 def flight_list(request):
-    flights = Flights.objects.all().order_by('timeplan')
+    flights = Flight.objects.all().order_by('timeplan')
     return render(request,'flightinfosystem/flight_list.html',{'flights': flights})
 
 def flight_detail(request, id):
-    flight = get_object_or_404(Flights, id=id)
+    flight = get_object_or_404(Flight, id=id)
     return render(request,'flightinfosystem/flight_detail.html',{'flight': flight})
 
 def checkin_list(request):
@@ -33,8 +33,12 @@ def checkin(request, id):
             #Отобразить статусы рейса прикрепленного к стойке и возможность закрыть регистрацию на стойке
             flystatuscheckin = check.checkinfly
             flight = flystatuscheckin.fly
+            checkinswithflystat = Checkin.objects.filter(checkinfly_id=flystatuscheckin.id)
+            txt = ''
+            for num in checkinswithflystat:
+                txt += ' '+ str(num.shortname) + ' ' + str(num.num)
             return render(request, 'flightinfosystem/checkin-status.html',
-                          {'check': check, 'flight': flight, 'statuscheck':flystatuscheckin})
+                          {'check': check, 'flight': flight, 'statuscheck':flystatuscheckin, 'checkins': txt})
     elif request.method == 'POST':
         if check.checkinfly is None:
             # Внести данные в flightinfo и переслать на страницу статуса рейса превязанного к стойке
@@ -48,7 +52,7 @@ def checkin(request, id):
             try:
                 checkinflight = CheckinFlightStatus.objects.get(fly_id=flightid)
             except CheckinFlightStatus.DoesNotExist:
-                txt = "cтойки: " + check.shortname + ' ' + str(check.num)
+                txt = "cтойка: " + check.shortname + ' ' + str(check.num)
                 checkinflight = CheckinFlightStatus(fly_id=selectflight.id, starchecktime=datetime.datetime.now(),
                                                 endchecktime=selectflight.timestopcheckin(),
                                                 checkins=txt)
@@ -63,5 +67,7 @@ def checkin(request, id):
             return redirect('flightinfosystem.views.checkin', id=check.id)
         else:
             # внести данные о времени начала регитсрации и названия номера стойки, либо отмена привязки
+            checkinflystat = check.checkinfly
+
             return HttpResponse('Внесение изменений в ')
 

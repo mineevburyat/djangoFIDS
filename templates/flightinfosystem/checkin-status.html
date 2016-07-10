@@ -23,9 +23,10 @@
         </div>
         <div>
             <h4>Статус обслуживания вылетающего рейса {{ flight.fly }}</h4>
-            {{ statuscheck.starchecktime }}<br>
-            {{ statuscheck.endchecktime }}<br>
+            Время начала регистрации {{ statuscheck.starchecktime }}<br>
+            Время конца регистрации {{ statuscheck.endchecktime }}<br>
             {{ statuscheck.checkins }}
+            Стойки задействованные под этот рейс: {{ checkins }}
             <!--<p>Регистрация на рейс: {{ flightstatus.statuscheckin }}</p>
             <p>Время начала регистрации: {{ flightstatus.starchecktime }}</p>
             <p>Время окончания регистрации: {{ flightstatus.endchecktime }}</p>
