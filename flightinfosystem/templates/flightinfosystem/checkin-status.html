@@ -23,15 +23,21 @@
         </div>
         <div>
             <h4>Статус обслуживания вылетающего рейса {{ flight.fly }}</h4>
-            Время начала регистрации {{ statuscheck.starchecktime }}<br>
-            Время конца регистрации {{ statuscheck.endchecktime }}<br>
-            {{ statuscheck.checkins }}
-            Стойки задействованные под этот рейс: {{ checkins }}
-            <!--<p>Регистрация на рейс: {{ flightstatus.statuscheckin }}</p>
-            <p>Время начала регистрации: {{ flightstatus.starchecktime }}</p>
-            <p>Время окончания регистрации: {{ flightstatus.endchecktime }}</p>
-            <p>Стойки регистрации: {{ flightstatus.checkins }}</p>
-            <p>Классность стойки: {{ flightstatus.checkinclass }}</p> -->
+            {{ flightstatus.checkin }}<br>
+            {{ flightstatus.checkinstop }}<br>
+            {{ flightstatus.board }}<br>
+            {{ flightstatus.boardstop }}<br>
+            Время начала регистрации по плану{{ flight.timestartcheckin }}<br>
+            Время конца регистрации по плану{{ flight.timestopcheckin }}<br>
+        </div>
+        <div>
+            <h4>События по рейсу</h4>
+            {% for event in flightevent %}
+                {{ event.event_id }}<br/>
+                {{ event.descript }}<br/>
+                {{ event.timestamp }}<br/>
+
+            {% endfor %}
         </div>
 
     <br>

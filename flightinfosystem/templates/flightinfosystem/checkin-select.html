@@ -20,17 +20,17 @@
                 <th><b>Конец<br>регистрации</b></th>
                 <th><b>Класс<br>регистрации</b></th>
             </tr>
-            {% for foo in depart %}
+            {% for flight in depart %}
             <tr>
                 <td style="background: #eee";>
-                    <input type="radio" name="id" value="{{ foo.id }}">
+                    <input type="radio" name="id" value="{{ flight.id }}">
                 </td>
-                <td> {{ foo.fly }} </td>
-                <td> {{ foo.portdist }} </td>
-                <td> {{ foo.timeplan }}</td>
-                <td> {{ foo.timeexp }}</td>
-                <td> {{ foo.timestartcheckin }}</td>
-                <td> {{ foo.timestopcheckin }}</td>
+                <td> {{ flight.fly }} </td>
+                <td> {{ flight.portdist }} </td>
+                <td> {{ flight.timeplan }}</td>
+                <td> {{ flight.timeexp }}</td>
+                <td> {{ flight.timestartcheckin }}</td>
+                <td> {{ flight.timestopcheckin }}</td>
                 <td>
                     <SELECT NAME="class" id="class">
                         <!--<option  selected VALUE="Economy"</option> -->

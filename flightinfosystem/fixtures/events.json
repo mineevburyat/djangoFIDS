@@ -27,7 +27,7 @@
     "model": "flightinfosystem.event",
     "pk": 4,
     "fields": {
-      "name": "Регистрация пассажиров и багажа на рейс: "
+      "name": "Открылась регистрация: "
     }
 
   },
@@ -35,13 +35,27 @@
     "model": "flightinfosystem.event",
     "pk": 5,
     "fields": {
+      "name": "Добавилась стойка регистрации: "
+    }
+  },
+  {
+    "model": "flightinfosystem.event",
+    "pk": 6,
+    "fields": {
+      "name": "Отключилась стойка регистрации: "
+    }
+  },
+  {
+    "model": "flightinfosystem.event",
+    "pk": 7,
+    "fields": {
       "name": "Регистрация на рейс закончена: "
     }
 
   },
   {
     "model": "flightinfosystem.event",
-    "pk": 6,
+    "pk": 8,
     "fields": {
       "name": "Посадка пассажиров: "
     }
@@ -49,21 +63,21 @@
   },
   {
     "model": "flightinfosystem.event",
-    "pk": 7,
+    "pk": 9,
     "fields": {
       "name": "Посадка пассажиров закончена: "
     }
   },
   {
     "model": "flightinfosystem.event",
-    "pk": 8,
+    "pk": 10,
     "fields": {
       "name": "Выдача багажа: "
     }
   },
   {
     "model": "flightinfosystem.event",
-    "pk": 9,
+    "pk": 11,
     "fields": {
       "name": "Выдача багажа закончена:  "
     }

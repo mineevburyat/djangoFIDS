@@ -3,18 +3,20 @@ import datetime
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Flight, Checkin, FlightStatus
+
+from .models import Flight, Checkin, FlightStatus, EventLog
 
 
 # Create your views here.
 def index(request):
-    return HttpResponse('This is flight information system for airport Baikal')
+    return render(request, 'flightinfosystem/index.html', {})
 
-def flight_list(request):
+
+def flight_list(request, past=11, future=11):
     now = timezone.now()
-    HOURSE12 = now - datetime.timedelta(seconds=23000)
-    HOURSE24 = now + datetime.timedelta(seconds=39600)
-    flights = Flight.objects.filter(timeplan__lt=HOURSE24).filter(timeplan__gt=HOURSE12).order_by('timeplan')
+    pasttime = now - datetime.timedelta(seconds=past * 3600)
+    futuretime = now + datetime.timedelta(seconds=future * 3600)
+    flights = Flight.objects.filter(timeplan__lt=futuretime).filter(timeplan__gt=pasttime).order_by('timeplan')
     return render(request, 'flightinfosystem/flight_list.html', {'flights': flights})
 
 def flight_detail(request, id):
@@ -28,51 +30,52 @@ def checkin_list(request):
     checkins = Checkin.objects.all()
     return render(request, 'flightinfosystem/checkin_list.html', {'checkins': checkins})
 
-def checkin(request, id):
+
+def checkin(request, id, past=11, future=11):
+    now = timezone.now()
+    pasttime = now - datetime.timedelta(seconds=past * 3600)
+    futuretime = now + datetime.timedelta(seconds=future * 3600)
     check = get_object_or_404(Checkin, id=id)
     if request.method == 'GET':
-        if check.checkinfly_id is None:
-            #Отобразить рейсы 3 часа вперед и три часа назад от текущего времени,
-            # возможность выбора рейса
-            departureflight = Flight.objects.filter(ad=0).order_by('timeplan')
+        if check.checkinfly is None:
+            # Если стойка не привязана к рейсу, то
+            # Отобразить вылетающие рейсы в временном окне, и предоставить возможность выбора рейса
+            departureflight = Flight.objects.filter(ad=0).filter(timeplan__lt=futuretime).filter(
+                timeplan__gt=pasttime).order_by('timeplan')
+            startcheckin = []
+            stopcheckin = []
+            for depart in departureflight:
+                startcheckin.append(depart.timestartcheckin(delta=check.deltastartcheckin))
+                stopcheckin.append(depart.timestopcheckin(delta=check.deltastopcheckin))
             return render(request, 'flightinfosystem/checkin-select.html', {'check': check,
-                                                                 'depart': departureflight})
+                                                                            'depart': departureflight})
         else:
             #Отобразить статусы рейса прикрепленного к стойке и возможность закрыть регистрацию на стойке
-            flystatuscheckin = check.checkinfly
-            flight = flystatuscheckin.fly
-            checkinswithflystat = Checkin.objects.filter(checkinfly_id=flystatuscheckin.id)
-            txt = ''
-            for num in checkinswithflystat:
-                txt += ' '+ str(num.shortname) + ' ' + str(num.num)
+            flight = check.checkinfly
+            flightstatus = FlightStatus.objects.get(fly=flight)
+            event = EventLog.objects.filter(fly=flight)
             return render(request, 'flightinfosystem/checkin-status.html',
-                          {'check': check, 'flight': flight, 'statuscheck':flystatuscheckin, 'checkins': txt})
+                          {'flightevent': event, 'flight': flight, 'flightstatus': flightstatus, 'check': check})
     elif request.method == 'POST':
         if check.checkinfly is None:
-            # Внести данные в flightinfo и переслать на страницу статуса рейса превязанного к стойке
+            # Внести данные в flightstat и eventlog и переслать на страницу статуса рейса превязанного к стойке
             flightid = request.POST['id']
             selectflight = get_object_or_404(Flight, id=flightid)
-            try:
-                flightstatus = FlightStatus.objects.get(fly_id=flightid)
-            except FlightStatus.DoesNotExist:
-                flightstatus = FlightStatus(statuscheckin=True, fly_id=selectflight.id)
+            flightstatus = FlightStatus.objects.get(fly=selectflight)
+            if not flightstatus.checkin:
+                flightstatus.checkin = True
                 flightstatus.save()
-            try:
-                checkinflight = CheckinFlightStatus.objects.get(fly_id=flightid)
-            except CheckinFlightStatus.DoesNotExist:
-                txt = "cтойка: " + check.shortname + ' ' + str(check.num)
-                checkinflight = CheckinFlightStatus(fly_id=selectflight.id, starchecktime=datetime.datetime.now(),
-                                                endchecktime=selectflight.timestopcheckin(),
-                                                checkins=txt)
-                checkinflight.save()
+                text = 'стойка ' + check.shortname + ' ' + check.num
+                eventlog = EventLog(fly=selectflight, event_id=4, descript=text)
+                eventlog.save()
             else:
-                txt = checkinflight.checkins
-                checkinflight.checkins = txt + ', ' + str(check.num)
-                checkinflight.save()
-            check.checkinfly_id = checkinflight.id
+                text = 'стойка ' + check.shortname + ' ' + check.num
+                eventlog = EventLog(fly=selectflight, event_id=5, descript=text)
+                eventlog.save()
+            check.checkinfly = selectflight
             check.classcheckin = request.POST['class']
             check.save()
-            return redirect('flightinfosystem.views.checkin', id=check.id)
+            return redirect('/fids/checkin/', id=check.id)
         else:
             # внести данные о времени начала регитсрации и названия номера стойки, либо отмена привязки
             checkinflystat = check.checkinfly

@@ -37,10 +37,10 @@ class Flight(models.Model):
             return False
 
     def timestartcheckin(self, delta=7200):
-        return (self.timeexp - DT.timedelta(seconds=delta)).time()
+        return (self.timeexp - DT.timedelta(seconds=delta))
 
     def timestopcheckin(self, delta=2400):
-        return (self.timeexp - DT.timedelta(seconds=delta)).time()
+        return (self.timeexp - DT.timedelta(seconds=delta))
 
 class FlightStatus(models.Model):
     fly = models.OneToOneField('Flight', verbose_name="Рейс")
