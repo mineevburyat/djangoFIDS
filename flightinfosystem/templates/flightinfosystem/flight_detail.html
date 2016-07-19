@@ -3,7 +3,7 @@
 {% block content %}
     <div>
         <h2>Подробно о рейсе
-            {% if flight.isarrive %}
+            {% if flight.isarrivals %}
                 прилета
             {% elif flight.isdeparture %}
                 вылета
@@ -13,6 +13,8 @@
             {{ flight.fly }} на {{ flight.timeplan }}</h2>
     </div>
     <div>
-        Описываем параметры рейса и текущий статус по обслуживанию
+        Описываем параметры рейса и текущий статус по обслуживанию <br/>
+    {{ flight }} <br/>
+    {{ flightstatus }}
     </div>
 {% endblock content %}

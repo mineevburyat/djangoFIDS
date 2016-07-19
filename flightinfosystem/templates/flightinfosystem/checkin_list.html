@@ -15,7 +15,7 @@
             <tr>
                 <td>{{ checkin.fullname }}</td>
                 <td>{{ checkin.shortname }}</td>
-                <td><a href="{% url 'checkin' checkin.id %}">{{ checkin.num }}</a></td>
+                <td><a href="{% url 'fids:checkin' checkin.id %}">{{ checkin.num }}</a></td>
             </tr>
         {% endfor %}
         </table>

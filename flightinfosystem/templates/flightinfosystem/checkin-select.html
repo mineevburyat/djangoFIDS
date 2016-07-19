@@ -7,7 +7,7 @@
     </div>
     <div>
         <h4>Выберите рейс и классность стойки регистрации:</h4>
-        <FORM action="{% url 'checkin' check.id %}"method="POST">
+        <FORM action="{% url 'fids:checkin' check.id %}"method="POST">
         {% csrf_token %}
         <TABLE class="sop" border="1" id="demoTable" >
             <tr>

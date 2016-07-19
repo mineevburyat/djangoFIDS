@@ -16,23 +16,21 @@
                 <th>Статус</th>
             </tr>
         {% for flight in flights %}
-
             <tr>
                 <td>
-                    {% if flight.isarrive  %}
+                    {% if flight.isarrivals  %}
                         <img src="/static/img/arrive.gif">
-                    {% elif flight.isdeparture%}
+                    {% else %}
                         <img src="/static/img/depart.gif">
                     {% endif %}
                 </td>
-                <td><a href="">{{ flight.fly }}</a></td>
+                <td><a href=" {% url 'fids:flight_detail' flight.id %}">{{ flight.fly }}</a></td>
                 <td>{{ flight.portdist }}</td>
                 <td>{{ flight.timeplan }}</td>
                 <td>{{ flight.timeexp }}</td>
                 <td>{{ flight.timefact }}</td>
                 <td>{{ flight.status }}</td>
             </tr>
-
         {% endfor %}
         </table>
     </div>

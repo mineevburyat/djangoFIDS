@@ -2,8 +2,8 @@ import datetime
 
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-
-from .models import Flight, Checkin
+from django.utils import timezone
+from .models import Flight, Checkin, FlightStatus
 
 
 # Create your views here.
@@ -11,12 +11,18 @@ def index(request):
     return HttpResponse('This is flight information system for airport Baikal')
 
 def flight_list(request):
-    flights = Flight.objects.all().order_by('timeplan')
+    now = timezone.now()
+    HOURSE12 = now - datetime.timedelta(seconds=23000)
+    HOURSE24 = now + datetime.timedelta(seconds=39600)
+    flights = Flight.objects.filter(timeplan__lt=HOURSE24).filter(timeplan__gt=HOURSE12).order_by('timeplan')
     return render(request, 'flightinfosystem/flight_list.html', {'flights': flights})
 
 def flight_detail(request, id):
     flight = get_object_or_404(Flight, id=id)
-    return render(request, 'flightinfosystem/flight_detail.html', {'flight': flight})
+    flightstatus = FlightStatus.objects.get(fly=flight)
+
+    return render(request, 'flightinfosystem/flight_detail.html', {'flight': flight,
+                                                                   'flightstatus': flightstatus})
 
 def checkin_list(request):
     checkins = Checkin.objects.all()
@@ -28,7 +34,7 @@ def checkin(request, id):
         if check.checkinfly_id is None:
             #Отобразить рейсы 3 часа вперед и три часа назад от текущего времени,
             # возможность выбора рейса
-            departureflight = Flights.objects.filter(ad=0).order_by('timeplan')
+            departureflight = Flight.objects.filter(ad=0).order_by('timeplan')
             return render(request, 'flightinfosystem/checkin-select.html', {'check': check,
                                                                  'depart': departureflight})
         else:
@@ -45,11 +51,11 @@ def checkin(request, id):
         if check.checkinfly is None:
             # Внести данные в flightinfo и переслать на страницу статуса рейса превязанного к стойке
             flightid = request.POST['id']
-            selectflight = get_object_or_404(Flights, id=flightid)
+            selectflight = get_object_or_404(Flight, id=flightid)
             try:
-                flightstatus = FlightsStatus.objects.get(fly_id=flightid)
-            except FlightsStatus.DoesNotExist:
-                flightstatus = FlightsStatus(statuscheckin=True, fly_id=selectflight.id)
+                flightstatus = FlightStatus.objects.get(fly_id=flightid)
+            except FlightStatus.DoesNotExist:
+                flightstatus = FlightStatus(statuscheckin=True, fly_id=selectflight.id)
                 flightstatus.save()
             try:
                 checkinflight = CheckinFlightStatus.objects.get(fly_id=flightid)

@@ -89,17 +89,6 @@ def getxmlfromserver(filename, server, port, request):
    else:
        raise Exception("Python version less then 3")
 
-'''
-
-xmlrequests = (('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:1,0"),
-               ('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:1,1"),
-               ('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:0,0"),
-               ('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:0,1"),
-             )
-for request in xmlrequests:
-    getxmlfromserver(xmlfile, *request)
-    xmlflight.getfromxml(xmlfile)
-'''
 
 class Command(BaseCommand):
     help = 'get xml from AODB and update Flight models. This script for crontab.'
@@ -108,9 +97,16 @@ class Command(BaseCommand):
     #    parser.add_argument('poll_id', nargs='+', type=int)
 
     def handle(self, *args, **options):
+
         xmlfile = 'tmpxmlfile.xml'
+        xmlurls = (('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:1,0"),
+                   ('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:0,0"))
         xmlflights = FlightsXML()
-        xmlflights.getfromxml(xmlfile)
+        for request in xmlurls:
+            getxmlfromserver(xmlfile, *request)
+            xmlflights.getfromxml(xmlfile)
+
+        #xmlflights.getfromxml(xmlfile)
         for xmlflight in xmlflights:
             try:
                 dbflight = Flight.objects.get(fly=xmlflight['fly'], ad=xmlflight['ad'], timeplan=xmlflight['timeplan'],
@@ -149,4 +145,4 @@ class Command(BaseCommand):
                     text = 'Update fields: {}'.format(tmplstfields)
                     eventlog = EventLog(event_id=2, fly=dbflight, descript=text)
                     eventlog.save()
-                    self.stdout.write('Update record {}!'.format(dbflight.pk) + text)
+                    self.stdout.write('Update record {}! '.format(dbflight.pk) + text)
