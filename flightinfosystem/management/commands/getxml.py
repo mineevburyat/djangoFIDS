@@ -1,11 +1,11 @@
-import sys
-import os
-import pytz
-from xml.etree.ElementTree import parse
 import datetime as DT
-from django.utils.dateparse import parse_datetime
-from django.core.management.base import BaseCommand, CommandError
-from flightinfosystem.models import Flight
+import sys
+from xml.etree.ElementTree import parse
+
+import pytz
+from django.core.management.base import BaseCommand
+
+from flightinfosystem.models import Flight, FlightStatus, EventLog
 
 if int(sys.version_info[0]) == 3:
     from http.client import HTTPConnection
@@ -90,84 +90,12 @@ def getxmlfromserver(filename, server, port, request):
        raise Exception("Python version less then 3")
 
 '''
-def updatedb(xmlflights, model):
-    for flight in xmlflights:
-        fly = model.objects.get()
-
-        row = cursor.fetchone()
-        if row is None:
-            #print('insert: ', flight)
-            cursor.execute("INSERT INTO flightinfosystem_flights "
-                           "(fly, ad, aircraft, carrname, status, timeexp, timefact, "
-                           "timeplan, portdist, punktdist) VALUES (:fly, :ad, :aircraft,"
-                           ":carrname, :status, :timeexp, :timefact, :timeplan, :portdist,"
-                           ":punktdist)", flight)
-            cursor.fetchone()
-            conn.commit()
-        else:
-            #print(row[0], 'update: ', flight)
-            tmp = flight.copy()
-            tmp['id'] = row[0]
-            cursor.execute("UPDATE flightinfosystem_flights SET fly=:fly, ad=:ad, "
-                           "aircraft=:aircraft, carrname=:carrname, status=:status,"
-                           "timeexp=:timeexp, timefact=:timefact, timeplan=:timeplan,"
-                           "portdist=:portdist, punktdist=:punktdist WHERE id=:id",
-                           tmp)
-            cursor.fetchone()
-            conn.commit()
-    cursor.execute("SELECT id, fly, timeplan FROM flightinfosystem_flights")
-    rows = cursor.fetchall()
-    lst = xmlflight.gettuplelst()
-    for row in rows:
-        if (row['fly'], row['timeplan']) not in lst:
-            #print('delete ', row['id'], row['fly'], row['timeplan'])
-            cursor.execute("DELETE FROM flightinfosystem_flights WHERE id=?", [row['id']])
-            cursor.fetchone()
-            conn.commit()
-
-def updatemodel(xmlflights, djmodel):
-    for flight in xmlflights:
-        model =
-        cursor.execute("SELECT id FROM flightinfosystem_flights WHERE fly=? AND timeplan=?;",(flight['fly'], flight['timeplan']))
-        row = cursor.fetchone()
-        if row is None:
-            #print('insert: ', flight)
-            cursor.execute("INSERT INTO flightinfosystem_flights "
-                           "(fly, ad, aircraft, carrname, status, timeexp, timefact, "
-                           "timeplan, portdist, punktdist) VALUES (:fly, :ad, :aircraft,"
-                           ":carrname, :status, :timeexp, :timefact, :timeplan, :portdist,"
-                           ":punktdist)", flight)
-            cursor.fetchone()
-            conn.commit()
-        else:
-            #print(row[0], 'update: ', flight)
-            tmp = flight.copy()
-            tmp['id'] = row[0]
-            cursor.execute("UPDATE flightinfosystem_flights SET fly=:fly, ad=:ad, "
-                           "aircraft=:aircraft, carrname=:carrname, status=:status,"
-                           "timeexp=:timeexp, timefact=:timefact, timeplan=:timeplan,"
-                           "portdist=:portdist, punktdist=:punktdist WHERE id=:id",
-                           tmp)
-            cursor.fetchone()
-            conn.commit()
-    cursor.execute("SELECT id, fly, timeplan FROM flightinfosystem_flights")
-    rows = cursor.fetchall()
-    lst = xmlflight.gettuplelst()
-    for row in rows:
-        if (row['fly'], row['timeplan']) not in lst:
-            #print('delete ', row['id'], row['fly'], row['timeplan'])
-            cursor.execute("DELETE FROM flightinfosystem_flights WHERE id=?", [row['id']])
-            cursor.fetchone()
-            conn.commit()
 
 xmlrequests = (('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:1,0"),
                ('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:1,1"),
                ('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:0,0"),
                ('172.17.10.2', 7777, "/pls/apex/f?p=1515:1:0:::NO:LAND,VID:0,1"),
              )
-
-
-
 for request in xmlrequests:
     getxmlfromserver(xmlfile, *request)
     xmlflight.getfromxml(xmlfile)
@@ -180,36 +108,45 @@ class Command(BaseCommand):
     #    parser.add_argument('poll_id', nargs='+', type=int)
 
     def handle(self, *args, **options):
-        path = os.getcwd()
         xmlfile = 'tmpxmlfile.xml'
-        xmlflight = FlightsXML()
-        xmlflight.getfromxml(xmlfile)
-        for flight in xmlflight:
+        xmlflights = FlightsXML()
+        xmlflights.getfromxml(xmlfile)
+        for xmlflight in xmlflights:
             try:
-                dbflight = Flight.objects.get(fly=flight['fly'], ad=flight['ad'], timeplan=flight['timeplan'],
-                                              aircraft=flight['aircraft'], portdist=flight['portdist'])
+                dbflight = Flight.objects.get(fly=xmlflight['fly'], ad=xmlflight['ad'], timeplan=xmlflight['timeplan'],
+                                              aircraft=xmlflight['aircraft'], portdist=xmlflight['portdist'])
             except Flight.DoesNotExist:
-                dbflight = Flight(fly=flight['fly'],
-                                  timeplan=flight['timeplan'],
-                                  aircraft=flight['aircraft'],
-                                  portdist=flight['portdist'],
-                                  punktdist=flight['punktdist'],
-                                  status=flight['status'],
-                                  timeexp=flight['timeexp'],
-                                  timefact=flight['timefact'],
-                                  carrname=flight['carrname'],
-                                  ad=flight['ad'])
+                dbflight = Flight(fly=xmlflight['fly'],
+                                  timeplan=xmlflight['timeplan'],
+                                  aircraft=xmlflight['aircraft'],
+                                  portdist=xmlflight['portdist'],
+                                  punktdist=xmlflight['punktdist'],
+                                  status=xmlflight['status'],
+                                  timeexp=xmlflight['timeexp'],
+                                  timefact=xmlflight['timefact'],
+                                  carrname=xmlflight['carrname'],
+                                  ad=xmlflight['ad'])
                 dbflight.save()
-                self.stdout.write('Add new record id={}: fly {} timeplan {} distination {}'.format(dbflight.pk,
-                                                                                                   flight['fly'],
-                                                                                                   flight['timeplan'],
-                                                                                                   flight['portdist']))
+                text = 'id={}: fly={}, timeplan={}'.format(dbflight.pk, xmlflight['fly'], xmlflight['timeplan'])
+                eventlog = EventLog(fly=dbflight, event_id=1, descript=text)
+                eventlog.save()
+                flightstatus = FlightStatus(fly=dbflight)
+                flightstatus.save()
+                self.stdout.write('Add flight' + text)
+
             else:
                 tmplstfields = []
-                for field in Flight._meta.fields:
-                    self.stdout.write('field {}'.format(field))
-                    if getattr(dbflight, field) != flight[field]:
-                        setattr(dbflight, field, flight[field])
-                        tmplstfields.append(field)
-                dbflight.save()
-                self.stdout.write('Update record {}? this fields: {}'.format(dbflight.pk, tmplstfields))
+                clsfields = Flight._meta.local_fields
+                for field in [clsfield.name for clsfield in clsfields]:
+                    if field == 'id' or field == 'pk':
+                        continue
+                    else:
+                        if getattr(dbflight, field) != xmlflight[field]:
+                            setattr(dbflight, field, xmlflight[field])
+                            tmplstfields.append(field)
+                if len(tmplstfields) > 0:
+                    dbflight.save()
+                    text = 'Update fields: {}'.format(tmplstfields)
+                    eventlog = EventLog(event_id=2, fly=dbflight, descript=text)
+                    eventlog.save()
+                    self.stdout.write('Update record {}!'.format(dbflight.pk) + text)

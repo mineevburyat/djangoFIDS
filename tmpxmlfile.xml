@@ -140,8 +140,8 @@
         <TPLAN>14:20</TPLAN>
         <DEXP>06.07.2016</DEXP>
         <TEXP>16:30</TEXP>
-        <DFACT/>
-        <TFACT/>
+        <DFACT>06.07.2016</DFACT>
+        <TFACT>14:02</TFACT>
         <STATUS>Задержан до  16.30</STATUS>
     </FLY>
     <FLY number="Y7-36">
@@ -158,9 +158,9 @@
         <TPLAN>20:15</TPLAN>
         <DEXP>06.07.2016</DEXP>
         <TEXP>20:15</TEXP>
-        <DFACT/>
-        <TFACT/>
-        <STATUS></STATUS>
+        <DFACT>06.07.2016</DFACT>
+        <TFACT>14:02</TFACT>
+        <STATUS>Вылетел в 14:02</STATUS>
     </FLY>
     <FLY number="У6-344">
         <AD>0</AD>
@@ -175,7 +175,7 @@
         <DPLAN>07.07.2016</DPLAN>
         <TPLAN>08:30</TPLAN>
         <DEXP>07.07.2016</DEXP>
-        <TEXP>08:30</TEXP>
+        <TEXP>08:45</TEXP>
         <DFACT/>
         <TFACT/>
         <STATUS></STATUS>
@@ -193,9 +193,9 @@
         <DPLAN>07.07.2016</DPLAN>
         <TPLAN>09:25</TPLAN>
         <DEXP>07.07.2016</DEXP>
-        <TEXP>09:25</TEXP>
-        <DFACT/>
-        <TFACT/>
+        <TEXP>09:45</TEXP>
+        <DFACT>06.07.2016</DFACT>
+        <TFACT>14:02</TFACT>
         <STATUS></STATUS>
     </FLY>
     <FLY number="БЮ-509">

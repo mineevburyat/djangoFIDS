@@ -20,12 +20,12 @@
             <tr>
                 <td>
                     {% if flight.isarrive  %}
-                    Прилет
+                        <img src="/static/img/arrive.gif">
                     {% elif flight.isdeparture%}
-                    Вылет
+                        <img src="/static/img/depart.gif">
                     {% endif %}
                 </td>
-                <td><a href="{% url 'flight_detail' id=flight.id%}">{{ flight.fly }}</a></td>
+                <td><a href="">{{ flight.fly }}</a></td>
                 <td>{{ flight.portdist }}</td>
                 <td>{{ flight.timeplan }}</td>
                 <td>{{ flight.timeexp }}</td>

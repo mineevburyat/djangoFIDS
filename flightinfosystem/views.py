@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
 import datetime
-from .models import Event, EventLog, Flight, FlightStatus, Checkin
+
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
+
+from .models import Flight, Checkin
 
 
 # Create your views here.
@@ -10,11 +12,11 @@ def index(request):
 
 def flight_list(request):
     flights = Flight.objects.all().order_by('timeplan')
-    return render(request,'flightinfosystem/flight_list.html',{'flights': flights})
+    return render(request, 'flightinfosystem/flight_list.html', {'flights': flights})
 
 def flight_detail(request, id):
     flight = get_object_or_404(Flight, id=id)
-    return render(request,'flightinfosystem/flight_detail.html',{'flight': flight})
+    return render(request, 'flightinfosystem/flight_detail.html', {'flight': flight})
 
 def checkin_list(request):
     checkins = Checkin.objects.all()

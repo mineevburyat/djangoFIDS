@@ -1,30 +1,71 @@
 [
   {
-    "id": 1,
-    "name": "Регистрация пассажиров и багажа."
+    "model": "flightinfosystem.event",
+    "pk": 1,
+    "fields": {
+      "name": "Добавлен рейс: "
+    }
+
   },
   {
-    "id": 2,
-    "name": "Регистрация закончена."
+    "model": "flightinfosystem.event",
+    "pk": 2,
+    "fields": {
+      "name": "Обновлен рейс: "
+    }
+
   },
   {
-    "id": 3,
-    "name": "Посадка пассажиров. Загрузка багажа"
+    "model": "flightinfosystem.event",
+    "pk": 3,
+    "fields": {
+      "name": "Замена рейса: "
+    }
+
   },
   {
-    "id": 4,
-    "name": "Посадка пассажиров закончена."
+    "model": "flightinfosystem.event",
+    "pk": 4,
+    "fields": {
+      "name": "Регистрация пассажиров и багажа на рейс: "
+    }
+
   },
   {
-    "id": 5,
-    "name": "Выдача багажа."
+    "model": "flightinfosystem.event",
+    "pk": 5,
+    "fields": {
+      "name": "Регистрация на рейс закончена: "
+    }
+
   },
   {
-    "id": 6,
-    "name": "Выдача багажа закончена."
+    "model": "flightinfosystem.event",
+    "pk": 6,
+    "fields": {
+      "name": "Посадка пассажиров: "
+    }
+
   },
   {
-    "id": 7,
-    "name": "Замена борта."
+    "model": "flightinfosystem.event",
+    "pk": 7,
+    "fields": {
+      "name": "Посадка пассажиров закончена: "
+    }
+  },
+  {
+    "model": "flightinfosystem.event",
+    "pk": 8,
+    "fields": {
+      "name": "Выдача багажа: "
+    }
+  },
+  {
+    "model": "flightinfosystem.event",
+    "pk": 9,
+    "fields": {
+      "name": "Выдача багажа закончена:  "
+    }
   }
 ]

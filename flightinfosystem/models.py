@@ -1,7 +1,7 @@
-from django.db import models
 import datetime as DT
-from xml.etree.ElementTree import parse
-from django.utils import timezone
+
+from django.db import models
+
 
 # Create your models here.
 
@@ -56,7 +56,7 @@ class Event(models.Model):
     name = models.CharField("Имя события", max_length=15)
 
 class EventLog(models.Model):
-    fly = models.OneToOneField('Flight', verbose_name="Рейс", )
+    fly = models.ForeignKey('Flight', verbose_name="Рейс", )
     event = models.ForeignKey('Event', verbose_name="Событие")
     descript = models.CharField("Допопции события", max_length=60)
     timestamp = models.DateTimeField("Время события", auto_now=True)
@@ -66,7 +66,7 @@ class Checkin(models.Model):
     fullname = models.CharField("Полное имя стойки", max_length=21)
     shortname = models.CharField("Короткое имя стойки", max_length=5)
     checkinfly = models.ForeignKey('Flight', verbose_name='Рейс', blank=True, null=True, on_delete=models.SET_NULL)
-    classcheckin = models.CharField("Класс обслуживания", max_length=15, blank=True)
+    classcheckin = models.CharField("Класс обслуживания", max_length=15, blank=True, null=True)
     deltastartcheckin = models.IntegerField("Начало регистрации", default=7200)
     deltastopcheckin = models.IntegerField("Конец регистрации", default=2400)
     def __str__(self):

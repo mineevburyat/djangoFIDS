@@ -1,102 +1,141 @@
 [
   {
-    "id": 1,
-    "num": "1",
-    "fullname": "внутренних линий",
-    "shortname": "ВВЛ",
-    "checkinfly": null,
-    "classcheckin": null,
-    "deltastartcheckin": 7200,
-    "deltastopcheckin": 2400
+    "model": "flightinfosystem.checkin",
+    "pk": 1,
+    "fields": {
+      "num": "1",
+      "fullname": "внутренних линий",
+      "shortname": "ВВЛ",
+      "checkinfly": null,
+      "classcheckin": null,
+      "deltastartcheckin": 7200,
+      "deltastopcheckin": 2400
+    }
   },
   {
-    "id": 2,
-    "num": "2",
-    "fullname": "внутренних линий",
-    "shortname": "ВВЛ",
-    "checkinfly": null,
-    "classcheckin": null,
-    "deltastartcheckin": 7200,
-    "deltastopcheckin": 2400
+    "model": "flightinfosystem.checkin",
+    "pk": 2,
+    "fields": {
+      "num": "2",
+      "fullname": "внутренних линий",
+      "shortname": "ВВЛ",
+      "checkinfly": null,
+      "classcheckin": null,
+      "deltastartcheckin": 7200,
+      "deltastopcheckin": 2400
+    }
+
   },
   {
-    "id": 3,
-    "num": "3",
-    "fullname": "внутренних линий",
-    "shortname": "ВВЛ",
-    "checkinfly": null,
-    "classcheckin": null,
-    "deltastartcheckin": 7200,
-    "deltastopcheckin": 2400
+    "model": "flightinfosystem.checkin",
+    "pk": 3,
+    "fields": {
+      "num": "3",
+      "fullname": "внутренних линий",
+      "shortname": "ВВЛ",
+      "checkinfly": null,
+      "classcheckin": null,
+      "deltastartcheckin": 7200,
+      "deltastopcheckin": 2400
+    }
+
   },
   {
-    "id": 4,
-    "num": "4",
-    "fullname": "внутренних линий",
-    "shortname": "ВВЛ",
-    "checkinfly": null,
-    "classcheckin": null,
-    "deltastartcheckin": 7200,
-    "deltastopcheckin": 2400
+    "model": "flightinfosystem.checkin",
+    "pk": 4,
+    "fields": {
+      "num": "4",
+      "fullname": "внутренних линий",
+      "shortname": "ВВЛ",
+      "checkinfly": null,
+      "classcheckin": null,
+      "deltastartcheckin": 7200,
+      "deltastopcheckin": 2400
+    }
+
   },
   {
-    "id": 5,
-    "num": "5",
-    "fullname": "внутренних линий",
-    "shortname": "ВВЛ",
-    "checkinfly": null,
-    "classcheckin": null,
-    "deltastartcheckin": 7200,
-    "deltastopcheckin": 2400
+    "model": "flightinfosystem.checkin",
+    "pk": 5,
+    "fields": {
+      "num": "5",
+      "fullname": "внутренних линий",
+      "shortname": "ВВЛ",
+      "checkinfly": null,
+      "classcheckin": null,
+      "deltastartcheckin": 7200,
+      "deltastopcheckin": 2400
+    }
+
   },
   {
-    "id": 6,
-    "num": "6",
-    "fullname": "внутренних линий",
-    "shortname": "ВВЛ",
-    "checkinfly": null,
-    "classcheckin": null,
-    "deltastartcheckin": 7200,
-    "deltastopcheckin": 2400
+    "model": "flightinfosystem.checkin",
+    "pk": 6,
+    "fields": {
+      "num": "6",
+      "fullname": "внутренних линий",
+      "shortname": "ВВЛ",
+      "checkinfly": null,
+      "classcheckin": null,
+      "deltastartcheckin": 7200,
+      "deltastopcheckin": 2400
+    }
+
   },
   {
-    "id": 7,
-    "num": "7",
-    "fullname": "внутренних линий",
-    "shortname": "ВВЛ",
-    "checkinfly": null,
-    "classcheckin": null,
-    "deltastartcheckin": 7200,
-    "deltastopcheckin": 2400
+    "model": "flightinfosystem.checkin",
+    "pk": 7,
+    "fields": {
+      "num": "7",
+      "fullname": "внутренних линий",
+      "shortname": "ВВЛ",
+      "checkinfly": null,
+      "classcheckin": null,
+      "deltastartcheckin": 7200,
+      "deltastopcheckin": 2400
+    }
+
   },
     {
-    "id": 8,
-    "num": "8",
-    "fullname": "внутренних линий",
-    "shortname": "ВВЛ",
-    "checkinfly": null,
-    "classcheckin": null,
-    "deltastartcheckin": 7200,
-    "deltastopcheckin": 2400
+      "model": "flightinfosystem.checkin",
+      "pk": 8,
+      "fields": {
+        "num": "8",
+        "fullname": "внутренних линий",
+        "shortname": "ВВЛ",
+        "checkinfly": null,
+        "classcheckin": null,
+        "deltastartcheckin": 7200,
+        "deltastopcheckin": 2400
+      }
+
   },
     {
-    "id": 9,
-    "num": "1",
-    "fullname": "международных линий",
-    "shortname": "МВЛ",
-    "checkinfly": null,
-    "classcheckin": null,
-    "deltastartcheckin": 10800,
-    "deltastopcheckin": 2400
+      "model": "flightinfosystem.checkin",
+      "pk": 9,
+      "fields": {
+        "num": "1",
+        "fullname": "международных линий",
+        "shortname": "МВЛ",
+        "checkinfly": null,
+        "classcheckin": null,
+        "deltastartcheckin": 10800,
+        "deltastopcheckin": 2400
+      }
+
   },
   {
-    "id": 10,
-    "num": "2",
-    "fullname": "международных линий",
-    "shortname": "МВЛ",
-    "checkinfly": null,
-    "classcheckin": null,
-    "deltastartcheckin": 10800,
-    "deltastopcheckin": 2400
+    "model": "flightinfosystem.checkin",
+    "pk": 10,
+    "fields": {
+      "num": "2",
+      "fullname": "международных линий",
+      "shortname": "МВЛ",
+      "checkinfly": null,
+      "classcheckin": null,
+      "deltastartcheckin": 10800,
+      "deltastopcheckin": 2400
+    }
+
   }
 ]
