@@ -145,4 +145,4 @@ class Command(BaseCommand):
                     text = 'Update fields: {}'.format(tmplstfields)
                     eventlog = EventLog(event_id=2, fly=dbflight, descript=text)
                     eventlog.save()
-                    self.stdout.write('Update record {}! '.format(dbflight.pk) + text)
+                    self.stdout.write('Update flight {}! '.format(dbflight.pk) + text)
