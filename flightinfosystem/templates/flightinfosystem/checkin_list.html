@@ -7,15 +7,23 @@
     <div>
         <table class="table">
             <tr>
-                <th width="250">Зал вылета</th>
+                <th width="150">Зал вылета</th>
                 <th width="50">Короткое имя</th>
-                <th width="30">Номер</th>
+                <th width="30">Номер стойки</th>
+                <th>Класс регистрации</th>
+                <th>Начало до вылета</th>
+                <th>Конкц до вылета</th>
+                <th>Привязанный рейс</th>
             </tr>
         {% for checkin in checkins %}
             <tr>
                 <td>{{ checkin.fullname }}</td>
                 <td>{{ checkin.shortname }}</td>
                 <td><a href="{% url 'fids:checkin' checkin.id %}">{{ checkin.num }}</a></td>
+                <td>{{ checkin.classcheckin }}</td>
+                <td>{{ checkin.deltastartcheckin }}</td>
+                <td>{{ checkin.deltastopcheckin }}</td>
+                <td>{{ checkin.checkinfly }}</td>
             </tr>
         {% endfor %}
         </table>

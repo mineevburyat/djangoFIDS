@@ -3,6 +3,7 @@ import datetime
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+import pytz
 
 from .models import Flight, Checkin, FlightStatus, EventLog
 
@@ -57,28 +58,60 @@ def checkin(request, id, past=11, future=11):
             return render(request, 'flightinfosystem/checkin-status.html',
                           {'flightevent': event, 'flight': flight, 'flightstatus': flightstatus, 'check': check})
     elif request.method == 'POST':
+        flightid = request.POST['id']
+        url = request.path
         if check.checkinfly is None:
-            # Внести данные в flightstat и eventlog и переслать на страницу статуса рейса превязанного к стойке
-            flightid = request.POST['id']
+            # Стойка не привязана к рейсу. Привязать. Внести данные в flightstat и eventlog
+            # и переслать на страницу стойки
             selectflight = get_object_or_404(Flight, id=flightid)
             flightstatus = FlightStatus.objects.get(fly=selectflight)
             if not flightstatus.checkin:
+                #Если регистрация не открыта, то поднять флаг и сгенерировать событие
                 flightstatus.checkin = True
                 flightstatus.save()
                 text = 'стойка ' + check.shortname + ' ' + check.num
                 eventlog = EventLog(fly=selectflight, event_id=4, descript=text)
                 eventlog.save()
             else:
+                #Если регистрация идет, то сгенерировать событие о добавлении
                 text = 'стойка ' + check.shortname + ' ' + check.num
                 eventlog = EventLog(fly=selectflight, event_id=5, descript=text)
                 eventlog.save()
+            #привязать стойку к рейсу
             check.checkinfly = selectflight
             check.classcheckin = request.POST['class']
             check.save()
-            return redirect('/fids/checkin/', id=check.id)
+            return redirect(url, id=check.id)
         else:
-            # внести данные о времени начала регитсрации и названия номера стойки, либо отмена привязки
-            checkinflystat = check.checkinfly
+            # отвязать стойку от рейса, проверить есть ли еще стойки с привязанным рейсом,
+            # если нет, то сменить статус рейса, создать события
+            check.checkinfly = None
+            check.save()
+            text = check.shortname + ' №' + check.num
+            fly = Flight.objects.get(id=int(request.POST['id']))
+            checkinlist = Checkin.objects.filter(checkinfly=fly)
+            if len(checkinlist) == 0:
+                flightstatus = FlightStatus.objects.get(fly=fly)
+                flightstatus.checkin = False
+                flightstatus.checkinstop = True
+                flightstatus.save()
+                text = check.shortname + ' ' + check.num
+                eventlog = EventLog(fly=fly, event_id=6, descript=text)
+                eventlog.save()
+                eventlog = EventLog(fly=fly, event_id=7, descript='')
+                eventlog.save()
+            else:
+                eventlog = EventLog(fly=fly, event_id=6, descript=text)
+                eventlog.save()
+            return redirect(request.path, id=check.id)
 
-            return HttpResponse('Внесение изменений в ')
-
+def tablocheckin(request, id):
+    timezone.activate(pytz.timezone('Asia/Irkutsk'))
+    now = timezone.now()
+    check = get_object_or_404(Checkin, id=id)
+    if check.checkinfly is None:
+        return HttpResponse('Нет регистрации')
+    else:
+        flight = check.checkinfly
+        return render(request, 'flightinfosystem/tablocheckin.html',
+                      {'flight': flight, 'check': check, 'now': now})

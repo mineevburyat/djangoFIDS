@@ -8,39 +8,66 @@
     <hr>
     <div>
         <div>
-            <h4>Регистрируется
+            <h2>Регистрируется
                 {% if flight.isdeparture %}
                     вылетающий
                 {% else %}
                     прилетающий
                 {% endif %}
-                рейс {{ flight.fly }} </h4>
-            <p>Маршрут {{ flight.portdist }}</p>
-            <p>Пункт назначений {{ flight.punktdist }}</p>
-            <p>Статус из AODB {{ flight.status }}</p>
-            <p>Время вылета по плану: {{ flight.timeplan }}</p>
-            <p>Расчетное время вылета: {{ flight.timeexp }}</p>
+                рейс {{ flight.fly }} за {{ flight.timeplan.date }}</h2>
         </div>
-        <div>
-            <h4>Статус обслуживания вылетающего рейса {{ flight.fly }}</h4>
-            {{ flightstatus.checkin }}<br>
-            {{ flightstatus.checkinstop }}<br>
-            {{ flightstatus.board }}<br>
-            {{ flightstatus.boardstop }}<br>
-            Время начала регистрации по плану{{ flight.timestartcheckin }}<br>
-            Время конца регистрации по плану{{ flight.timestopcheckin }}<br>
+    <div>
+        <div style="float: left; width: 50%">
+            <p><b>Аэропорт: </b> {{ flight.portdist }}</p>
+            <p><b>Пункт назначений: </b> {{ flight.punktdist }}</p>
+            <p><b>Статус из AODB: </b> {{ flight.status }}</p>
+            <p><b>Время вылета по плану: </b>{{ flight.timeplan }}</p>
+            <p><b>Расчетное время вылета: </b>{{ flight.timeexp }}</p>
+            <p><b>Время начала регистрации: </b>{{ flight.timestartcheckin }}</p>
+            <p><b>Время конца регистрации: </b>{{ flight.timestopcheckin }}</p>
+
         </div>
-        <div>
+        <div style="float: left; width: 50%">
+            <h4>Статусы обслуживания вылетающего рейса</h4>
+            <table>
+                <tr>
+                    <th>Регистрация<br>открыта</th>
+                    <th>Регистрация<br>закрыта</th>
+                    <th>Посадка</th>
+                    <th>Посадка<br>закрыта</th>
+                </tr>
+                <tr>
+                    <td>{% if flightstatus.checkin %} Да {% else %} Нет {% endif %}</td>
+                    <td>{% if flightstatus.checkinstop %} Да {% else %} Нет {% endif %}</td>
+                    <td>{% if flightstatus.board %} Да {% else %} Нет {% endif %}</td>
+                    <td>{% if flightstatus.boardstop %} Да {% else %} Нет {% endif %}</td>
+                </tr>
+            </table>
+        </div>
+        <div style="float: left; width: 100%">
             <h4>События по рейсу</h4>
+            <table>
+            <tr>
+                <th>Собитие</th>
+                <th>Описание</th>
+                <th>Время</th>
+            </tr>
             {% for event in flightevent %}
-                {{ event.event_id }}<br/>
-                {{ event.descript }}<br/>
-                {{ event.timestamp }}<br/>
-
+                <tr>
+                    <td>{{ event.event_id }}</td>
+                    <td>{{ event.descript }}</td>
+                    <td>{{ event.timestamp }}</td>
+                </tr>
             {% endfor %}
+            </table>
         </div>
-
-    <br>
-
+        </div>
+    </div>
+    <div>
+        <FORM action="" method="POST">
+        {% csrf_token %}
+            <INPUT type="hidden" name="id" value="{{ flight.id }}" readonly hidden>
+            <INPUT class="button" TYPE="submit" name="confirm" VALUE="Закрыть регистрацию" style="width:170px; height:30px;border-radius: 4px;">
+        </FORM>
     </div>
 {% endblock content %}

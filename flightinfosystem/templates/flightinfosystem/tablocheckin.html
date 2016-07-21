@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<META HTTP-EQUIV="refresh">
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <style>
+html {
+	overflow:  hidden;
+	cursor: none;
+}
+table {
+    border: 0px double #999999; /* Ðàìêà âîêðóã òàáëèöû */
+    border-collapse: collapse; /* Îòîáðàæàòü òîëüêî îäèíàðíûå ëèíèè */
+	margin:-10px;
+   }
+td {
+    padding: 1px; /* Ïîëÿ âîêðóã ñîäåðæèìîãî ÿ÷ååê */
+    border: 0px solid #999999; /* Ãðàíèöà âîêðóã ÿ÷ååê */
+   }
+.th {
+    padding: 1px; /* Ïîëÿ âîêðóã ñîäåðæèìîãî ÿ÷ååê */
+    border: 1px solid #ccc; /* Ãðàíèöà âîêðóã ÿ÷ååê */
+	border-width: 0 0 0 1px;
+   }
+.style1 {
+    background: #156fdf; /* Öâåò ôîíà ÿ÷ååê */
+   }
+.style2 {
+    background: #00BFFF; /* Öâåò ôîíà ÿ÷ååê */
+   }
+H20 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 40px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:bold;
+	padding: 0 0 0 10px;
+   }
+H21 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 34px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:normal;
+	padding: 0 0 0 10px;
+   }
+H22 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 34px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:bold;
+	float: right;
+	padding: 0 10px 0 0 ;
+   }
+H23 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 50px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:normal;
+	margin-right:55px;
+	float: right;
+   }
+H24 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 190px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:bold;
+   }
+H25 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 100px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:normal;
+   }
+H26 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 50px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:bold
+   }
+H27 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 115px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:bold;
+   }
+H28 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 23px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #333;
+	font-weight:bold;
+   }
+  </style>
+
+</head>
+<body>
+<TABLE BORDER >
+        <TR class="style1">
+            <TD COLSPAN=2 width="720px" height="115px">
+				<h20><b>Стойка регистрации {{ check.num }}</b></h20><br>
+				<h21>Check-in</h21>
+			</TD>
+            <TD width="304px">
+				<h22><b>{{ now.date }}<b></h22><br>
+				<h23><b>{{ now.time }}<b></h23>
+			</TD>
+        </TR>
+        <TR class="style2">
+            <TD COLSPAN=3 height="246px">
+				<h24>{{ flight.fly }}</h24>
+			</TD>
+        </TR>
+        <TR class="style1">
+            <TD COLSPAN=3 height="130px">
+				<h25>{{ flight.portdist }}</h25>
+            </TD>
+        </TR>
+		<TR class="style2">
+            <TD ROWSPAN=2 height="278px" width="410px">
+				<center><img src="../../img/logo/<?php echo "$logo" ?>.jpg" width="370px" height="170px" style="border-radius: 25px;"></center>
+			</TD>
+			<TD COLSPAN=2 height="70px">
+				<h26>{{ check.classcheckin }}</h26>
+			</TD>
+        </TR>
+        <TR class="style2">
+            <TD>
+				<h28>Начало регистрации:</h28><br/>
+				<h28>Registration begins:</h28><br/>
+				<h27>{{ flight.timestartcheckin.time }}</h27>
+			</TD>
+			<Td class="th">
+				<h28>Конец регистрации:</h28><br/>
+				<h28>The end registration:</h28><br/>
+				<h27>{{ flight.timestopcheckin.time }}</h27>
+			</Td>
+        </TR>
+
+
+</TABLE>
+
+</body>
+</html>

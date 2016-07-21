@@ -123,7 +123,7 @@ class Command(BaseCommand):
                                   carrname=xmlflight['carrname'],
                                   ad=xmlflight['ad'])
                 dbflight.save()
-                text = 'id={}: fly={}, timeplan={}'.format(dbflight.pk, xmlflight['fly'], xmlflight['timeplan'])
+                text = 'id={}: рейс {} за {}'.format(dbflight.pk, dbflight.fly, dbflight.timeplan.date())
                 eventlog = EventLog(fly=dbflight, event_id=1, descript=text)
                 eventlog.save()
                 flightstatus = FlightStatus(fly=dbflight)
@@ -142,7 +142,7 @@ class Command(BaseCommand):
                             tmplstfields.append(field)
                 if len(tmplstfields) > 0:
                     dbflight.save()
-                    text = 'Update fields: {}'.format(tmplstfields)
+                    text = 'fields: {}'.format(tmplstfields)
                     eventlog = EventLog(event_id=2, fly=dbflight, descript=text)
                     eventlog.save()
                     self.stdout.write('Update flight {}! '.format(dbflight.pk) + text)

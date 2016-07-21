@@ -22,7 +22,7 @@ class Flight(models.Model):
             ad = 'прилетающий'
         else:
             ad = 'вылетающий'
-        return ad + ' рейс: ' + self.fly + ' на ' + self.timeplan.strftime('%d.%m.%y %H:%M')
+        return ad + ' рейс ' + self.fly + ' за ' + self.timeplan.strftime('%d.%m.%y')
 
     def isdeparture(self):
         if self.ad == 0:

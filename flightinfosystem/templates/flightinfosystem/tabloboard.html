@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<html>
+<head>
+<META HTTP-EQUIV="refresh" CONTENT='<?php echo $st1?>;URL=<?php echo $st?>'>
+<meta content="text/html; charset=Windows-1251" http-equiv="content-type">
+  <style>
+html {
+	overflow:  hidden;
+	cursor: none;
+}
+table {
+    border: 0px double #999999; /* Ðàìêà âîêðóã òàáëèöû */
+    border-collapse: collapse; /* Îòîáðàæàòü òîëüêî îäèíàðíûå ëèíèè */
+	margin:-10px -10px 0px -10px; /* top right bottom left */
+   }
+td {
+    padding: 1px; /* Ïîëÿ âîêðóã ñîäåðæèìîãî ÿ÷ååê */
+    border: 0px solid #999999; /* Ãðàíèöà âîêðóã ÿ÷ååê */
+   }
+.th {
+    padding: 1px; /* Ïîëÿ âîêðóã ñîäåðæèìîãî ÿ÷ååê */
+    border: 1px solid #ccc; /* Ãðàíèöà âîêðóã ÿ÷ååê */
+	border-width: 0 0 0 1px;
+   }
+.style1 {
+    background: #156fdf; /* Öâåò ôîíà ÿ÷ååê */
+   }
+.style2 {
+    background: #00ccff; /* Öâåò ôîíà ÿ÷ååê */
+   }
+H20 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 50px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:bold;
+	padding: 0 0 0 10px;
+   }
+H21 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 40px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:normal;
+	padding: 0 0 0 10px;
+   }
+H22 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 34px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:bold;
+	float: right;
+	padding: 0 10px 0 0 ;
+   }
+H23 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 50px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:normal;
+	margin-right:55px;
+	float: right;
+   }
+H24 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 170px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:bold;
+   }
+H25 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 100px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:normal;
+   }
+H26 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 50px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:bold
+   }
+H27 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 115px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #f7f21a;
+	font-weight:bold;
+   }
+H28 {
+    font-family: 'Arial', Times, serif; /* Ãàðíèòóðà òåêñòà */
+    font-size: 28px; /* Ðàçìåð øðèôòà â ïðîöåíòàõ */
+	color: #fff;
+	font-weight:bold;
+   }
+  </style>
+
+</head>
+<body>
+<TABLE BORDER >
+        <TR class="style1">
+            <TD width="762px" height="118px" COLSPAN=3>
+				<h20><b>Âûõîä íà ïîñàäêó ¹<?php echo "$ngate" ?></b></h20><br>
+				<h21>Departure gate</h21>
+			</TD>
+            <TD width="362px" height="118px" COLSPAN=1>
+				<h22><b><?php echo "$date" ?><b></h22><br>
+				<h23><b><?php echo "$time" ?><b></h23>
+			</TD>
+        </TR>
+        <TR class="style2">
+            <TD COLSPAN=1 height="295px" width="390px">
+				<center><img src="../../img/logo/<?php echo "$logo" ?>.jpg" width="370px" height="170px" style="border-radius: 25px;"></center>
+			</TD>
+			<TD COLSPAN=3 height="295px">
+				<center><h24><?php echo " "."$kod" ?><?php echo "$reis" ?></h24></center>
+			</TD>
+        </TR>
+        <TR class="style2">
+            <TD COLSPAN=4 height="160px">
+				<h25><center><?php echo "$punkt" ?></center></h25>
+			</TD>
+        </TR>
+		<TR class="style1">
+            <TD height="195px" COLSPAN=2>
+				<h28><center>Íà÷àëî ïîñàäêè:</center></h28>
+				<h28><center>Landing beginning:</center></h28>
+				<h27><center><?php echo "$nreg" ?></center></h27>
+			</TD>
+			<TD class="th" height="195px" COLSPAN=2>
+				<h28><center>Îêîí÷àíèå ïîñàäêè:</center></h28>
+				<h28><center>Completion of landing:</center></h28>
+				<h27><center><?php echo "$okpos" ?></center></h27>
+			</TD>
+        </TR>
+</TABLE>
+
+</body>
+</html>
