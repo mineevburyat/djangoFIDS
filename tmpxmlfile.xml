@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <REPORT type="SPP">
+    <FLY number="S7-525">
+        <AD>0</AD>
+        <AIRCRAFT>А-320</AIRCRAFT>
+        <PORTDIST>ПЕКИН</PORTDIST>
+        <PUNKTDIST>Пекин</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>Сибирь АК</CARRNAME>
+        <DPLAN>29.07.2016</DPLAN>
+        <TPLAN>04:45</TPLAN>
+        <DEXP>29.07.2016</DEXP>
+        <TEXP>04:45</TEXP>
+        <DFACT>29.07.2016</DFACT>
+        <TFACT>05:11</TFACT>
+        <STATUS>Вылетел в 05:11</STATUS>
+    </FLY>
     <FLY number="РД-757">
         <AD>0</AD>
         <AIRCRAFT>CRJ200</AIRCRAFT>
@@ -10,33 +28,15 @@
         <PORTDIST3></PORTDIST3>
         <PUNKTDIST3></PUNKTDIST3>
         <CARRNAME>ИрАэро     АК</CARRNAME>
-        <DPLAN>24.07.2016</DPLAN>
-        <TPLAN>21:00</TPLAN>
-        <DEXP>24.07.2016</DEXP>
-        <TEXP>21:00</TEXP>
-        <DFACT>24.07.2016</DFACT>
-        <TFACT>21:00</TFACT>
-        <STATUS>Вылетел в 21:00</STATUS>
+        <DPLAN>29.07.2016</DPLAN>
+        <TPLAN>06:00</TPLAN>
+        <DEXP>29.07.2016</DEXP>
+        <TEXP>06:00</TEXP>
+        <DFACT>29.07.2016</DFACT>
+        <TFACT>06:00</TFACT>
+        <STATUS>Вылетел в 06:00</STATUS>
     </FLY>
-    <FLY number="РД-107">
-        <AD>0</AD>
-        <AIRCRAFT>Ан-24</AIRCRAFT>
-        <PORTDIST>БЛАГОВЕЩЕНСК</PORTDIST>
-        <PUNKTDIST>Благовещенск</PUNKTDIST>
-        <PORTDIST2></PORTDIST2>
-        <PUNKTDIST2></PUNKTDIST2>
-        <PORTDIST3></PORTDIST3>
-        <PUNKTDIST3></PUNKTDIST3>
-        <CARRNAME>ИрАэро     АК</CARRNAME>
-        <DPLAN>25.07.2016</DPLAN>
-        <TPLAN>03:40</TPLAN>
-        <DEXP>25.07.2016</DEXP>
-        <TEXP>03:25</TEXP>
-        <DFACT>25.07.2016</DFACT>
-        <TFACT>03:28</TFACT>
-        <STATUS>Вылетел в 03:28</STATUS>
-    </FLY>
-    <FLY number="РД-171">
+    <FLY number="РД-9171">
         <AD>0</AD>
         <AIRCRAFT>CRJ200</AIRCRAFT>
         <PORTDIST>ИРКУТСК</PORTDIST>
@@ -46,13 +46,13 @@
         <PORTDIST3>Новосибирск (ТЛЧ)</PORTDIST3>
         <PUNKTDIST3>Новосибирск</PUNKTDIST3>
         <CARRNAME>ИрАэро     АК</CARRNAME>
-        <DPLAN>25.07.2016</DPLAN>
+        <DPLAN>29.07.2016</DPLAN>
         <TPLAN>07:40</TPLAN>
-        <DEXP>25.07.2016</DEXP>
-        <TEXP>07:40</TEXP>
-        <DFACT>25.07.2016</DFACT>
-        <TFACT>07:40</TFACT>
-        <STATUS>Вылетел в 07:40</STATUS>
+        <DEXP>29.07.2016</DEXP>
+        <TEXP>10:10</TEXP>
+        <DFACT>29.07.2016</DFACT>
+        <TFACT>10:14</TFACT>
+        <STATUS>Вылетел в 10:14</STATUS>
     </FLY>
     <FLY number="БЮ-9531">
         <AD>0</AD>
@@ -64,13 +64,13 @@
         <PORTDIST3></PORTDIST3>
         <PUNKTDIST3></PUNKTDIST3>
         <CARRNAME>Бурятские Авиалинии</CARRNAME>
-        <DPLAN>25.07.2016</DPLAN>
+        <DPLAN>29.07.2016</DPLAN>
         <TPLAN>08:05</TPLAN>
-        <DEXP>25.07.2016</DEXP>
+        <DEXP>29.07.2016</DEXP>
         <TEXP>08:05</TEXP>
-        <DFACT>25.07.2016</DFACT>
-        <TFACT>08:10</TFACT>
-        <STATUS>Вылетел в 08:10</STATUS>
+        <DFACT>29.07.2016</DFACT>
+        <TFACT>08:05</TFACT>
+        <STATUS>Вылетел в 08:05</STATUS>
     </FLY>
     <FLY number="У6-344">
         <AD>0</AD>
@@ -82,13 +82,31 @@
         <PORTDIST3></PORTDIST3>
         <PUNKTDIST3></PUNKTDIST3>
         <CARRNAME>Уральские авиалинии</CARRNAME>
-        <DPLAN>25.07.2016</DPLAN>
+        <DPLAN>29.07.2016</DPLAN>
         <TPLAN>08:30</TPLAN>
-        <DEXP>25.07.2016</DEXP>
+        <DEXP>29.07.2016</DEXP>
         <TEXP>08:30</TEXP>
-        <DFACT>25.07.2016</DFACT>
-        <TFACT>08:34</TFACT>
-        <STATUS>Вылетел в 08:34</STATUS>
+        <DFACT>29.07.2016</DFACT>
+        <TFACT>08:30</TFACT>
+        <STATUS>Вылетел в 08:30</STATUS>
+    </FLY>
+    <FLY number="РД-107">
+        <AD>0</AD>
+        <AIRCRAFT>Ан-24</AIRCRAFT>
+        <PORTDIST>БЛАГОВЕЩЕНСК</PORTDIST>
+        <PUNKTDIST>Благовещенск</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>ИрАэро     АК</CARRNAME>
+        <DPLAN>29.07.2016</DPLAN>
+        <TPLAN>08:40</TPLAN>
+        <DEXP>29.07.2016</DEXP>
+        <TEXP>09:10</TEXP>
+        <DFACT>29.07.2016</DFACT>
+        <TFACT>09:10</TFACT>
+        <STATUS>Вылетел в 09:10</STATUS>
     </FLY>
     <FLY number="ГЛ-116">
         <AD>0</AD>
@@ -100,13 +118,49 @@
         <PORTDIST3></PORTDIST3>
         <PUNKTDIST3></PUNKTDIST3>
         <CARRNAME>Глобус ООО</CARRNAME>
-        <DPLAN>25.07.2016</DPLAN>
+        <DPLAN>29.07.2016</DPLAN>
         <TPLAN>09:25</TPLAN>
-        <DEXP>25.07.2016</DEXP>
+        <DEXP>29.07.2016</DEXP>
         <TEXP>09:25</TEXP>
-        <DFACT>25.07.2016</DFACT>
-        <TFACT>09:28</TFACT>
-        <STATUS>Вылетел в 09:28</STATUS>
+        <DFACT>29.07.2016</DFACT>
+        <TFACT>09:47</TFACT>
+        <STATUS>Вылетел в 09:47</STATUS>
+    </FLY>
+    <FLY number="S7-3242">
+        <AD>0</AD>
+        <AIRCRAFT>А-320</AIRCRAFT>
+        <PORTDIST>Новосибирск (ТЛЧ)</PORTDIST>
+        <PUNKTDIST>Новосибирск</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>Сибирь АК</CARRNAME>
+        <DPLAN>29.07.2016</DPLAN>
+        <TPLAN>13:20</TPLAN>
+        <DEXP>29.07.2016</DEXP>
+        <TEXP>13:20</TEXP>
+        <DFACT>29.07.2016</DFACT>
+        <TFACT>13:25</TFACT>
+        <STATUS>Вылетел в 13:25</STATUS>
+    </FLY>
+    <FLY number="R3-535">
+        <AD>0</AD>
+        <AIRCRAFT>Б737-8</AIRCRAFT>
+        <PORTDIST>СЕУЛ</PORTDIST>
+        <PUNKTDIST>Сеул</PUNKTDIST>
+        <PORTDIST2></PORTDIST2>
+        <PUNKTDIST2></PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>Якутия мжд.</CARRNAME>
+        <DPLAN>29.07.2016</DPLAN>
+        <TPLAN>16:10</TPLAN>
+        <DEXP>29.07.2016</DEXP>
+        <TEXP>16:10</TEXP>
+        <DFACT>29.07.2016</DFACT>
+        <TFACT>16:15</TFACT>
+        <STATUS>Вылетел в 16:15</STATUS>
     </FLY>
     <FLY number="РД-108">
         <AD>0</AD>
@@ -118,13 +172,31 @@
         <PORTDIST3></PORTDIST3>
         <PUNKTDIST3></PUNKTDIST3>
         <CARRNAME>ИрАэро     АК</CARRNAME>
-        <DPLAN>25.07.2016</DPLAN>
-        <TPLAN>18:45</TPLAN>
-        <DEXP>25.07.2016</DEXP>
-        <TEXP>19:30</TEXP>
+        <DPLAN>29.07.2016</DPLAN>
+        <TPLAN>23:20</TPLAN>
+        <DEXP>29.07.2016</DEXP>
+        <TEXP>23:20</TEXP>
         <DFACT/>
         <TFACT/>
-        <STATUS>Задержан до  19.30</STATUS>
+        <STATUS></STATUS>
+    </FLY>
+    <FLY number="РД-111">
+        <AD>0</AD>
+        <AIRCRAFT>СУ-95</AIRCRAFT>
+        <PORTDIST>БЛАГОВЕЩЕНСК</PORTDIST>
+        <PUNKTDIST>Благовещенск</PUNKTDIST>
+        <PORTDIST2>ВЛАДИВОСТОК</PORTDIST2>
+        <PUNKTDIST2>Владивосток</PUNKTDIST2>
+        <PORTDIST3></PORTDIST3>
+        <PUNKTDIST3></PUNKTDIST3>
+        <CARRNAME>ИрАэро     АК</CARRNAME>
+        <DPLAN>30.07.2016</DPLAN>
+        <TPLAN>07:10</TPLAN>
+        <DEXP>30.07.2016</DEXP>
+        <TEXP>07:10</TEXP>
+        <DFACT/>
+        <TFACT/>
+        <STATUS></STATUS>
     </FLY>
     <FLY number="У6-344">
         <AD>0</AD>
@@ -136,82 +208,64 @@
         <PORTDIST3></PORTDIST3>
         <PUNKTDIST3></PUNKTDIST3>
         <CARRNAME>Уральские авиалинии</CARRNAME>
-        <DPLAN>26.07.2016</DPLAN>
+        <DPLAN>30.07.2016</DPLAN>
         <TPLAN>08:30</TPLAN>
-        <DEXP>26.07.2016</DEXP>
+        <DEXP>30.07.2016</DEXP>
         <TEXP>08:30</TEXP>
         <DFACT/>
         <TFACT/>
         <STATUS></STATUS>
     </FLY>
-    <FLY number="S7-116">
+    <FLY number="ГЛ-116">
         <AD>0</AD>
-        <AIRCRAFT>А-320</AIRCRAFT>
+        <AIRCRAFT>Б737-8</AIRCRAFT>
         <PORTDIST>МОСКВА (ДМД-DME)</PORTDIST>
         <PUNKTDIST>Москва</PUNKTDIST>
         <PORTDIST2></PORTDIST2>
         <PUNKTDIST2></PUNKTDIST2>
         <PORTDIST3></PORTDIST3>
         <PUNKTDIST3></PUNKTDIST3>
-        <CARRNAME>Сибирь АК</CARRNAME>
-        <DPLAN>26.07.2016</DPLAN>
+        <CARRNAME>Глобус ООО</CARRNAME>
+        <DPLAN>30.07.2016</DPLAN>
         <TPLAN>09:25</TPLAN>
-        <DEXP>26.07.2016</DEXP>
+        <DEXP>30.07.2016</DEXP>
         <TEXP>09:25</TEXP>
         <DFACT/>
         <TFACT/>
         <STATUS></STATUS>
     </FLY>
-    <FLY number="БЮ-9115">
+    <FLY number="БЮ-9153">
         <AD>0</AD>
         <AIRCRAFT>Ан-24</AIRCRAFT>
-        <PORTDIST>Н.АНГАРСК</PORTDIST>
+        <PORTDIST>ТАКСИМО</PORTDIST>
         <PUNKTDIST>Улан-удэ</PUNKTDIST>
         <PORTDIST2></PORTDIST2>
         <PUNKTDIST2></PUNKTDIST2>
         <PORTDIST3></PORTDIST3>
         <PUNKTDIST3></PUNKTDIST3>
         <CARRNAME>Бурятские Авиалинии</CARRNAME>
-        <DPLAN>26.07.2016</DPLAN>
-        <TPLAN>10:00</TPLAN>
-        <DEXP>26.07.2016</DEXP>
-        <TEXP>10:00</TEXP>
+        <DPLAN>30.07.2016</DPLAN>
+        <TPLAN>11:00</TPLAN>
+        <DEXP>30.07.2016</DEXP>
+        <TEXP>11:00</TEXP>
         <DFACT/>
         <TFACT/>
         <STATUS></STATUS>
     </FLY>
-    <FLY number="R3-535">
+    <FLY number="РД-112">
         <AD>0</AD>
-        <AIRCRAFT>СУ-95</AIRCRAFT>
-        <PORTDIST>СЕУЛ</PORTDIST>
-        <PUNKTDIST>Сеул</PUNKTDIST>
+        <AIRCRAFT>CRJ200</AIRCRAFT>
+        <PORTDIST>ИРКУТСК</PORTDIST>
+        <PUNKTDIST>Иркутск</PUNKTDIST>
         <PORTDIST2></PORTDIST2>
         <PUNKTDIST2></PUNKTDIST2>
         <PORTDIST3></PORTDIST3>
         <PUNKTDIST3></PUNKTDIST3>
-        <CARRNAME>Якутия мжд.</CARRNAME>
-        <DPLAN>26.07.2016</DPLAN>
-        <TPLAN>16:45</TPLAN>
-        <DEXP>26.07.2016</DEXP>
-        <TEXP>16:45</TEXP>
-        <DFACT/>
-        <TFACT/>
-        <STATUS></STATUS>
-    </FLY>
-    <FLY number="РД-109">
-        <AD>0</AD>
-        <AIRCRAFT>CRJ200</AIRCRAFT>
-        <PORTDIST>ХАБАРОВСК</PORTDIST>
-        <PUNKTDIST>Хабаровск</PUNKTDIST>
-        <PORTDIST2>МАГАДАН</PORTDIST2>
-        <PUNKTDIST2>Магадан</PUNKTDIST2>
-        <PORTDIST3></PORTDIST3>
-        <PUNKTDIST3></PUNKTDIST3>
         <CARRNAME>ИрАэро     АК</CARRNAME>
-        <DPLAN>26.07.2016</DPLAN>
-        <TPLAN>23:30</TPLAN>
-        <DEXP>26.07.2016</DEXP>
-        <TEXP>23:30</TEXP>
+        <DPLAN>30.07.2016</DPLAN>
+        <TPLAN>19:15</TPLAN>
+        <DEXP>30.07.2016</DEXP>
+        <TEXP>19:15</TEXP>
         <DFACT/>
         <TFACT/>
         <STATUS></STATUS>
@@ -226,9 +280,9 @@
         <PORTDIST3></PORTDIST3>
         <PUNKTDIST3></PUNKTDIST3>
         <CARRNAME>Якутия    ОАО</CARRNAME>
-        <DPLAN>27.07.2016</DPLAN>
+        <DPLAN>31.07.2016</DPLAN>
         <TPLAN>01:10</TPLAN>
-        <DEXP>27.07.2016</DEXP>
+        <DEXP>31.07.2016</DEXP>
         <TEXP>01:10</TEXP>
         <DFACT/>
         <TFACT/>

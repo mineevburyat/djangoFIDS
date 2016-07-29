@@ -43,11 +43,6 @@ def checkin(request, id, past=11, future=11):
             # Отобразить вылетающие рейсы в временном окне, и предоставить возможность выбора рейса
             departureflight = Flight.objects.filter(ad=0).filter(timeplan__lt=futuretime).filter(
                 timeplan__gt=pasttime).order_by('timeplan')
-            startcheckin = []
-            stopcheckin = []
-            for depart in departureflight:
-                startcheckin.append(depart.timestartcheckin(delta=check.deltastartcheckin))
-                stopcheckin.append(depart.timestopcheckin(delta=check.deltastopcheckin))
             return render(request, 'flightinfosystem/checkin-select.html', {'check': check,
                                                                             'depart': departureflight})
         else:
@@ -80,6 +75,8 @@ def checkin(request, id, past=11, future=11):
             #привязать стойку к рейсу
             check.checkinfly = selectflight
             check.classcheckin = request.POST['class']
+            check.startcheckin = selectflight.timestartcheckin()
+            check.stopcheckin = selectflight.timestopcheckin()
             check.save()
             return redirect(url, id=check.id)
         else:
@@ -115,3 +112,14 @@ def tablocheckin(request, id):
         flight = check.checkinfly
         return render(request, 'flightinfosystem/tablocheckin.html',
                       {'flight': flight, 'check': check, 'now': now})
+
+def tsttablocheckin(request, id):
+    check = get_object_or_404(Checkin, id=id)
+    if check.checkinfly is None:
+        return HttpResponse('Нет регистрации')
+    else:
+        flight = check.checkinfly
+        starttime = flight.timeexp - datetime.timedelta(seconds=7200)
+        stoptime = flight.timeexp - datetime.timedelta(seconds=2400)
+        return render(request, 'flightinfosystem/tablotst.html',
+                      {'flight': flight, 'check': check, 'start': starttime, 'stop': stoptime})

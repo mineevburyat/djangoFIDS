@@ -67,8 +67,8 @@ class Checkin(models.Model):
     shortname = models.CharField("Короткое имя стойки", max_length=5)
     checkinfly = models.ForeignKey('Flight', verbose_name='Рейс', blank=True, null=True, on_delete=models.SET_NULL)
     classcheckin = models.CharField("Класс обслуживания", max_length=15, blank=True, null=True)
-    deltastartcheckin = models.IntegerField("Начало регистрации", default=7200)
-    deltastopcheckin = models.IntegerField("Конец регистрации", default=2400)
+    startcheckin = models.DateTimeField("Начало регистрации", blank=True, null=True)
+    stopcheckin = models.DateTimeField("Конец регистрации", blank=True, null=True)
     def __str__(self):
         return 'Стойка регистрации ' + self.shortname + ' ' + str(self.num)
 
