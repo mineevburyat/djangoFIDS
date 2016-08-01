@@ -11,6 +11,7 @@ urlpatterns = [
     #Выбрать конкретную стойку
     url(r'^checkin/$', views.checkin_list, name='checkin_list'),
     #Список выходов
+    url(r'^boards/$', views.board_list, name='board_list'),
     #Выбор конкретного выхода
     #Список багажных лент
     #Выбор конкрентной багажной ленты

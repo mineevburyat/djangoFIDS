@@ -49,7 +49,7 @@
     "model": "flightinfosystem.event",
     "pk": 7,
     "fields": {
-      "name": "Регистрация на рейс закончена: "
+      "name": "Регистрация закрыта: "
     }
 
   },

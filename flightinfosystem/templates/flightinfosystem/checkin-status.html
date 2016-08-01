@@ -14,7 +14,7 @@
                 {% else %}
                     прилетающий
                 {% endif %}
-                рейс {{ flight.fly }} за {{ flight.timeplan.date }}</h2>
+                рейс {{ flight.fly }} за {{ flight.timeplan|date:"DATE_FORMAT" }}</h2>
         </div>
     <div>
         <div style="float: left; width: 50%">
@@ -48,13 +48,13 @@
             <h4>События по рейсу</h4>
             <table>
             <tr>
-                <th>Собитие</th>
+                <th>Событие</th>
                 <th>Описание</th>
                 <th>Время</th>
             </tr>
             {% for event in flightevent %}
                 <tr>
-                    <td>{{ event.event_id }}</td>
+                    <td>{{ event.geteventname }}</td>
                     <td>{{ event.descript }}</td>
                     <td>{{ event.timestamp }}</td>
                 </tr>

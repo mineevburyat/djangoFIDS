@@ -40,6 +40,10 @@
                     </SELECT>
                 </td>
             </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">Внимание! Список рейсов давно не обновлялся!</td>
+            </tr>
             {% endfor %}
         </table>
         <br>

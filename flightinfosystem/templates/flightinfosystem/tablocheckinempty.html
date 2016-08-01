@@ -1,0 +1,83 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Refresh" content="30" />
+    <title>Title</title>
+    <style>
+        html {
+            background: #156fdf;
+            color: #f7f21a;
+            font-size: 50px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        table {
+            width: 100%;
+            align-content: center;
+            border: 0px hidden;
+            border-collapse: collapse;
+        }
+        td {
+            border: 0px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .heighheader {
+            height: 120px;
+        }
+
+        .num {
+            font-size: 100px;
+        }
+        .fly {
+            background: #00BFFF;
+            font-size: 200px;
+            height: 250px;
+        }
+        .logo {
+            background: #00BFFF;
+        }
+        .distination {
+            font-size: 90px;
+            height: 200px;
+        }
+        .white {
+            color: white;
+            font-size: 40px;
+        }
+        .image {
+            height: 550px;
+        }
+
+    </style>
+</head>
+<body>
+        <div class="heighheader">
+            <table>
+            <tr>
+                <td width="40%">Стойка регистрации</td>
+                <td rowspan="2" width="40%"><span class="num"> № {{ check.num }}</span></td>
+                <td>{% now "SHORT_DATE_FORMAT" %}</td>
+            </tr>
+            <tr>
+                <td>Check-in</td>
+                <td>{% now "TIME_FORMAT" %}</td>
+            </tr>
+            </table>
+        </div>
+        <div class="image">
+            <table class="image">
+                <tr>
+                    <td>Нет регистрации</td>
+                </tr>
+                <tr>
+                    <td><img src="{% static "flightinfosystem/aklogo/iraero-rd.jpg" %}"></td>
+                </tr>
+            </table>
+
+        </div>
+
+</body>
+</html>

@@ -1,4 +1,5 @@
 {% extends 'flightinfosystem/base.html' %}
+{% load staticfiles %}
 
 {% block content %}
     <div>
@@ -8,20 +9,29 @@
         <table class="table">
             <tr>
                 <th></th>
+                <th></th>
                 <th>Рейс</th>
-                <th>Направления</th>
+                <th>Маршрут</th>
                 <th width="150">По расписанию</th>
                 <th width="150">Расчетное<br>время</th>
                 <th width="150">Фактическое<br>время</th>
                 <th>Статус</th>
+                <th>Состояние</th>
             </tr>
         {% for flight in flights %}
             <tr>
                 <td>
                     {% if flight.isarrivals  %}
-                        <img src="/static/img/arrive.gif">
+                        <img src="{% static "flightinfosystem/img/arrive.gif" %}">
                     {% else %}
-                        <img src="/static/img/depart.gif">
+                        <img src="{% static "flightinfosystem/img/depart.gif" %}">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if flight.isclose %}
+                    <img src="{% static "flightinfosystem/img/close.jpeg" %}" width="40px" height="33px">
+                    {% else %}
+                    <img src="{% static "flightinfosystem/img/open.jpeg" %}" width="40px" height="33px">
                     {% endif %}
                 </td>
                 <td><a href=" {% url 'fids:flight_detail' flight.id %}">{{ flight.fly }}</a></td>
@@ -30,6 +40,11 @@
                 <td>{{ flight.timeexp }}</td>
                 <td>{{ flight.timefact }}</td>
                 <td>{{ flight.status }}</td>
+                <td>{{ flight.stateflight }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="8">Список рейсов давно не обновлялся</td>
             </tr>
         {% endfor %}
         </table>

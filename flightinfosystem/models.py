@@ -1,5 +1,5 @@
 import datetime as DT
-
+from django.utils import timezone
 from django.db import models
 
 
@@ -18,11 +18,12 @@ class Flight(models.Model):
     timefact = models.DateTimeField("Время по факту", null=True, blank=True)
 
     def __str__(self):
+        localtime = timezone.localtime(self.timeplan)
         if self.ad == 1:
             ad = 'прилетающий'
         else:
             ad = 'вылетающий'
-        return ad + ' рейс ' + self.fly + ' за ' + self.timeplan.strftime('%d.%m.%y')
+        return ad + ' рейс ' + self.fly + ' за ' + localtime.strftime('%d.%m.%y')
 
     def isdeparture(self):
         if self.ad == 0:
@@ -36,11 +37,50 @@ class Flight(models.Model):
         else:
             return False
 
-    def timestartcheckin(self, delta=7200):
+    def timestartcheckin(self, delta=120*60):
         return (self.timeexp - DT.timedelta(seconds=delta))
 
-    def timestopcheckin(self, delta=2400):
+    def timestopcheckin(self, delta=40*60):
         return (self.timeexp - DT.timedelta(seconds=delta))
+
+    def timestartboard(self, delta=20*60):
+        return (self.timeexp - DT.timedelta(seconds=delta))
+
+    def timestopboard(self, delta=5*60):
+        return (self.timeexp - DT.timedelta(seconds=delta))
+
+    def stateflight(self):
+        txt = self.status
+        flightstatus = FlightStatus.objects.get(fly=self)
+        if self.isarrivals():
+            if flightstatus.baggage:
+                txt = txt + ' Выдача багажа'
+            if flightstatus.baggagestop:
+                txt = txt + ' Багаж выдан'
+        if self.isdeparture():
+            if flightstatus.checkin:
+                txt = txt + 'Регистрация открыта'
+            if flightstatus.checkinstop:
+                txt = txt + 'Регистрация закрыта'
+            if flightstatus.board:
+                txt = txt + 'Посадка пассажиров'
+            if flightstatus.boardstop:
+                txt = txt + 'Посадка закрыта'
+        return txt
+
+    def isclose(self):
+        flightstatus = FlightStatus.objects.get(fly=self)
+        if self.isarrivals():
+            if flightstatus.baggagestop:
+                return True
+            else:
+                return False
+        else:
+            if self.timefact is not None:
+                return True
+            else:
+                return False
+
 
 class FlightStatus(models.Model):
     fly = models.OneToOneField('Flight', verbose_name="Рейс")
@@ -61,9 +101,12 @@ class EventLog(models.Model):
     descript = models.CharField("Допопции события", max_length=60)
     timestamp = models.DateTimeField("Время события", auto_now=True)
 
+    def geteventname(self):
+        return self.event.name
+
 class Checkin(models.Model):
     num = models.CharField("Номер стойки", max_length=2)
-    fullname = models.CharField("Полное имя стойки", max_length=21)
+    fullname = models.CharField("Имя терминала", max_length=21)
     shortname = models.CharField("Короткое имя стойки", max_length=5)
     checkinfly = models.ForeignKey('Flight', verbose_name='Рейс', blank=True, null=True, on_delete=models.SET_NULL)
     classcheckin = models.CharField("Класс обслуживания", max_length=15, blank=True, null=True)
@@ -72,12 +115,12 @@ class Checkin(models.Model):
     def __str__(self):
         return 'Стойка регистрации ' + self.shortname + ' ' + str(self.num)
 
-'''class BoardFlightStatus(models.Model):
-    fly = models.ForeignKey('Flights', verbose_name="Рейс")
-    starchecktime = models.TimeField("Начало посадки", null=True)
-    endchecktime = models.TimeField("Конец посадки", null=True)
-    checkins = models.CharField("Используемый выход", max_length=13, blank=True)
-
+class Board(models.Model):
+    boardfly = models.ForeignKey('Flight', verbose_name="Рейс", blank=True, null=True, on_delete=models.SET_NULL)
+    num = models.CharField("Номер выхода", max_length=2)
+    fullname = models.CharField("Имя терминала", max_length=21)
+    shortname = models.CharField("Имя выхода", max_length=8)
+'''
 class BaggegeFlightStatus(models.Model):
     fly = models.ForeignKey('Flights', verbose_name="Рейс")
     starchecktime = models.TimeField("Начало выдачи", null=True)

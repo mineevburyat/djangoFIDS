@@ -1,0 +1,94 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Refresh" content="30" />
+    <title>Title</title>
+    <style>
+        html {
+            background: #156fdf;
+            color: #f7f21a;
+            font-size: 50px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        table {
+            width: 100%;
+            align-content: center;
+            border: 0px hidden;
+            border-collapse: collapse;
+        }
+        td {
+            border: 0px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .heighheader {
+            height: 120px;
+        }
+
+        .num {
+            font-size: 100px;
+        }
+        .fly {
+            background: #00BFFF;
+            font-size: 200px;
+            height: 250px;
+        }
+        .logo {
+            background: #00BFFF;
+        }
+        .distination {
+            font-size: 90px;
+            height: 200px;
+        }
+        .white {
+            color: white;
+            font-size: 40px;
+        }
+        .time {
+            font-size: 140px;
+        }
+
+    </style>
+</head>
+<body>
+        <div class="heighheader">
+            <table>
+            <tr>
+                <td width="40%">Стойка регистрации</td>
+                <td rowspan="2" width="40%"><span class="num"> № {{ check.num }}</span></td>
+                <td>{% now "SHORT_DATE_FORMAT" %}</td>
+            </tr>
+            <tr>
+                <td>Check-in</td>
+                <td>{% now "TIME_FORMAT" %}</td>
+            </tr>
+            </table>
+        </div>
+        <div class="fly">
+            <table>
+                <tr><td><span>{{ flight.fly }}</span></td></tr>
+            </table>
+        </div>
+        <div class="distination">
+            <table>
+                <tr><td><span>{{ flight.portdist }}</span></td></tr>
+            </table>
+        </div>
+        <div class="logo">
+        <table>
+            <tr>
+                <td rowspan="2"><img src="{% static "flightinfosystem/iraero-rd.jpg" %}" width="430px" height="270px"></td>
+                <td colspan="2">{{ check.classcheckin }}</td>
+            </tr>
+            <tr>
+                <td><span class="white">Начало регистрации:<br/>start checkin:<br/></span><span class="time">{{ start|time:"H:i" }}</span></td>
+                <td><span class="white">Конец регистрации:<br/>end checkin:<br/></span><span class="time">{{ stop|time:"H:i" }}</span></td>
+            </tr>
+        </table>
+        </div>
+
+</body>
+</html>

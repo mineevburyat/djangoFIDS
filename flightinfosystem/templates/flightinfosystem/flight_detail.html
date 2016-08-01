@@ -2,19 +2,64 @@
 
 {% block content %}
     <div>
-        <h2>Подробно о рейсе
-            {% if flight.isarrivals %}
-                прилета
-            {% elif flight.isdeparture %}
-                вылета
-            {% else %}
-                непонятно
+        <h2>Подробно о {% if flight.isarrivals %} прилетающем {% elif flight.isdeparture %} вылетающем {% endif %}рейсе
+            {{ flight.fly }} за {{ flight.timeplan|date:"DATE_FORMAT" }}</h2>
+    </div>
+       <div>
+        <div>
+            <p><b>Аэропорт: </b> {{ flight.portdist }}</p>
+            <p><b>Маршрут: </b> {{ flight.punktdist }}</p>
+            <p><b>Статус из AODB: </b> {{ flight.status }}</p>
+            <p><b>Время по плану: </b>{{ flight.timeplan }}</p>
+            <p><b>Расчетное время: </b>{{ flight.timeexp }}</p>
+            {% if flight.timeplan %}
+            <p><b>Фактическое время: </b>{{ flight.timefact }}</p>
             {% endif %}
-            {{ flight.fly }} на {{ flight.timeplan }}</h2>
-    </div>
-    <div>
-        Описываем параметры рейса и текущий статус по обслуживанию <br/>
-    {{ flight }} <br/>
-    {{ flightstatus }}
-    </div>
+        </div>
+        <div>
+            <h4>Статусы обслуживания {% if flight.isdeparture %} вылетающего {% else %} прилетающего {% endif %}рейса</h4>
+            <table>
+            {% if flight.isdeparture %}
+                <tr>
+                    <th>Регистрация<br>открыта</th>
+                    <th>Регистрация<br>закрыта</th>
+                    <th>Посадка</th>
+                    <th>Посадка<br>закрыта</th>
+                </tr>
+                <tr>
+                    <td>{% if flightstatus.checkin %} Да {% else %} Нет {% endif %}</td>
+                    <td>{% if flightstatus.checkinstop %} Да {% else %} Нет {% endif %}</td>
+                    <td>{% if flightstatus.board %} Да {% else %} Нет {% endif %}</td>
+                    <td>{% if flightstatus.boardstop %} Да {% else %} Нет {% endif %}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <th>Выдача багажа</th>
+                    <th>Багаж выдан</th>
+                </tr>
+                <tr>
+                    <td>{% if flightstatus.baggage %} Да {% else %} Нет {% endif %}</td>
+                    <td>{% if flightstatus.baggagestop %} Да {% else %} Нет {% endif %}</td>
+                </tr>
+            {% endif %}
+            </table>
+        </div>
+        <div>
+            <h4>События по рейсу</h4>
+            <table>
+            <tr>
+                <th>Событие</th>
+                <th>Описание</th>
+                <th>Время</th>
+            </tr>
+            {% for event in flightevent %}
+                <tr>
+                    <td>{{ event.geteventname }}</td>
+                    <td>{{ event.descript }}</td>
+                    <td>{{ event.timestamp }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+        </div>
 {% endblock content %}

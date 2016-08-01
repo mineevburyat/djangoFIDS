@@ -1,25 +1,28 @@
 h1 {
         color: #FCA205;
-        align-self: center;
+        align-content: center;
     }
 body {
         padding-left: 15px;
     }
 /* sop table */
-table.sop {
-    border: 1px double #999999;
+table .sop {
+    border: 0px double #999999;
     border-collapse: collapse;
    }
-table.sop th {
-    text-align: left;
+table th {
+    text-align: center;
     background: #2e8ce3;
     padding: 1px;
     border: 1px solid #999999;
 	color: #eee;
+    align-content: center;
 	}
-table.sop td {
-    padding: 1px;
+table td {
+    padding: 2px;
     border: 1px solid #999999;
+    align-content: center;
+    text-align: center;
    }
 .button {
 	color: #2e8ce3;

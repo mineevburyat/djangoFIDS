@@ -5,14 +5,14 @@
         <h2>Список существующих стоек регистрации</h2>
     </div>
     <div>
-        <table class="table">
+        <table class="sop">
             <tr>
                 <th width="150">Зал вылета</th>
                 <th width="50">Короткое имя</th>
                 <th width="30">Номер стойки</th>
                 <th>Класс регистрации</th>
-                <th>Начало до вылета</th>
-                <th>Конкц до вылета</th>
+                <th>Начало</th>
+                <th>Конец</th>
                 <th>Привязанный рейс</th>
             </tr>
         {% for checkin in checkins %}
@@ -20,10 +20,18 @@
                 <td>{{ checkin.fullname }}</td>
                 <td>{{ checkin.shortname }}</td>
                 <td><a href="{% url 'fids:checkin' checkin.id %}">{{ checkin.num }}</a></td>
+            {% if checkin.checkinfly %}
                 <td>{{ checkin.classcheckin }}</td>
-                <td>{{ checkin.deltastartcheckin }}</td>
-                <td>{{ checkin.deltastopcheckin }}</td>
-                <td>{{ checkin.checkinfly }}</td>
+                <td>{{ checkin.checkinfly.timestartcheckin|time:"H:i" }}</td>
+                <td>{{ checkin.checkinfly.timestopcheckin|time:"H:i" }}</td>
+                <td> {{ checkin.checkinfly }}</td>
+            {% else%}
+                <td colspan="4"> Нет регистрации </td>
+            {% endif %}
+            </tr>
+        {% empty %}
+            <tr>
+                <td>Внимание! Не заполнен справочник стоек регистрации!</td>
             </tr>
         {% endfor %}
         </table>
