@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 import pytz
 
-from .models import Flight, Checkin, FlightStatus, EventLog, Board
+from .models import Flight, Checkin, FlightStatus, EventLog
 
 
 # Create your views here.
@@ -14,31 +14,25 @@ def index(request):
 
 
 def flight_list(request, past=11, future=11):
-    '''Отобразить актуальный список рейсов'''
     now = timezone.now()
     pasttime = now - datetime.timedelta(seconds=past * 3600)
     futuretime = now + datetime.timedelta(seconds=future * 3600)
     flights = Flight.objects.filter(timeplan__lt=futuretime).filter(timeplan__gt=pasttime).order_by('timeplan')
-    flights = Flight.objects.all().order_by('timeplan')
     return render(request, 'flightinfosystem/flight_list.html', {'flights': flights})
 
 def flight_detail(request, id):
-    '''Отобразить информацию по конкретному рейсу'''
     flight = get_object_or_404(Flight, id=id)
     flightstatus = FlightStatus.objects.get(fly=flight)
-    event = EventLog.objects.filter(fly=flight)
+
     return render(request, 'flightinfosystem/flight_detail.html', {'flight': flight,
-                                                                   'flightstatus': flightstatus, 'flightevent':event})
+                                                                   'flightstatus': flightstatus})
 
 def checkin_list(request):
-    '''Отобразить список стоек регистрации'''
     checkins = Checkin.objects.all()
     return render(request, 'flightinfosystem/checkin_list.html', {'checkins': checkins})
 
 
-def checkin(request, id, past=299, future=11):
-    '''Отобразить окно конкретной стойки регистрации, для открытия регитсрации на сущетсвующий рейс
-     и закрытия текущей регистрации'''
+def checkin(request, id, past=11, future=11):
     now = timezone.now()
     pasttime = now - datetime.timedelta(seconds=past * 3600)
     futuretime = now + datetime.timedelta(seconds=future * 3600)
@@ -49,6 +43,11 @@ def checkin(request, id, past=299, future=11):
             # Отобразить вылетающие рейсы в временном окне, и предоставить возможность выбора рейса
             departureflight = Flight.objects.filter(ad=0).filter(timeplan__lt=futuretime).filter(
                 timeplan__gt=pasttime).order_by('timeplan')
+            startcheckin = []
+            stopcheckin = []
+            for depart in departureflight:
+                startcheckin.append(depart.timestartcheckin(delta=check.deltastartcheckin))
+                stopcheckin.append(depart.timestopcheckin(delta=check.deltastopcheckin))
             return render(request, 'flightinfosystem/checkin-select.html', {'check': check,
                                                                             'depart': departureflight})
         else:
@@ -70,12 +69,12 @@ def checkin(request, id, past=299, future=11):
                 #Если регистрация не открыта, то поднять флаг и сгенерировать событие
                 flightstatus.checkin = True
                 flightstatus.save()
-                text = 'стойка № ' + check.shortname + ' ' + check.num
+                text = 'стойка ' + check.shortname + ' ' + check.num
                 eventlog = EventLog(fly=selectflight, event_id=4, descript=text)
                 eventlog.save()
             else:
                 #Если регистрация идет, то сгенерировать событие о добавлении
-                text = check.shortname + ' ' + check.num
+                text = 'стойка ' + check.shortname + ' ' + check.num
                 eventlog = EventLog(fly=selectflight, event_id=5, descript=text)
                 eventlog.save()
             #привязать стойку к рейсу
@@ -99,7 +98,7 @@ def checkin(request, id, past=299, future=11):
                 text = check.shortname + ' ' + check.num
                 eventlog = EventLog(fly=fly, event_id=6, descript=text)
                 eventlog.save()
-                eventlog = EventLog(fly=fly, event_id=7, descript=text)
+                eventlog = EventLog(fly=fly, event_id=7, descript='')
                 eventlog.save()
             else:
                 eventlog = EventLog(fly=fly, event_id=6, descript=text)
@@ -107,18 +106,12 @@ def checkin(request, id, past=299, future=11):
             return redirect(request.path, id=check.id)
 
 def tablocheckin(request, id):
+    timezone.activate(pytz.timezone('Asia/Irkutsk'))
+    now = timezone.now()
     check = get_object_or_404(Checkin, id=id)
     if check.checkinfly is None:
-        return render(request, 'flightinfosystem/tablocheckinempty.html',
-                      {'check':check})
+        return HttpResponse('Нет регистрации')
     else:
         flight = check.checkinfly
-        starttime = flight.timeexp - datetime.timedelta(seconds=7200)
-        stoptime =  flight.timeexp - datetime.timedelta(seconds=2400)
-        return render(request, 'flightinfosystem/tablocheckinfly.html',
-                      {'flight': flight, 'check': check, 'start': starttime, 'stop': stoptime})
-
-def board_list(request):
-    '''Отобразить список гейтов (выходов)'''
-    boards = Board.objects.all()
-    return render(request, 'flightinfosystem/board_list.html', {'boards': boards})
+        return render(request, 'flightinfosystem/tablocheckin.html',
+                      {'flight': flight, 'check': check, 'now': now})

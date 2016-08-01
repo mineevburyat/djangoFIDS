@@ -17,6 +17,7 @@ urlpatterns = [
     #Выбор конкрентной багажной ленты
     #Табло стойки
     url(r'^tablo/checkin/(?P<id>[0-9]+)/$', views.tablocheckin, name='tablocheckin'),
+    url(r'^tablo/tst/checkin/(?P<id>[0-9]+)/$', views.tsttablocheckin, name='tablocheckin'),
     #Табло посадки
     #Табло карусели багажа
     #Табло вылета
