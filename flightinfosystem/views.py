@@ -1,19 +1,33 @@
 import datetime
 
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.utils import timezone
 import pytz
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from .models import Flight, Checkin, FlightStatus, EventLog
+from .models import Flight, Checkin, FlightStatus, EventLog, Board
 
 
 # Create your views here.
 def index(request):
     return render(request, 'flightinfosystem/index.html', {})
 
+def all_flight(request):
+    flight_all = Flight.objects.all()
+    paginator = Paginator(flight_all, 30)  # Show 30 flights per page
+    page = request.GET.get('page')
+    try:
+        flights = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        flights = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        flights = paginator.page(paginator.num_pages)
+    return render_to_response('flightinfosystem/arhiveflights.html', {"flights": flights})
 
-def flight_list(request, past=11, future=11):
+def flight_list(request, past=15, future=24):
     now = timezone.now()
     pasttime = now - datetime.timedelta(seconds=past * 3600)
     futuretime = now + datetime.timedelta(seconds=future * 3600)
@@ -43,11 +57,6 @@ def checkin(request, id, past=11, future=11):
             # Отобразить вылетающие рейсы в временном окне, и предоставить возможность выбора рейса
             departureflight = Flight.objects.filter(ad=0).filter(timeplan__lt=futuretime).filter(
                 timeplan__gt=pasttime).order_by('timeplan')
-            startcheckin = []
-            stopcheckin = []
-            for depart in departureflight:
-                startcheckin.append(depart.timestartcheckin(delta=check.deltastartcheckin))
-                stopcheckin.append(depart.timestopcheckin(delta=check.deltastopcheckin))
             return render(request, 'flightinfosystem/checkin-select.html', {'check': check,
                                                                             'depart': departureflight})
         else:
@@ -106,12 +115,66 @@ def checkin(request, id, past=11, future=11):
             return redirect(request.path, id=check.id)
 
 def tablocheckin(request, id):
-    timezone.activate(pytz.timezone('Asia/Irkutsk'))
     now = timezone.now()
     check = get_object_or_404(Checkin, id=id)
     if check.checkinfly is None:
-        return HttpResponse('Нет регистрации')
+        return render(request,'flightinfosystem/tablocheckinempty.html',{'check':check})
     else:
         flight = check.checkinfly
-        return render(request, 'flightinfosystem/tablocheckin.html',
+        return render(request, 'flightinfosystem/tablocheckinfly.html',
                       {'flight': flight, 'check': check, 'now': now})
+
+def board_list(request):
+    boardsgate = Board.objects.all()
+    return render(request, 'flightinfosystem/board_list.html', {'boards': boardsgate})
+
+def boardgate(request, id, past=11, future=11):
+    now = timezone.now()
+    pasttime = now - datetime.timedelta(seconds=past * 3600)
+    futuretime = now + datetime.timedelta(seconds=future * 3600)
+    boardgt = get_object_or_404(Board, id=id)
+    if request.method == 'GET':
+        if boardgt.boardfly is None:
+            # Выход не привязан к рейсу, то
+            # Отобразить вылетающие рейсы со статусом регистрация и регистрация закрыта
+            # в временном окне, и предоставить возможность выбора рейса
+            checkinflight = Flight.objects.filter(ad=0).filter(timeplan__lt=futuretime).\
+                filter(timeplan__gt=pasttime).order_by('timeplan')
+            return render(request, 'flightinfosystem/board-select.html', {'boardgate': boardgt,
+                                                                          'depart': checkinflight})
+        else:
+            # Отобразить статусы рейса прикрепленного к выходу и возможность закрыть посадку пассажиров
+            flight = boardgt.boardfly
+            flightstatus = FlightStatus.objects.get(fly=flight)
+            event = EventLog.objects.filter(fly=flight)
+            return render(request, 'flightinfosystem/board-status.html',
+                              {'flightevent': event, 'flight': flight, 'flightstatus': flightstatus, 'boardgate': boardgt})
+    elif request.method == 'POST':
+        flightid = request.POST['id']
+        url = request.path
+        if boardgt.boardfly is None:
+            # Гейт не привязан к рейсу. Привязать. Внести данные в flightstat и eventlog
+            # и переслать на страницу выхода
+            selectflight = get_object_or_404(Flight, id=flightid)
+            flightstatus = FlightStatus.objects.get(fly=selectflight)
+            flightstatus.board = True
+            flightstatus.save()
+            text = boardgt.shortname + ' ' + boardgt.num
+            eventlog = EventLog(fly=selectflight, event_id=8, descript=text)
+            eventlog.save()
+            boardgt.checkinfly = selectflight
+            boardgt.save()
+            return redirect(url, id=boardgt.id)
+        else:
+            # отвязать гейт от рейса, сменить статус рейса, создать события
+            boardgt.boardfly = None
+            boardgt.save()
+            text = boardgt.shortname + ' №' + boardgt.num
+            fly = Flight.objects.get(id=int(request.POST['id']))
+            flightstatus = FlightStatus.objects.get(fly=fly)
+            flightstatus.board = False
+            flightstatus.boardstop = True
+            flightstatus.save()
+            eventlog = EventLog(fly=fly, event_id=9, descript=text)
+            eventlog.save()
+            return redirect(request.path, id=boardgt.id)

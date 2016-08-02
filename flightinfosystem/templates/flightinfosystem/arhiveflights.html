@@ -1,0 +1,30 @@
+{% extends 'flightinfosystem/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div>
+        <h2>Все рейсы (регулярные и чартерные)</h2>
+    </div>
+    <div>
+        {% for flight in flights %}
+            {{ flight }}<br />
+        {% endfor %}
+    </div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if flights.has_previous %}
+            <a href="?page={{ flights.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ flights.number }} of {{ flights.paginator.num_pages }}.
+        </span>
+
+        {% if flights.has_next %}
+            <a href="?page={{ flights.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock content %}

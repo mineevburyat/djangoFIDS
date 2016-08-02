@@ -1,5 +1,6 @@
 import datetime as DT
 import sys
+import os
 from xml.etree.ElementTree import parse
 
 import pytz
@@ -105,8 +106,7 @@ class Command(BaseCommand):
         for request in xmlurls:
             getxmlfromserver(xmlfile, *request)
             xmlflights.getfromxml(xmlfile)
-
-        #xmlflights.getfromxml(xmlfile)
+        os.remove(xmlfile)
         for xmlflight in xmlflights:
             try:
                 dbflight = Flight.objects.get(fly=xmlflight['fly'], ad=xmlflight['ad'], timeplan=xmlflight['timeplan'],

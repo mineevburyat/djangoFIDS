@@ -65,7 +65,7 @@
     "model": "flightinfosystem.event",
     "pk": 9,
     "fields": {
-      "name": "Посадка пассажиров закончена: "
+      "name": "Посадка закрыта: "
     }
   },
   {

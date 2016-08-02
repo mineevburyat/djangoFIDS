@@ -80,12 +80,14 @@
         <div class="logo">
         <table>
             <tr>
-                <td rowspan="2"><img src="{% static "flightinfosystem/iraero-rd.jpg" %}" width="430px" height="270px"></td>
+                <td rowspan="2"><img src="{% static "flightinfosystem/aklogo/iraero-rd.jpg" %}" width="430px" height="270px"></td>
                 <td colspan="2">{{ check.classcheckin }}</td>
             </tr>
             <tr>
-                <td><span class="white">Начало регистрации:<br/>start checkin:<br/></span><span class="time">{{ start|time:"H:i" }}</span></td>
-                <td><span class="white">Конец регистрации:<br/>end checkin:<br/></span><span class="time">{{ stop|time:"H:i" }}</span></td>
+                <td><span class="white">Начало регистрации:<br/>start checkin:<br/></span>
+                    <span class="time">{{ flight.timestartcheckin|time:"H:i" }}</span></td>
+                <td><span class="white">Конец регистрации:<br/>end checkin:<br/></span>
+                    <span class="time">{{ flight.timestopcheckin|time:"H:i" }}</span></td>
             </tr>
         </table>
         </div>

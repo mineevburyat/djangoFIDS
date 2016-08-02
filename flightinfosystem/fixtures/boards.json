@@ -1,0 +1,43 @@
+[
+  {
+    "model": "flightinfosystem.board",
+    "pk": 1,
+    "fields": {
+      "num": "1",
+      "fullname": "внутренних линий",
+      "shortname": "выход",
+      "boardfly": null
+    }
+  },
+  {
+    "model": "flightinfosystem.board",
+    "pk": 2,
+    "fields": {
+      "num": "2",
+      "fullname": "внутренних линий",
+      "shortname": "выход",
+      "boardfly": null
+    }
+
+  },
+  {
+    "model": "flightinfosystem.board",
+    "pk": 3,
+    "fields": {
+      "num": "3",
+      "fullname": "внутренних линий",
+      "shortname": "выход",
+      "boardfly": null
+    }
+
+  },
+  {
+    "model": "flightinfosystem.board",
+    "pk": 4,
+    "fields": {
+      "num": "1",
+      "fullname": "международных линий",
+      "shortname": "выход"
+    }
+
+  }]
