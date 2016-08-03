@@ -1,76 +1,111 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
    <meta content="text/html; charset=utf-8" http-equiv="content-type">
 <style>
-   html { overflow:  hidden; }
-     body {
-	background:#1560bd;
-	cursor: none;
+   html
+   { overflow:  hidden; }
+   body {
+       background:#1560bd;
+       cursor: none;
+       font-size: 20px;
    }
-    H15 {
-    font-family: 'Arial', Times, serif; /* Гарнитура текста */
-    font-size: 22px; /* Размер шрифта в процентах */
-	color: #003399;
-	font-weight:bold
+   .header {
+       font-size: 28px;
+       background: #f7f21a;
+       color: #1560bd;
+       text-align: center;
+       vertical-align: middle;
+       font-weight:bold;
    }
-    H14 {
-    font-family: 'Arial', Times, serif; /* Гарнитура текста */
-    font-size: 22px; /* Размер шрифта в процентах */
-	color: white;
-	font-weight:bold
+   .content {
+       font-size: 15px;
    }
-    H16 {
-    font-family: 'Arial', Times, serif; /* Гарнитура текста */
-    font-size: 26px; /* Размер шрифта в процентах */
-	color: #f7f21a;
-	font-weight:bold
+   .fly {
+       font-size: 22px;
+       color: #003399;
+       font-weight:bold
    }
-   tr:nth-child(2n+1) {
-    background: #333;
+   .main {
+       font-size: 45px;
    }
-   td:nth-child(1) {
-    background: #1560bd;
+   .descript {
+       font-weight: lighter;
    }
+    table {
+        width: 100%;
+        border: 0px hidden;
+        border-collapse: collapse;
+    }
+    th {
+        background: #f7f21a;
+        color: #1560bd;
+    }
+   .content tr:nth-child(2n+1) {
+       background: #333;
+       font-weight:bold;
+       color: #f7f21a;
+       font-size: 26px;
+       text-align: center;
+       border-collapse: separate;
+       border-bottom: 2px solid #1560bd;
+       border-top: 1px solid #1560bd;
+   }
+   .content tr:nth-child(2n) {
+       background: #1560bd;
+       color: white;
+       font-weight:bold;
+       font-size: 26px;
+       text-align: center;
+       border-collapse: separate;
+       border-bottom: 2px solid #1560bd;
+       border-top: 1px solid #1560bd;
+   }
+    .ornament {
+        background: {% static "flightinfosystem/img/ornament.png" %};
+        height: 3px;
+    }
+
   </style>
 </head>
 <body >
-<div>
+<div class="header">
     <table>
         <tr>
-            <td>{% now "" %}</td>
-            <td rowspan="2">ТАБЛО ВЫЛЕТА<br>DEPARTURE</td>
+            <td>{% now "SHORT_DATE_FORMAT" %}</td>
+            <td rowspan="2"><span class="main">ТАБЛО ВЫЛЕТА<br>DEPARTURE</span></td>
         </tr>
         <tr>
             <td>{% now "H:i" %}</td>
         </tr>
         <tr>
-            <td>Время местное (Local time)</td>
+            <td colspan="2"><span class="descript">время местное (local time)</span></td>
         </tr>
     </table>
 </div>
 <div>
-    <table>
-
+    <table class="ornament">
+        <tr><td></td></tr>
     </table>
 </div>
-<div>
+<div class="content">
 <TABLE>
     <tr>
-            <td colspan="2">Рейс</td>
-            <td>Маршрут</td>
-            <td>Плановое время</td>
-            <td>Расчетное время</td>
-            <td>Статус</td>
+            <th colspan="2">Рейс<br>fly</th>
+            <th>Маршрут<br>destination</th>
+            <th>Дата<br>data</th>
+            <th>Время<br>time</th>
+            <th>Статус<br>status</th>
     </tr>
     {% for flight in flights %}
-	<TR>
-      <TD WIDTH=120 ><h14><img src="" width="100px" height="45px" style="border-radius: 5px;"></h14></TD>
-      <TD WIDTH=120 BGCOLOR="#f7f21a" style="border-radius: 5px;"><h15>{{ flight.fly }}</h15></TD>
-      <TD WIDTH=410><h14>{{ flight.portdist }}</h14></TD>
-	  <TD WIDTH=90 ><h16>{{ flight.timeplan|time:"H:i" }}</h16></TD>
-      <TD WIDTH=90 ><h16>{{ flight.timeexp|time:"H:i" }}</h16></TD>
-      <TD WIDTH=280 ><h14>{{ flight.status }}</h14></TD>
+	<TR class="content">
+      <TD WIDTH=120 ><img src="" width="100px" height="50px" style="border-radius: 5px;"></TD>
+      <TD WIDTH=120 class="fly" BGCOLOR="#f7f21a" style="border-radius: 5px;">{{ flight.fly }}</TD>
+      <TD WIDTH=410>{{ flight.portdist }}</TD>
+	  <TD WIDTH=90 >{{ flight.timeplan|date:"SHORT_DATE_FORMAT" }}</TD>
+      <TD WIDTH=90 >{{ flight.timeplan|time:"H:i" }}</TD>
+      <TD WIDTH=280 >{{ flight.status }}</TD>
     </TR>
 	{% endfor %}
 </TABLE>
