@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Flight, FlightStatus, Checkin, Event, EventLog, Board
+from .models import Flight, FlightStatus, Checkin, Event, EventLog, Board, Baggege
 # Register your models here.
 
 @admin.register(Flight)
@@ -16,6 +16,10 @@ class AdminBoard(admin.ModelAdmin):
     list_display = ['num', 'fullname', 'shortname', 'boardfly']
     ordering = ['fullname', 'num']
 
+@admin.register(Baggege)
+class AdminBaggege(admin.ModelAdmin):
+    list_display = ['num', 'fullname', 'shortname', 'baggagefly']
+    ordering = ['fullname', 'num']
 
 @admin.register(FlightStatus)
 class AdminFlightStatus(admin.ModelAdmin):

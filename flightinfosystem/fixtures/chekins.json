@@ -8,8 +8,8 @@
       "shortname": "ВВЛ",
       "checkinfly": null,
       "classcheckin": null,
-      "deltastartcheckin": 7200,
-      "deltastopcheckin": 2400
+      "startcheckin": null,
+      "stopcheckin": null
     }
   },
   {
@@ -21,8 +21,8 @@
       "shortname": "ВВЛ",
       "checkinfly": null,
       "classcheckin": null,
-      "deltastartcheckin": 7200,
-      "deltastopcheckin": 2400
+      "startcheckin": null,
+      "stopcheckin": null
     }
 
   },
@@ -35,8 +35,8 @@
       "shortname": "ВВЛ",
       "checkinfly": null,
       "classcheckin": null,
-      "deltastartcheckin": 7200,
-      "deltastopcheckin": 2400
+      "startcheckin": null,
+      "stopcheckin": null
     }
 
   },
@@ -49,8 +49,8 @@
       "shortname": "ВВЛ",
       "checkinfly": null,
       "classcheckin": null,
-      "deltastartcheckin": 7200,
-      "deltastopcheckin": 2400
+      "startcheckin": null,
+      "stopcheckin": null
     }
 
   },
@@ -63,8 +63,8 @@
       "shortname": "ВВЛ",
       "checkinfly": null,
       "classcheckin": null,
-      "deltastartcheckin": 7200,
-      "deltastopcheckin": 2400
+      "startcheckin": null,
+      "stopcheckin": null
     }
 
   },
@@ -77,8 +77,8 @@
       "shortname": "ВВЛ",
       "checkinfly": null,
       "classcheckin": null,
-      "deltastartcheckin": 7200,
-      "deltastopcheckin": 2400
+      "startcheckin": null,
+      "stopcheckin": null
     }
 
   },
@@ -91,8 +91,8 @@
       "shortname": "ВВЛ",
       "checkinfly": null,
       "classcheckin": null,
-      "deltastartcheckin": 7200,
-      "deltastopcheckin": 2400
+      "startcheckin": null,
+      "stopcheckin": null
     }
 
   },
@@ -105,8 +105,8 @@
         "shortname": "ВВЛ",
         "checkinfly": null,
         "classcheckin": null,
-        "deltastartcheckin": 7200,
-        "deltastopcheckin": 2400
+        "startcheckin": null,
+        "stopcheckin": null
       }
 
   },
@@ -119,8 +119,8 @@
         "shortname": "МВЛ",
         "checkinfly": null,
         "classcheckin": null,
-        "deltastartcheckin": 10800,
-        "deltastopcheckin": 2400
+        "startcheckin": null,
+        "stopcheckin": null
       }
 
   },
@@ -133,8 +133,8 @@
       "shortname": "МВЛ",
       "checkinfly": null,
       "classcheckin": null,
-      "deltastartcheckin": 10800,
-      "deltastopcheckin": 2400
+      "startcheckin": null,
+      "stopcheckin": null
     }
 
   }

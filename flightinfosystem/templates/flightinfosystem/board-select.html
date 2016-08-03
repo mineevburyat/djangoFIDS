@@ -1,0 +1,52 @@
+{% extends 'flightinfosystem/base.html' %}
+
+{% block content %}
+    <div>
+        <h2> {{ boardgate.shortname }} № {{ boardgate.num }}</h2>
+        <h3>Зал {{ boardgate.fullname }}</h3>
+    </div>
+    <div>
+        <h4>Выберите рейс для посадки:</h4>
+        <FORM action="{% url 'fids:boardgate' boardgate.id %}" method="POST">
+        {% csrf_token %}
+        <TABLE class="sop" border="1" id="demoTable" >
+            <tr>
+                <th> - </th>
+                <th><b>Код<br>рейса</b></th>
+                <th WIDTH=220><b>Направление</b></th>
+                <th><b>Время вылета<br>по плану</b></th>
+                <th><b>Время вылета<br>расчетное</b></th>
+                <th><b>Конец<br>регистрации<br>по плану</b></th>
+                <th><b>Начало<br>посадки<br>по плану</b></th>
+                <th><b>Статус<br>регистрации</b></th>
+                <th><b>Статус<br>посадки</b></th>
+            </tr>
+            {% for flight in depart %}
+            <tr>
+                <td style="background: #eee";>
+                    <input type="radio" name="id" value="{{ flight.id }}"
+                           {% if flight.isboardclose %}disabled {% endif %}>
+                </td>
+                <td> {{ flight.fly }} </td>
+                <td> {{ flight.portdist }} </td>
+                <td> {{ flight.timeplan }}</td>
+                <td> {{ flight.timeexp }}</td>
+                <td> {{ flight.timestopcheckin|time:"H:i" }}</td>
+                <td> {{ flight.timestartboard|time:"H:i" }}</td>
+                <td> {% if flight.ischeckinclose %}Закрыта {% else %} Открыта {% endif %}</td>
+                <td> {% if flight.isboardclose %}Закрыта {% else %} Не начиналось {% endif %}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">Внимание! Список рейсов давно не обновлялся!</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <INPUT class="button" TYPE="submit" name="confirm" VALUE="Выбрать рейс" style="width:150px; height:30px;border-radius: 4px;">
+        <br>
+        <br>
+            &copy; Copyright
+        </FORM>
+    </div>
+{% endblock content %}

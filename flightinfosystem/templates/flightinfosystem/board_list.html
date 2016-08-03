@@ -18,7 +18,7 @@
             <tr>
                 <td>{{ board.fullname }}</td>
                 <td>{{ board.shortname }}</td>
-                <td><a href="">{{ board.num }}</a></td>
+                <td><a href="{% url 'fids:boardgate' board.id%}">{{ board.num }}</a></td>
             {% if board.checkinfly %}
                 <td>{{ board.boardfly.timestartboard|time:"H:i" }}</td>
                 <td>{{ board.boardfly.timestopboard|time:"H:i" }}</td>

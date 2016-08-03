@@ -1,0 +1,37 @@
+{% extends 'flightinfosystem/base.html' %}
+
+{% block content %}
+    <div>
+        <h2>Список существующих багажных каруселей</h2>
+    </div>
+    <div>
+        <table class="sop">
+            <tr>
+                <th width="150">Терминал</th>
+                <th width="50">Короткое имя</th>
+                <th width="30">Номер карусели</th>
+                <th>Начало</th>
+                <th>Конец</th>
+                <th>Привязанный рейс</th>
+            </tr>
+        {% for baggage in baggages %}
+            <tr>
+                <td>{{ baggage.fullname }}</td>
+                <td>{{ baggage.shortname }}</td>
+                <td><a href="{% url 'fids:baggage' baggage.id%}">{{ baggage.num }}</a></td>
+            {% if baggage.baggagefly %}
+                <td>{{ baggage.baggagefly.timestartbaggege|time:"H:i" }}</td>
+                <td>{{ baggage.baggagefly.timestopbaggege|time:"H:i" }}</td>
+                <td>{{ baggage.baggagefly }}</td>
+            {% else%}
+                <td colspan="4"> Нет выдачи багажа </td>
+            {% endif %}
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="6">Внимание! Не заполнен справочник багажных каруселей!</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+{% endblock content %}

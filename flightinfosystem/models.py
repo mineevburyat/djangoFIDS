@@ -49,6 +49,71 @@ class Flight(models.Model):
     def timestopboard(self, delta=5*60):
         return (self.timeexp - DT.timedelta(seconds=delta))
 
+    def timestartbaggege(self, delta=15 * 60):
+        if not self.timefact:
+            return self.timeexp + DT.timedelta(seconds=delta)
+        else:
+            return self.timefact + DT.timedelta(seconds=delta)
+
+    def timestopbaggege(self, delta=30 * 60):
+        return (self.timeexp + DT.timedelta(seconds=delta))
+
+    def ischeckinclose(self):
+        flightstatus = FlightStatus.objects.get(fly=self)
+        return flightstatus.checkinstop
+
+    def isboardclose(self):
+        flightstatus = FlightStatus.objects.get(fly=self)
+        return not flightstatus.board and flightstatus.boardstop
+
+    def isbaggageclose(self):
+        flightstatus = FlightStatus.objects.get(fly=self)
+        return flightstatus.baggagestop
+
+    def istimefact(self):
+        if self.timefact is not None:
+            return True
+        else:
+            return False
+
+    def isclose(self):
+        delta = 120
+        flightstatus = FlightStatus.objects.get(fly=self)
+        if self.isarrivals():
+            if flightstatus.baggagestop:
+                return True
+            else:
+                now = timezone.now()
+                tdelta = DT.timedelta(seconds=delta * 60)
+                if self.istimefact():
+                    if now > self.timefact + tdelta:
+                        return True
+                return False
+        else:
+            if self.istimefact():
+                return True
+            else:
+                return False
+
+    def statebaggage(self):
+        flightstatus = FlightStatus.objects.get(fly=self)
+        txt = 'Ошибка'
+        if self.isarrivals():
+            if self.istimefact():
+                if not flightstatus.baggage:
+                    if not flightstatus.baggagestop:
+                        txt = 'Не начиналось'
+                    else:
+                        txt = 'Выдан'
+                else:
+                    if not flightstatus.baggagestop:
+                        txt = 'Выдача'
+                    else:
+                        txt = 'Выдан'
+            else:
+                txt = 'Ожидается'
+        return txt
+
     def stateflight(self):
         txt = self.status
         flightstatus = FlightStatus.objects.get(fly=self)
@@ -67,20 +132,6 @@ class Flight(models.Model):
             if flightstatus.boardstop:
                 txt = txt + 'Посадка закрыта'
         return txt
-
-    def isclose(self):
-        flightstatus = FlightStatus.objects.get(fly=self)
-        if self.isarrivals():
-            if flightstatus.baggagestop:
-                return True
-            else:
-                return False
-        else:
-            if self.timefact is not None:
-                return True
-            else:
-                return False
-
 
 class FlightStatus(models.Model):
     fly = models.OneToOneField('Flight', verbose_name="Рейс")
@@ -120,9 +171,13 @@ class Board(models.Model):
     num = models.CharField("Номер выхода", max_length=2)
     fullname = models.CharField("Имя терминала", max_length=21)
     shortname = models.CharField("Имя выхода", max_length=8)
-'''
-class BaggegeFlightStatus(models.Model):
-    fly = models.ForeignKey('Flights', verbose_name="Рейс")
-    starchecktime = models.TimeField("Начало выдачи", null=True)
-    endchecktime = models.TimeField("Конец выдачи", null=True)
-    checkins = models.CharField("Используемая карусель", max_length=13, blank=True) '''
+    starttime = models.DateTimeField("Начало посадки", null=True, blank=True)
+    endtime = models.DateTimeField("Конец посадки", null=True, blank=True)
+
+class Baggege(models.Model):
+    baggagefly = models.ForeignKey('Flight', verbose_name="Рейс", blank=True, null=True, on_delete=models.SET_NULL)
+    num = models.CharField("Номер карусели", max_length=2)
+    shortname = models.CharField("Тип рейса", max_length=5)
+    fullname = models.CharField("Терминал", max_length=13)
+    starttime = models.DateTimeField("Начало выдачи", null=True, blank=True)
+    endtime = models.DateTimeField("Конец выдачи", null=True, blank=True)

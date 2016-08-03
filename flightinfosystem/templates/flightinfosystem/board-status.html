@@ -1,0 +1,73 @@
+{% extends 'flightinfosystem/base.html' %}
+
+{% block content %}
+    <div>
+        <h2>{{ boardgate.shortname }} № {{ boardgate.num }}</h2>
+        <h3>Зал {{ boardgate.fullname }}</h3>
+    </div>
+    <hr>
+    <div>
+        <div>
+            <h2>Производится посадка
+                {% if flight.isdeparture %}
+                    вылетающий
+                {% else %}
+                    прилетающий
+                {% endif %}
+                рейс {{ flight.fly }} за {{ flight.timeplan|date:"DATE_FORMAT" }}</h2>
+        </div>
+    <div>
+        <div style="float: left; width: 50%">
+            <p><b>Аэропорт: </b> {{ flight.portdist }}</p>
+            <p><b>Пункт назначений: </b> {{ flight.punktdist }}</p>
+            <p><b>Статус из AODB: </b> {{ flight.status }}</p>
+            <p><b>Время вылета по плану: </b>{{ flight.timeplan }}</p>
+            <p><b>Расчетное время вылета: </b>{{ flight.timeexp }}</p>
+            <p><b>Время начала регистрации: </b>{{ flight.timestartcheckin }}</p>
+            <p><b>Время конца регистрации: </b>{{ flight.timestopcheckin }}</p>
+
+        </div>
+        <div style="float: left; width: 50%">
+            <h4>Статусы обслуживания вылетающего рейса</h4>
+            <table>
+                <tr>
+                    <th>Регистрация<br>открыта</th>
+                    <th>Регистрация<br>закрыта</th>
+                    <th>Посадка</th>
+                    <th>Посадка<br>закрыта</th>
+                </tr>
+                <tr>
+                    <td>{% if flightstatus.checkin %} Да {% else %} Нет {% endif %}</td>
+                    <td>{% if flightstatus.checkinstop %} Да {% else %} Нет {% endif %}</td>
+                    <td>{% if flightstatus.board %} Да {% else %} Нет {% endif %}</td>
+                    <td>{% if flightstatus.boardstop %} Да {% else %} Нет {% endif %}</td>
+                </tr>
+            </table>
+        </div>
+        <div style="float: left; width: 100%">
+            <h4>События по рейсу</h4>
+            <table>
+            <tr>
+                <th>Событие</th>
+                <th>Описание</th>
+                <th>Время</th>
+            </tr>
+            {% for event in flightevent %}
+                <tr>
+                    <td>{{ event.geteventname }}</td>
+                    <td>{{ event.descript }}</td>
+                    <td>{{ event.timestamp }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+        </div>
+    </div>
+    <div>
+        <FORM action="" method="POST">
+        {% csrf_token %}
+            <INPUT type="hidden" name="id" value="{{ flight.id }}" readonly hidden>
+            <INPUT class="button" TYPE="submit" name="confirm" VALUE="Закрыть посадку" style="width:170px; height:30px;border-radius: 4px;">
+        </FORM>
+    </div>
+{% endblock content %}

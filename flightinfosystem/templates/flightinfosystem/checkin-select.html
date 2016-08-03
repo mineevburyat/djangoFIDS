@@ -23,7 +23,8 @@
             {% for flight in depart %}
             <tr>
                 <td style="background: #eee";>
-                    <input type="radio" name="id" value="{{ flight.id }}">
+                    <input type="radio" name="id" value="{{ flight.id }}"
+                    {% if flight.isclose %}disabled{% endif %}>
                 </td>
                 <td> {{ flight.fly }} </td>
                 <td> {{ flight.portdist }} </td>

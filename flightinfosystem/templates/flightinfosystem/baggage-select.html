@@ -1,0 +1,56 @@
+{% extends 'flightinfosystem/base.html' %}
+
+{% block content %}
+    <div>
+        <h2> Карусель {{ baggage.shortname }} № {{ baggage.num }}</h2>
+        <h3> {{ baggage.fullname }}</h3>
+    </div>
+    <div>
+        <h4>Выберите рейс для посадки:</h4>
+        <FORM action="{% url 'fids:baggage' baggage.id %}" method="POST">
+        {% csrf_token %}
+        <TABLE class="sop" border="1" id="demoTable" >
+            <tr>
+                <th> - </th>
+                <th><b>Код<br>рейса</b></th>
+                <th WIDTH=220><b>Направление</b></th>
+                <th><b>Время прилета<br>по плану</b></th>
+                <th><b>Время прилета<br>расчетное</b></th>
+                <th><b>Время посадки<br>фактическое</b></th>
+                <th><b>Начало<br>выдачи<br>по плану</b></th>
+                <th><b>Статус<br>выдачи</b></th>
+                <th><b>Статус<br>обслуживания</b></th>
+            </tr>
+            {% for flight in arrive %}
+            <tr>
+                <td style="background: #eee";>
+                    <input type="radio" name="id" value="{{ flight.id }}"
+                           {% if flight.isclose or not flight.timefact %}disabled {% endif %}>
+                </td>
+                <td> {{ flight.fly }} </td>
+                <td> {{ flight.portdist }} </td>
+                <td> {{ flight.timeplan }}</td>
+                <td> {{ flight.timeexp }}</td>
+                <td> {{ flight.timefact }}</td>
+                <td> {{ flight.timestartbaggege|time:"H:i" }}</td>
+                <td> {{ flight.statebaggage }}</td>
+                <td> {% if flight.isclose %}Закрыт {% else %}
+                        {% if not flight.timefact %}Ожидается {% else %}
+                            Обслуживается
+                            {% endif %}
+                        {% endif %}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">Внимание! Список рейсов давно не обновлялся!</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <INPUT class="button" TYPE="submit" name="confirm" VALUE="Выбрать рейс" style="width:150px; height:30px;border-radius: 4px;">
+        <br>
+        <br>
+            &copy; Copyright
+        </FORM>
+    </div>
+{% endblock content %}
