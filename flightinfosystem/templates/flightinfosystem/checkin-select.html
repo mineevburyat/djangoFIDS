@@ -19,6 +19,7 @@
                 <th><b>Начало<br>регистрации</b></th>
                 <th><b>Конец<br>регистрации</b></th>
                 <th><b>Класс<br>регистрации</b></th>
+                <th><b>Состояние<br>регистрации</b></th>
             </tr>
             {% for flight in depart %}
             <tr>
@@ -28,10 +29,10 @@
                 </td>
                 <td> {{ flight.fly }} </td>
                 <td> {{ flight.portdist }} </td>
-                <td> {{ flight.timeplan }}</td>
-                <td> {{ flight.timeexp }}</td>
-                <td> {{ flight.timestartcheckin }}</td>
-                <td> {{ flight.timestopcheckin }}</td>
+                <td> {{ flight.timeplan|date:"d.m.Y H:i" }}</td>
+                <td> {{ flight.timeexp|date:"d.m.Y H:i" }}</td>
+                <td> {{ flight.timestartcheckin|time:"H:i" }}</td>
+                <td> {{ flight.timestopcheckin|time:"H:i" }}</td>
                 <td>
                     <SELECT NAME="class" id="class">
                         <!--<option  selected VALUE="Economy"</option> -->
@@ -40,6 +41,7 @@
                         <OPTION VALUE="Discount ">Discount </option>
                     </SELECT>
                 </td>
+                <td> {{ flight.statecheckin }}</td>
             </tr>
             {% empty %}
             <tr>

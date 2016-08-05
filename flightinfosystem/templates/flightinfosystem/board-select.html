@@ -25,7 +25,7 @@
             <tr>
                 <td style="background: #eee";>
                     <input type="radio" name="id" value="{{ flight.id }}"
-                           {% if flight.isboardclose %}disabled {% endif %}>
+                           {% if flight.isboardclose or flight.isclose%}disabled {% endif %}>
                 </td>
                 <td> {{ flight.fly }} </td>
                 <td> {{ flight.portdist }} </td>
@@ -33,7 +33,7 @@
                 <td> {{ flight.timeexp }}</td>
                 <td> {{ flight.timestopcheckin|time:"H:i" }}</td>
                 <td> {{ flight.timestartboard|time:"H:i" }}</td>
-                <td> {% if flight.ischeckinclose %}Закрыта {% else %} Открыта {% endif %}</td>
+                <td> {{ flight.statecheckin }}</td>
                 <td> {% if flight.isboardclose %}Закрыта {% else %} Не начиналось {% endif %}</td>
             </tr>
             {% empty %}

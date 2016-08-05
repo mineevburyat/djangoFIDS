@@ -114,6 +114,24 @@ class Flight(models.Model):
                 txt = 'Ожидается'
         return txt
 
+    def statecheckin(self):
+        now = timezone.now()
+        flightstatus = FlightStatus.objects.get(fly=self)
+        txt = 'Ошибка'
+        if self.isdeparture():
+            if self.istimefact() and not flightstatus.checkin and not flightstatus.checkinstop:
+                txt = 'Не надо. Вылетел'
+            elif flightstatus.checkin and not flightstatus.checkinstop:
+                txt = 'Открыта'
+            elif flightstatus.checkin and flightstatus.checkinstop:
+                txt = 'Закрыта'
+            elif now > self.timestartcheckin() and not flightstatus.checkin:
+                txt = 'Нарушение графика'
+            elif not self.istimefact() and not flightstatus.checkin and not flightstatus.checkinstop:
+                txt = 'Не начиналось'
+        return  txt
+
+
     def stateflight(self):
         txt = self.status
         flightstatus = FlightStatus.objects.get(fly=self)

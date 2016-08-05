@@ -95,7 +95,6 @@ def checkin(request, id, past=11, future=20):
             checkinlist = Checkin.objects.filter(checkinfly=fly)
             if len(checkinlist) == 0:
                 flightstatus = FlightStatus.objects.get(fly=fly)
-                flightstatus.checkin = False
                 flightstatus.checkinstop = True
                 flightstatus.save()
                 text = check.shortname + ' ' + check.num
