@@ -2,9 +2,13 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.all_flight, name='arhiveflights'),
+    url(r'^$', views.index, name='index'),
+    #все рейсы постранично
+    url(r'^arhive/$', views.all_flight, name='arhiveflights'),
     #Список рейсов в таймокне
-    url(r'^flights$', views.flight_list, name='flight_list'),
+    url(r'^flights/$', views.flight_list, name='flight_list'),
+    #окно для ИСГ (возможность удалить ошибочные рейсы)
+    url(r'^isg/$', views.isg, name='isg'),
     #Подробности выбранного рейса
     url(r'^flight/(?P<id>[0-9]+)/$', views.flight_detail, name='flight_detail'),
     #Список стоек регистрации

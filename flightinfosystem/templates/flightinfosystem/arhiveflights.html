@@ -6,9 +6,43 @@
         <h2>Все рейсы (регулярные и чартерные)</h2>
     </div>
     <div>
+         <table class="table">
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Рейс</th>
+                <th>Маршрут</th>
+                <th>По расписанию</th>
+                <th>Расчетное<br>время</th>
+                <th>Факт</th>
+                <th>Статус</th>
+                <th>Состояние</th>
+            </tr>
         {% for flight in flights %}
-            {{ flight }}<br />
-        {% endfor %}
+            <tr>
+                <td>
+                    {% if flight.isarrivals  %}
+                        <img src="{% static "flightinfosystem/img/arrive.gif" %}">
+                    {% else %}
+                        <img src="{% static "flightinfosystem/img/depart.gif" %}">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if flight.isclose %}
+                    <img src="{% static "flightinfosystem/img/close.jpeg" %}" width="40px" height="33px">
+                    {% else %}
+                    <img src="{% static "flightinfosystem/img/open.jpeg" %}" width="40px" height="33px">
+                    {% endif %}
+                </td>
+                <td><a href=" {% url 'fids:flight_detail' flight.id %}">{{ flight.fly }}</a></td>
+                <td>{{ flight.portdist }}</td>
+                <td>{{ flight.timeplan|date:"d.m.Y H:i" }}</td>
+                <td>{{ flight.timeexp|date:"d.m.Y H:i" }}</td>
+                <td>{{ flight.timefact|time:"H:i" }}</td>
+                <td>{{ flight.status }}</td>
+                <td>{{ flight.stateflight }}</td>
+            </tr>
+         {% endfor %}
     </div>
 
 <div class="pagination">

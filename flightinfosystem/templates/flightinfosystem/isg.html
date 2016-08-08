@@ -1,11 +1,14 @@
 {% extends 'flightinfosystem/base.html' %}
 {% load staticfiles %}
 
+{% load staticfiles %}
 {% block content %}
     <div>
         <h2>Список рейсов (регулярные и чартерные)</h2>
     </div>
     <div>
+        <form action="{% url "fids:isg" %}" method="post">
+        {% csrf_token %}
         <table class="table">
             <tr>
                 <th></th>
@@ -17,6 +20,7 @@
                 <th width="150">Фактическое<br>время</th>
                 <th>Статус</th>
                 <th>Состояние</th>
+                <th></th>
             </tr>
         {% for flight in flights %}
             <tr>
@@ -41,6 +45,7 @@
                 <td>{% if flight.timefact %}{{ flight.timefact }}{% endif %}</td>
                 <td>{{ flight.status }}</td>
                 <td>{{ flight.stateflight }}</td>
+                <td><button name="delete" value="{{ flight.id }}"><img src="{% static "flightinfosystem/img/delete.png" %}" width="20px" height="20px"></button></td>
             </tr>
         {% empty %}
             <tr>
@@ -48,5 +53,6 @@
             </tr>
         {% endfor %}
         </table>
+        </form>
     </div>
 {% endblock content %}

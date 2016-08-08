@@ -8,8 +8,8 @@ def index(request):
     return render(request, 'flightinfosystem/index.html', {})
 
 def all_flight(request):
-    flight_all = Flight.objects.all()
-    paginator = Paginator(flight_all, 30)  # Show 30 flights per page
+    flight_all = Flight.objects.all().order_by('timeplan')
+    paginator = Paginator(flight_all, 10)  # Show 30 flights per page
     page = request.GET.get('page')
     try:
         flights = paginator.page(page)
@@ -21,12 +21,26 @@ def all_flight(request):
         flights = paginator.page(paginator.num_pages)
     return render_to_response('flightinfosystem/arhiveflights.html', {"flights": flights})
 
-def flight_list(request, past=7, future=24):
+def flight_list(request, past=48, future=24):
     now = timezone.now()
     pasttime = now - datetime.timedelta(seconds=past * 3600)
     futuretime = now + datetime.timedelta(seconds=future * 3600)
     flights = Flight.objects.filter(timeplan__lt=futuretime).filter(timeplan__gt=pasttime).order_by('timeplan')
     return render(request, 'flightinfosystem/flight_list.html', {'flights': flights})
+
+def isg(request, past=60, future=28):
+    if request.method == 'POST':
+        flightid = int(request.POST['delete'])
+        url = request.path
+        selectflight = get_object_or_404(Flight, id=flightid)
+        selectflight.delete()
+        return redirect(url)
+    else:
+        now = timezone.now()
+        pasttime = now - datetime.timedelta(seconds=past * 3600)
+        futuretime = now + datetime.timedelta(seconds=future * 3600)
+        flights = Flight.objects.filter(timeplan__lt=futuretime).filter(timeplan__gt=pasttime).order_by('timeplan')
+        return render(request, 'flightinfosystem/isg.html', {'flights': flights})
 
 def flight_detail(request, id):
     flight = get_object_or_404(Flight, id=id)
