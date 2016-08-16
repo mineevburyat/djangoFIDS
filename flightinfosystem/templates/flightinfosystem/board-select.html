@@ -34,7 +34,7 @@
                 <td> {{ flight.timestopcheckin|time:"H:i" }}</td>
                 <td> {{ flight.timestartboard|time:"H:i" }}</td>
                 <td> {{ flight.statecheckin }}</td>
-                <td> {% if flight.isboardclose %}Закрыта {% else %} Не начиналось {% endif %}</td>
+                <td> {{ flight.stateboard }}</td>
             </tr>
             {% empty %}
             <tr>

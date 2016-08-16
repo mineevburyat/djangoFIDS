@@ -77,7 +77,7 @@ class Flight(models.Model):
             return False
 
     def isclose(self):
-        delta = 120
+        delta = 60
         flightstatus = FlightStatus.objects.get(fly=self)
         if self.isarrivals():
             if flightstatus.baggagestop:
@@ -131,24 +131,65 @@ class Flight(models.Model):
                 txt = 'Не начиналось'
         return  txt
 
+    def stateboard(self):
+        now = timezone.now()
+        flightstatus = FlightStatus.objects.get(fly=self)
+        txt = 'Ошибка'
+        if self.isdeparture():
+            if self.istimefact() and not flightstatus.board and not flightstatus.boardstop:
+                txt = 'Не надо. Вылетел'
+            elif flightstatus.board and not flightstatus.boardstop:
+                txt = 'Посадка'
+            elif flightstatus.board and flightstatus.boardstop:
+                txt = 'Посадка закрыта'
+            elif now > self.timestartboard() and not flightstatus.board:
+                txt = 'Нарушение графика'
+            elif not self.istimefact() and not flightstatus.board and not flightstatus.boardstop:
+                txt = 'Не начиналось'
+        return txt
 
     def stateflight(self):
-        txt = self.status
+        txt = 'Ошибка'
+        now = timezone.now()
         flightstatus = FlightStatus.objects.get(fly=self)
+        eventlogs = EventLog.objects.filter(fly=self)
         if self.isarrivals():
-            if flightstatus.baggage:
-                txt = txt + ' Выдача багажа'
-            if flightstatus.baggagestop:
-                txt = txt + ' Багаж выдан'
+            if self.istimefact():
+                if now < self.timestartbaggege() and not flightstatus.baggage and not flightstatus.baggagestop:
+                    txt = 'Ожидается выдача багажа'
+                elif now > self.timestartbaggege() and not flightstatus.baggage and not flightstatus.baggagestop:
+                    txt = 'Нарушение графика выдачи багажа'
+                if flightstatus.baggage and not flightstatus.baggagestop:
+                    txt = 'Выдача багажа'
+                elif flightstatus.baggage and flightstatus.baggagestop:
+                    txt = 'Багаж выдан'
+            else:
+                txt = 'Ожидается'
         if self.isdeparture():
-            if flightstatus.checkin:
-                txt = txt + 'Регистрация открыта'
-            if flightstatus.checkinstop:
-                txt = txt + 'Регистрация закрыта'
-            if flightstatus.board:
-                txt = txt + 'Посадка пассажиров'
-            if flightstatus.boardstop:
-                txt = txt + 'Посадка закрыта'
+            if self.isclose():
+                if flightstatus.boardstop:
+                    boardstarttime = timezone.localtime(eventlogs.filter(event_id=9)[0].timestamp)
+                    txt = 'Вылетел. Посадка закрыта в ' + boardstarttime.strftime('%H:%M')
+                else:
+                    txt = "Вылетел."
+            else:
+                if now > self.timestartcheckin() and not flightstatus.checkin and not flightstatus.checkinstop and not flightstatus.board and not flightstatus.boardstop:
+                    txt = 'Нарушение графика обслуживания'
+                elif now < self.timestartcheckin() and not flightstatus.checkin and not flightstatus.checkinstop and not flightstatus.board and not flightstatus.boardstop:
+                    txt = 'Ожидается'
+                elif flightstatus.checkin and not flightstatus.checkinstop and not flightstatus.board and not flightstatus.boardstop:
+                    checkinstarttime = timezone.localtime(eventlogs.filter(event_id=4)[0].timestamp)
+                    txt = 'Регистрация открылась в ' + checkinstarttime.strftime('%H:%M')
+                elif flightstatus.checkin and flightstatus.checkinstop and not flightstatus.board and not flightstatus.boardstop:
+                    checkinstoptime = timezone.localtime(eventlogs.filter(event_id=7)[0].timestamp)
+                    txt = 'Регистрация закрыта  в ' + checkinstoptime.strftime('%H:%M')
+                elif flightstatus.checkin and flightstatus.checkinstop and flightstatus.board and not flightstatus.boardstop:
+                    boardname = eventlogs.filter(event_id=8)[0].descript
+                    boardstarttime = timezone.localtime(eventlogs.filter(event_id=8)[0].timestamp)
+                    txt = 'Посадка пассажиров. ' + boardname + ' в ' + boardstarttime.strftime('%H:%M')
+                elif flightstatus.checkin and flightstatus.checkinstop and flightstatus.board and flightstatus.boardstop:
+                    boardstarttime = timezone.localtime(eventlogs.filter(event_id=9)[0].timestamp)
+                    txt = 'Посадка закрыта в ' + boardstarttime.strftime('%H:%M')
         return txt
 
 class FlightStatus(models.Model):
@@ -161,6 +202,8 @@ class FlightStatus(models.Model):
     baggagestop = models.BooleanField("Конец выдачи багажа", default=False)
     changeboard = models.BooleanField("Статус замены борта", default=False)
 
+    def __str__(self):
+        return 'id= ' + str(self.id)
 class Event(models.Model):
     name = models.CharField("Имя события", max_length=15)
 

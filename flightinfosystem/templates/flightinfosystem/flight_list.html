@@ -38,7 +38,7 @@
                 <td>{{ flight.portdist }}</td>
                 <td>{{ flight.timeplan|date:"d.m.Y H:i" }}</td>
                 <td>{{ flight.timeexp|date:"d.m.Y H:i" }}</td>
-                <td>{% if flight.timefact %}{{ flight.timefact }}{% endif %}</td>
+                <td>{% if flight.timefact %}{{ flight.timefact|time:"H:i" }}{% endif %}</td>
                 <td>{{ flight.status }}</td>
                 <td>{{ flight.stateflight }}</td>
             </tr>

@@ -1,8 +1,10 @@
 import datetime
+from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Flight, Checkin, FlightStatus, EventLog, Board, Baggege
+from .forms import FlightStatusDepartForm, FlightStatusArrivalForm
 
 def index(request):
     return render(request, 'flightinfosystem/index.html', {})
@@ -21,14 +23,14 @@ def all_flight(request):
         flights = paginator.page(paginator.num_pages)
     return render_to_response('flightinfosystem/arhiveflights.html', {"flights": flights})
 
-def flight_list(request, past=48, future=24):
+def flight_list(request, past=8, future=26):
     now = timezone.now()
     pasttime = now - datetime.timedelta(seconds=past * 3600)
     futuretime = now + datetime.timedelta(seconds=future * 3600)
     flights = Flight.objects.filter(timeplan__lt=futuretime).filter(timeplan__gt=pasttime).order_by('timeplan')
     return render(request, 'flightinfosystem/flight_list.html', {'flights': flights})
 
-def isg(request, past=60, future=28):
+def isg(request, past=15, future=28):
     if request.method == 'POST':
         flightid = int(request.POST['delete'])
         url = request.path
@@ -41,6 +43,32 @@ def isg(request, past=60, future=28):
         futuretime = now + datetime.timedelta(seconds=future * 3600)
         flights = Flight.objects.filter(timeplan__lt=futuretime).filter(timeplan__gt=pasttime).order_by('timeplan')
         return render(request, 'flightinfosystem/isg.html', {'flights': flights})
+
+def spravki(request, past=15, future=28):
+    now = timezone.now()
+    pasttime = now - datetime.timedelta(seconds=past * 3600)
+    futuretime = now + datetime.timedelta(seconds=future * 3600)
+    flights = Flight.objects.filter(timeplan__lt=futuretime).filter(timeplan__gt=pasttime).order_by('timeplan')
+    return render(request, 'flightinfosystem/spravki.html', {'flights': flights})
+
+def spravki_edit(request, id):
+    #url = request.path
+    flight = get_object_or_404(Flight, id=id)
+    flightstatus = FlightStatus.objects.get(fly=flight)
+    if request.method == 'POST':
+        if flight.isarrivals():
+            form = FlightStatusArrivalForm(request.POST, instance=flightstatus)
+        else:
+            form = FlightStatusDepartForm(request.POST, instance=flightstatus)
+        if form.is_valid():
+            form.save()
+            eventlog = EventLog(fly=flight, event_id=)
+            return redirect(reverse('fids:spravki'))
+    if flight.isarrivals():
+        form = FlightStatusArrivalForm(instance=flightstatus)
+    else:
+        form = FlightStatusDepartForm(instance=flightstatus)
+    return render(request, 'flightinfosystem/spravki_edit.html', {'flight': flight, 'form': form})
 
 def flight_detail(request, id):
     flight = get_object_or_404(Flight, id=id)
@@ -86,12 +114,12 @@ def checkin(request, id, past=11, future=20):
                 #Если регистрация не открыта, то поднять флаг и сгенерировать событие
                 flightstatus.checkin = True
                 flightstatus.save()
-                text = 'стойка ' + check.shortname + ' ' + check.num
+                text = check.shortname + ' ' + check.num
                 eventlog = EventLog(fly=selectflight, event_id=4, descript=text)
                 eventlog.save()
             else:
                 #Если регистрация идет, то сгенерировать событие о добавлении
-                text = 'стойка ' + check.shortname + ' ' + check.num
+                text = check.shortname + ' ' + check.num
                 eventlog = EventLog(fly=selectflight, event_id=5, descript=text)
                 eventlog.save()
             #привязать стойку к рейсу
@@ -104,7 +132,7 @@ def checkin(request, id, past=11, future=20):
             # если нет, то сменить статус рейса, создать события
             check.checkinfly = None
             check.save()
-            text = check.shortname + ' №' + check.num
+            text = check.shortname + ' ' + check.num
             fly = Flight.objects.get(id=int(request.POST['id']))
             checkinlist = Checkin.objects.filter(checkinfly=fly)
             if len(checkinlist) == 0:
@@ -125,7 +153,7 @@ def board_list(request):
     boardsgate = Board.objects.all()
     return render(request, 'flightinfosystem/board_list.html', {'boards': boardsgate})
 
-def boardgate(request, id, past=11, future=11):
+def boardgate(request, id, past=11, future=20):
     now = timezone.now()
     pasttime = now - datetime.timedelta(seconds=past * 3600)
     futuretime = now + datetime.timedelta(seconds=future * 3600)
@@ -166,10 +194,9 @@ def boardgate(request, id, past=11, future=11):
             # отвязать гейт от рейса, сменить статус рейса, создать события
             boardgt.boardfly = None
             boardgt.save()
-            text = boardgt.shortname + ' №' + boardgt.num
+            text = boardgt.shortname + ' ' + boardgt.num
             fly = Flight.objects.get(id=int(request.POST['id']))
             flightstatus = FlightStatus.objects.get(fly=fly)
-            flightstatus.board = False
             flightstatus.boardstop = True
             flightstatus.save()
             eventlog = EventLog(fly=fly, event_id=9, descript=text)
@@ -189,7 +216,8 @@ def baggage(request, id, past=11, future=11):
         if bag.baggagefly is None:
             # Карусель не привязана к рейсу, то
             # Отобразить прилетающие рейсы
-            arriveflight = Flight.objects.filter(ad=1).order_by('timeplan')
+            arriveflight = Flight.objects.filter(ad=1).filter(timeplan__lt=futuretime).\
+                filter(timeplan__gt=pasttime).order_by('timeplan')
             return render(request, 'flightinfosystem/baggage-select.html', {'baggage': bag,
                                                                           'arrive': arriveflight})
         else:

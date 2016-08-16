@@ -9,6 +9,10 @@ urlpatterns = [
     url(r'^flights/$', views.flight_list, name='flight_list'),
     #окно для ИСГ (возможность удалить ошибочные рейсы)
     url(r'^isg/$', views.isg, name='isg'),
+    #Справки
+    url(r'^spravki/$', views.spravki, name='spravki'),
+    #редактирование рейса справками
+    url(r'^spravki/(?P<id>[0-9]+)/$', views.spravki_edit, name='spravki_edit'),
     #Подробности выбранного рейса
     url(r'^flight/(?P<id>[0-9]+)/$', views.flight_detail, name='flight_detail'),
     #Список стоек регистрации
@@ -18,11 +22,11 @@ urlpatterns = [
     #Список выходов
     url(r'^boards/$', views.board_list, name='board_list'),
     #Выбор конкретного выхода
-    url(r'^board/(?P<id>[0-9]+)$', views.boardgate, name='boardgate'),
+    url(r'^board/(?P<id>[0-9]+)/$', views.boardgate, name='boardgate'),
     #Список багажных лент
     url(r'^baggages/$', views.baggage_list, name='baggage_list'),
     #Выбор конкрентной багажной ленты
-    url(r'^baggages/(?P<id>[0-9]+)$', views.baggage, name='baggage'),
+    url(r'^baggages/(?P<id>[0-9]+)/$', views.baggage, name='baggage'),
     #Табло стойки
     url(r'^tablo/checkin/(?P<id>[0-9]+)/$', views.tablocheckin, name='tablocheckin'),
     #url(r'^tablo/tst/checkin/(?P<id>[0-9]+)/$', views.tsttablocheckin, name='tablocheckin'),

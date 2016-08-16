@@ -7,8 +7,6 @@
         <h2>Список рейсов (регулярные и чартерные)</h2>
     </div>
     <div>
-        <form action="{% url "fids:isg" %}" method="post">
-        {% csrf_token %}
         <table class="table">
             <tr>
                 <th></th>
@@ -20,7 +18,7 @@
                 <th width="150">Фактическое<br>время</th>
                 <th>Статус</th>
                 <th>Состояние</th>
-                <th></th>
+
             </tr>
         {% for flight in flights %}
             <tr>
@@ -38,14 +36,14 @@
                     <img src="{% static "flightinfosystem/img/open.jpeg" %}" width="40px" height="33px">
                     {% endif %}
                 </td>
-                <td><a href=" {% url 'fids:flight_detail' flight.id %}">{{ flight.fly }}</a></td>
+                <td><a href=" {% url 'fids:spravki_edit' flight.id %}">{{ flight.fly }}</a></td>
                 <td>{{ flight.portdist }}</td>
                 <td>{{ flight.timeplan|date:"d.m.Y H:i" }}</td>
                 <td>{{ flight.timeexp|date:"d.m.Y H:i" }}</td>
                 <td>{% if flight.timefact %}{{ flight.timefact|time:"H:i" }}{% endif %}</td>
                 <td>{{ flight.status }}</td>
                 <td>{{ flight.stateflight }}</td>
-                <td><button name="delete" value="{{ flight.id }}"><img src="{% static "flightinfosystem/img/delete.png" %}" width="20px" height="20px"></button></td>
+
             </tr>
         {% empty %}
             <tr>
@@ -53,6 +51,6 @@
             </tr>
         {% endfor %}
         </table>
-        </form>
+
     </div>
 {% endblock content %}

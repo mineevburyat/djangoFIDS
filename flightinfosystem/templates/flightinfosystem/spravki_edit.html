@@ -1,0 +1,30 @@
+{% extends 'flightinfosystem/base.html' %}
+
+{% block content %}
+    <div>
+        <h2>Подробно о {% if flight.isarrivals %} прилетающем {% elif flight.isdeparture %} вылетающем {% endif %}рейсе
+            {{ flight.fly }} за {{ flight.timeplan|date:"DATE_FORMAT" }}</h2>
+    </div>
+       <div>
+        <div>
+            <p><b>Аэропорт: </b> {{ flight.portdist }}</p>
+            <p><b>Маршрут: </b> {{ flight.punktdist }}</p>
+            <p><b>Статус из AODB: </b> {{ flight.status }}</p>
+            <p><b>Время по плану: </b>{{ flight.timeplan }}</p>
+            <p><b>Расчетное время: </b>{{ flight.timeexp }}</p>
+            {% if flight.timeplan %}
+            <p><b>Фактическое время: </b>{{ flight.timefact }}</p>
+            {% endif %}
+        </div>
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+            <input type="submit" value="Submit" />
+            </form>
+
+
+        </div>
+
+        </div>
+{% endblock content %}
