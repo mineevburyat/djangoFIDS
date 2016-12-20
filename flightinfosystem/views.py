@@ -52,23 +52,24 @@ def spravki(request, past=15, future=28):
     return render(request, 'flightinfosystem/spravki.html', {'flights': flights})
 
 def spravki_edit(request, id):
-    #url = request.path
-    flight = get_object_or_404(Flight, id=id)
-    flightstatus = FlightStatus.objects.get(fly=flight)
-    if request.method == 'POST':
-        if flight.isarrivals():
-            form = FlightStatusArrivalForm(request.POST, instance=flightstatus)
-        else:
-            form = FlightStatusDepartForm(request.POST, instance=flightstatus)
-        if form.is_valid():
-            form.save()
-            eventlog = EventLog(fly=flight, event_id=)
-            return redirect(reverse('fids:spravki'))
-    if flight.isarrivals():
-        form = FlightStatusArrivalForm(instance=flightstatus)
-    else:
-        form = FlightStatusDepartForm(instance=flightstatus)
-    return render(request, 'flightinfosystem/spravki_edit.html', {'flight': flight, 'form': form})
+    pass
+#    #url = request.path
+#    flight = get_object_or_404(Flight, id=id)
+#    flightstatus = FlightStatus.objects.get(fly=flight)
+#    if request.method == 'POST':
+#        if flight.isarrivals():
+#            form = FlightStatusArrivalForm(request.POST, instance=flightstatus)
+#        else:
+#            form = FlightStatusDepartForm(request.POST, instance=flightstatus)
+#        if form.is_valid():
+#            form.save()
+#            eventlog = EventLog(fly=flight, event_id=)
+#            return redirect(reverse('fids:spravki'))
+#    if flight.isarrivals():
+#        form = FlightStatusArrivalForm(instance=flightstatus)
+#    else:
+#        form = FlightStatusDepartForm(instance=flightstatus)
+#    return render(request, 'flightinfosystem/spravki_edit.html', {'flight': flight, 'form': form})
 
 def flight_detail(request, id):
     flight = get_object_or_404(Flight, id=id)

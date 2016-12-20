@@ -203,15 +203,22 @@ class FlightStatus(models.Model):
     changeboard = models.BooleanField("Статус замены борта", default=False)
 
     def __str__(self):
-        return 'id= ' + str(self.id)
+        return 'id= ' + str(self.id) + ', ' + str(self.fly)
+
 class Event(models.Model):
     name = models.CharField("Имя события", max_length=15)
+
+    def __str__(self):
+        return 'id= ' + str(self.id) + ', ' + str(self.name)
 
 class EventLog(models.Model):
     fly = models.ForeignKey('Flight', verbose_name="Рейс", )
     event = models.ForeignKey('Event', verbose_name="Событие")
     descript = models.CharField("Допопции события", max_length=60)
     timestamp = models.DateTimeField("Время события", auto_now=True)
+
+    def __str__(self):
+        return 'id= ' + str(self.id) + ', ' + str(self.fly) + ', ' + str(self.event) + ', ' + str(self.descript)
 
     def geteventname(self):
         return self.event.name
@@ -242,3 +249,13 @@ class Baggege(models.Model):
     fullname = models.CharField("Терминал", max_length=13)
     starttime = models.DateTimeField("Начало выдачи", null=True, blank=True)
     endtime = models.DateTimeField("Конец выдачи", null=True, blank=True)
+
+class Airline(models.Model):
+    cod_iata = models.CharField("Код авиакомпании IATA", max_length=2)
+    cod_icao = models.CharField("Код авиакомпании ICAO", max_length=3)
+    name = models.CharField("Полное наименование", max_length=25)
+    biglogo = models.ImageField("Большой логотип", height_field=600, width_field=800, upload_to='biglogo/')
+    smallogo = models.ImageField("Малый логотип", height_field=60, width_field=80, upload_to='smallogo/')
+
+    def __str__(self):
+        return 'Авиакомпания ' + self.name + ' '

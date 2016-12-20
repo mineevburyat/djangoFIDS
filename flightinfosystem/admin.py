@@ -4,7 +4,7 @@ from .models import Flight, FlightStatus, Checkin, Event, EventLog, Board, Bagge
 
 @admin.register(Flight)
 class AdminFlight(admin.ModelAdmin):
-    list_display = []
+    pass
 
 @admin.register(Checkin)
 class AdminCheckin(admin.ModelAdmin):

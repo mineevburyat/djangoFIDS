@@ -2,31 +2,38 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+    #/fids/ - ссылка на корень приложения от сюда попадаем в нужные модули
     url(r'^$', views.index, name='index'),
-    #все рейсы постранично
+    #/fids/arhive/ все рейсы постранично (архив рейсов)
     url(r'^arhive/$', views.all_flight, name='arhiveflights'),
-    #Список рейсов в таймокне
+    #/fids/flights/ Список рейсов в таймокне от текущего времени
     url(r'^flights/$', views.flight_list, name='flight_list'),
-    #окно для ИСГ (возможность удалить ошибочные рейсы)
+    #/fids/isg/ окно для ИСГ (список рейсов в таймокне с возможностью удалить ошибочные рейсы)
     url(r'^isg/$', views.isg, name='isg'),
-    #Справки
+    #Справки (фильтр обслуженных рейсов)
     url(r'^spravki/$', views.spravki, name='spravki'),
-    #редактирование рейса справками
+    #редактирование рейса справками (для совместимости - управление справками табло выдачи багажа и посадками)
     url(r'^spravki/(?P<id>[0-9]+)/$', views.spravki_edit, name='spravki_edit'),
-    #Подробности выбранного рейса
+    #/fids/flight/nnn/ Подробности конкретного рейса
     url(r'^flight/(?P<id>[0-9]+)/$', views.flight_detail, name='flight_detail'),
+
+    #Администрирование количества стоек регистрации, выходов и багажных лент
     #Список стоек регистрации
     url(r'^checkins/$', views.checkin_list, name='checkin_list'),
+    # Список выходов
+    url(r'^boards/$', views.board_list, name='board_list'),
+    # Список багажных лент
+    url(r'^baggages/$', views.baggage_list, name='baggage_list'),
+
+    #Рабочие места стоек, выхода и багажной ленты
     #Выбрать конкретную стойку
     url(r'^checkin/(?P<id>[0-9]+)/$', views.checkin, name='checkin'),
-    #Список выходов
-    url(r'^boards/$', views.board_list, name='board_list'),
     #Выбор конкретного выхода
     url(r'^board/(?P<id>[0-9]+)/$', views.boardgate, name='boardgate'),
-    #Список багажных лент
-    url(r'^baggages/$', views.baggage_list, name='baggage_list'),
     #Выбор конкрентной багажной ленты
     url(r'^baggages/(?P<id>[0-9]+)/$', views.baggage, name='baggage'),
+
+    #Табло отображения информации
     #Табло стойки
     url(r'^tablo/checkin/(?P<id>[0-9]+)/$', views.tablocheckin, name='tablocheckin'),
     #url(r'^tablo/tst/checkin/(?P<id>[0-9]+)/$', views.tsttablocheckin, name='tablocheckin'),
