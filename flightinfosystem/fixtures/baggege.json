@@ -1,0 +1,22 @@
+[
+  {
+    "model": "flightinfosystem.baggege",
+    "pk": 1,
+    "fields": {
+      "num": "1",
+      "fullname": "внутренних линий",
+      "shortname": "выдыча багажа",
+      "baggagefly": null
+    }
+  },
+  {
+    "model": "flightinfosystem.baggege",
+    "pk": 2,
+    "fields": {
+      "num": "2",
+      "fullname": "международных линий",
+      "shortname": "выдыча багажа",
+      "baggagefly": null
+    }
+  }
+  ]

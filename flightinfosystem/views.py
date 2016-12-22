@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Flight, Checkin, FlightStatus, EventLog, Board, Baggege
+from .models import Flight, Checkin, FlightStatus, EventLog, Board, Baggege, Codeshare
 from .forms import FlightStatusDepartForm, FlightStatusArrivalForm
 
 def index(request):

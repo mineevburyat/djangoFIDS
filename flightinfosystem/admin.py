@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Flight, FlightStatus, Checkin, Event, EventLog, Board, Baggege
+from .models import Flight, FlightStatus, Checkin, Event, EventLog, Board, Baggege, Codeshare, Airline
 # Register your models here.
 
 @admin.register(Flight)
@@ -30,5 +30,13 @@ class AdminEvent(admin.ModelAdmin):
     pass
 
 @admin.register(EventLog)
+class AdminEventLog(admin.ModelAdmin):
+    pass
+
+@admin.register(Codeshare)
+class AdminEventLog(admin.ModelAdmin):
+    pass
+
+@admin.register(Airline)
 class AdminEventLog(admin.ModelAdmin):
     pass

@@ -42,6 +42,9 @@
                 <td>{{ flight.status }}</td>
                 <td>{{ flight.stateflight }}</td>
             </tr>
+            {% if flight.iscodshare %}
+                <tr><td colspan="9">Есть совмещенные рейсы {{ flight.listcodshare }}</td> </tr>
+            {% endif %}
         {% empty %}
             <tr>
                 <td colspan="9">Список рейсов давно не обновлялся</td>

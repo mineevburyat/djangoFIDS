@@ -4,6 +4,20 @@ from django.db import models
 
 
 # Create your models here.
+class Codeshare(models.Model):
+    baseairline = models.CharField("Основной рейс", max_length=8)
+    shareairline = models.CharField("Совмещенный рейс", max_length=8)
+    startdate = models.DateTimeField("Начало действия", default=timezone.now())
+    stopdate = models.DateTimeField("Окончание действия", default=timezone.now() + DT.timedelta(days=3650))
+    description = models.TextField("Описание документа о совместном рейсе", null=True, blank=True)
+
+    def __str__(self):
+        today = timezone.now()
+        if self.startdate <= today <= self.stopdate:
+            txt = " действует"
+        else:
+            txt = " закончилось"
+        return 'Совмещенные рейсы ' + self.baseairline + ' - ' + self.shareairline + txt
 
 class Flight(models.Model):
     fly = models.CharField("Рейс", max_length=9)
@@ -192,6 +206,22 @@ class Flight(models.Model):
                     txt = 'Посадка закрыта в ' + boardstarttime.strftime('%H:%M')
         return txt
 
+    #Есть ли совмещенные рейсы
+    def iscodshare(self):
+        now = timezone.now()
+        codshare = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now).filter(baseairline=self.fly)
+        if len(codshare) == 0:
+            return False
+        else:
+            return True
+
+    #Выдать список совмещенных рейсов
+    def listcodshare(self):
+        now = timezone.now()
+        codshare = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now).filter(baseairline=self.fly)
+        return codshare
+
+
 class FlightStatus(models.Model):
     fly = models.OneToOneField('Flight', verbose_name="Рейс")
     checkin = models.BooleanField("Регистрация пассажиров", default=False)
@@ -253,9 +283,12 @@ class Baggege(models.Model):
 class Airline(models.Model):
     cod_iata = models.CharField("Код авиакомпании IATA", max_length=2)
     cod_icao = models.CharField("Код авиакомпании ICAO", max_length=3)
-    name = models.CharField("Полное наименование", max_length=25)
-    biglogo = models.ImageField("Большой логотип", height_field=600, width_field=800, upload_to='biglogo/')
-    smallogo = models.ImageField("Малый логотип", height_field=60, width_field=80, upload_to='smallogo/')
+    cod_rus = models.CharField("Код авиакомпании внутренний", max_length=2, null=True)
+    name_ru = models.CharField("Полное наименование русское", max_length=25, null=True)
+    name_en = models.CharField("Полное наименование междунар.", max_length=25, null=True)
+    biglogo = models.ImageField("Большой логотип", upload_to='biglogo/')
+    smallogo = models.ImageField("Малый логотип", upload_to='smallogo/')
 
     def __str__(self):
-        return 'Авиакомпания ' + self.name + ' '
+        return 'Авиакомпания ' + self.name_ru #+ #' (' + self.cod_rus + ')'
+
