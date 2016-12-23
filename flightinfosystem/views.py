@@ -269,11 +269,21 @@ def tablocheckin(request, id):
         return render(request, 'flightinfosystem/tablocheckinfly.html',
                       {'flight': flight, 'check': check})
 
-def tablodeparture(request, past=11, future=24):
+def tablodeparture(request, past=4, future=24):
     now = timezone.now()
+    codshares = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now)
+    sharecod = {}
     pasttime = now - datetime.timedelta(seconds=past * 3600)
     futuretime = now + datetime.timedelta(seconds=future * 3600)
     departflights = Flight.objects.filter(ad=0).filter(timeplan__lt=futuretime). \
         filter(timeplan__gt=pasttime).order_by('timeplan')
+    for flight in departflights:
+        if flight.iscodshare():
+            for codshar in codshares:
+                if flight.fly == codshar.baseairline:
+                    if flight.fly in sharecod:
+                        sharecod[flight.fly].append(codshar.shareairline)
+                    else:
+                        sharecod[flight.fly] = [codshar.shareairline]
     return render(request, 'flightinfosystem/tablodeparture.html',
-           {'flights': departflights})
+           {'flights': departflights, 'codshares': sharecod})

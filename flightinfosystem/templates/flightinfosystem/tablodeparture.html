@@ -107,6 +107,22 @@
       <TD WIDTH=90 >{{ flight.timeplan|time:"H:i" }}</TD>
       <TD WIDTH=280 >{{ flight.status }}</TD>
     </TR>
+        {% if flight.iscodshare %}
+            {% for keyfly, sharelist in codshares.items %}
+                    {% if flight.fly ==  keyfly %}
+                        {% for reis in sharelist %}
+                        <TR class="content">
+                        <TD WIDTH=120 ><img src="" width="100px" height="50px" style="border-radius: 5px;"></TD>
+                        <TD WIDTH=120 class="fly" BGCOLOR="#f7f21a" style="border-radius: 5px;">{{ reis }}</TD>
+                        <TD WIDTH=410>{{ flight.portdist }}</TD>
+	                    <TD WIDTH=90 >{{ flight.timeplan|date:"SHORT_DATE_FORMAT" }}</TD>
+                        <TD WIDTH=90 >{{ flight.timeplan|time:"H:i" }}</TD>
+                        <TD WIDTH=280 >Совмещен с {{ flight.fly }}</TD>
+                        </TR>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+        {% endif %}
 	{% endfor %}
 </TABLE>
 </div>

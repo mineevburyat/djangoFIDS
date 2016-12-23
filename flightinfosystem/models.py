@@ -218,8 +218,11 @@ class Flight(models.Model):
     #Выдать список совмещенных рейсов
     def listcodshare(self):
         now = timezone.now()
-        codshare = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now).filter(baseairline=self.fly)
-        return codshare
+        codshares = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now).filter(baseairline=self.fly)
+        lst = []
+        for codshar in codshares:
+            lst.append(codshar.shareairline)
+        return lst
 
 
 class FlightStatus(models.Model):
