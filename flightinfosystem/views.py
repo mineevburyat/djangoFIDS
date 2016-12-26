@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Flight, Checkin, FlightStatus, EventLog, Board, Baggege, Codeshare
+from .models import Flight, Checkin, FlightStatus, EventLog, Board, Baggege, Codeshare, Airline
 from .forms import FlightStatusDepartForm, FlightStatusArrivalForm
 
 def index(request):
@@ -269,7 +269,7 @@ def tablocheckin(request, id):
         return render(request, 'flightinfosystem/tablocheckinfly.html',
                       {'flight': flight, 'check': check})
 
-def tablodeparture(request, past=4, future=24):
+def tablodeparture(request, past=10, future=24):
     now = timezone.now()
     codshares = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now)
     sharecod = {}
@@ -277,6 +277,7 @@ def tablodeparture(request, past=4, future=24):
     futuretime = now + datetime.timedelta(seconds=future * 3600)
     departflights = Flight.objects.filter(ad=0).filter(timeplan__lt=futuretime). \
         filter(timeplan__gt=pasttime).order_by('timeplan')
+
     for flight in departflights:
         if flight.iscodshare():
             for codshar in codshares:
@@ -285,5 +286,6 @@ def tablodeparture(request, past=4, future=24):
                         sharecod[flight.fly].append(codshar.shareairline)
                     else:
                         sharecod[flight.fly] = [codshar.shareairline]
+    airlinedict = Airline.objects.getsmallogodict(flights=departflights)
     return render(request, 'flightinfosystem/tablodeparture.html',
-           {'flights': departflights, 'codshares': sharecod})
+           {'flights': departflights, 'codshares': sharecod, 'airline': airlinedict})

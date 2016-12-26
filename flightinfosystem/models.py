@@ -1,6 +1,7 @@
 import datetime as DT
 from django.utils import timezone
 from django.db import models
+from django.db.models import Q
 
 
 # Create your models here.
@@ -224,6 +225,18 @@ class Flight(models.Model):
             lst.append(codshar.shareairline)
         return lst
 
+    #Выдать url на большой логотип авиакомпании
+    def getbiglogo(self):
+        cod = self.fly.split('-')[0]
+        airline = Airline.objects.get(Q(cod_iata=cod) | Q(cod_icao=cod) | Q(cod_rus=cod))
+        return airline.biglogo.url
+
+    # Выдать url на маленький логотип авиакомпании
+    def getsmalogo(self):
+        cod = self.fly.split('-')[0]
+        airline = Airline.objects.get(Q(cod_iata=cod) | Q(cod_icao=cod) | Q(cod_rus=cod))
+        return airline.smallogo.url
+
 
 class FlightStatus(models.Model):
     fly = models.OneToOneField('Flight', verbose_name="Рейс")
@@ -283,15 +296,42 @@ class Baggege(models.Model):
     starttime = models.DateTimeField("Начало выдачи", null=True, blank=True)
     endtime = models.DateTimeField("Конец выдачи", null=True, blank=True)
 
+class AirlineManager(models.Manager):
+    def getsmallogodict(self, flights):
+        dic = {}
+        now = timezone.now()
+        codshares = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now)
+        for flight in flights:
+            cod = flight.fly.split('-')[0]
+            airline = Airline.objects.get(Q(cod_iata=cod) | Q(cod_icao=cod) | Q(cod_rus=cod))
+            dic[flight.fly] = airline.smallogo.url
+            if flight.iscodshare():
+                for codshar in codshares:
+                    if flight.fly == codshar.baseairline:
+                        cod = codshar.shareairline.split('-')[0]
+                        airline = Airline.objects.filter(Q(cod_iata=cod) | Q(cod_icao=cod) | Q(cod_rus=cod))
+                        if len(airline) == 0:
+                            dic[codshar.shareairline] = cod
+                        else:
+                            dic[codshar.shareairline] = airline[0].smallogo.url
+        return  dic
+
 class Airline(models.Model):
-    cod_iata = models.CharField("Код авиакомпании IATA", max_length=2)
-    cod_icao = models.CharField("Код авиакомпании ICAO", max_length=3)
-    cod_rus = models.CharField("Код авиакомпании внутренний", max_length=2, null=True)
-    name_ru = models.CharField("Полное наименование русское", max_length=25, null=True)
-    name_en = models.CharField("Полное наименование междунар.", max_length=25, null=True)
+    cod_iata = models.CharField("Код авиакомпании IATA", max_length=2, null=True)
+    cod_icao = models.CharField("Код авиакомпании ICAO", max_length=3, null=True)
+    cod_rus = models.CharField("Код авиакомпании внутренний", max_length=2, unique=True)
+    name_ru = models.CharField("Полное наименование русское", max_length=25)
+    name_en = models.CharField("Полное наименование междунар.", max_length=25)
     biglogo = models.ImageField("Большой логотип", upload_to='biglogo/')
     smallogo = models.ImageField("Малый логотип", upload_to='smallogo/')
+    objects = AirlineManager()
 
     def __str__(self):
-        return 'Авиакомпания ' + self.name_ru #+ #' (' + self.cod_rus + ')'
+        return 'Авиакомпания ' + self.name_ru + '(' + self.cod_rus + ')'
+
+    #выдать малый логотип по имени рейса
+    #def getsmallurllogo(self, fly):
+    #    cod = fly.split('-')[0]
+
+
 
