@@ -74,7 +74,7 @@
     <table>
         <tr>
             <td>{% now "SHORT_DATE_FORMAT" %}</td>
-            <td rowspan="2"><span class="main">ТАБЛО ВЫЛЕТА<br>DEPARTURE</span></td>
+            <td rowspan="2"><span class="main">ТАБЛО ДОСМОТРА<br>SECURE CHECK</span></td>
         </tr>
         <tr>
             <td>{% now "H:i" %}</td>
@@ -103,8 +103,8 @@
       <TD WIDTH=110 ><img src="{{ flight.getsmalogo }}" width="100px" height="50px" style="border-radius: 5px;"></TD>
       <TD WIDTH=110 class="fly" BGCOLOR="#f7f21a" style="border-radius: 5px;">{{ flight.fly }}</TD>
       <TD WIDTH=410>{{ flight.portdist }}</TD>
-	  <TD WIDTH=90 >{{ flight.timeplan|date:"SHORT_DATE_FORMAT" }}</TD>
-      <TD WIDTH=90 >{{ flight.timeplan|time:"H:i" }}</TD>
+	  <TD WIDTH=90 >{{ flight.timeexp|date:"SHORT_DATE_FORMAT" }}</TD>
+      <TD WIDTH=90 >{{ flight.timeexp|time:"H:i" }}</TD>
       <TD WIDTH=280 >{{ flight.status }}</TD>
     </TR>
         {% if flight.iscodshare %}
@@ -115,8 +115,8 @@
                         <TD WIDTH=110 ><img src="{{ reis.1 }}" width="100px" height="50px" style="border-radius: 5px;"></TD>
                         <TD WIDTH=110 class="fly" BGCOLOR="#f7f21a" style="border-radius: 5px;">{{ reis.0 }}</TD>
                         <TD WIDTH=410>{{ flight.portdist }}</TD>
-	                    <TD WIDTH=90 >{{ flight.timeplan|date:"SHORT_DATE_FORMAT" }}</TD>
-                        <TD WIDTH=90 >{{ flight.timeplan|time:"H:i" }}</TD>
+	                    <TD WIDTH=90 >{{ flight.timeexp|date:"SHORT_DATE_FORMAT" }}</TD>
+                        <TD WIDTH=90 >{{ flight.timeexp|time:"H:i" }}</TD>
                         <TD WIDTH=280 >Совмещен с {{ flight.fly }}</TD>
                         </TR>
                         {% endfor %}

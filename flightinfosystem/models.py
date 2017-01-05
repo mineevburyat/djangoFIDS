@@ -2,7 +2,7 @@ import datetime as DT
 from django.utils import timezone
 from django.db import models
 from django.db.models import Q
-
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 
 # Create your models here.
 class Codeshare(models.Model):
@@ -303,17 +303,26 @@ class AirlineManager(models.Manager):
         codshares = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now)
         for flight in flights:
             cod = flight.fly.split('-')[0]
-            airline = Airline.objects.get(Q(cod_iata=cod) | Q(cod_icao=cod) | Q(cod_rus=cod))
-            dic[flight.fly] = airline.smallogo.url
+            try:
+                airline = Airline.objects.get(Q(cod_iata=cod) | Q(cod_icao=cod) | Q(cod_rus=cod))
+            except ObjectDoesNotExist:
+                dic[flight.fly] = ''
+            except MultipleObjectsReturned:
+                dic[flight.fly] = ''
+            else:
+                dic[flight.fly] = airline.smallogo.url
             if flight.iscodshare():
                 for codshar in codshares:
                     if flight.fly == codshar.baseairline:
                         cod = codshar.shareairline.split('-')[0]
-                        airline = Airline.objects.filter(Q(cod_iata=cod) | Q(cod_icao=cod) | Q(cod_rus=cod))
-                        if len(airline) == 0:
-                            dic[codshar.shareairline] = cod
+                        try:
+                            airline = Airline.objects.get(cod_rus=cod)
+                        except ObjectDoesNotExist:
+                            dic[codshar.shareairline] = ''
+                        except MultipleObjectsReturned:
+                            dic[codshar.shareairline] = ''
                         else:
-                            dic[codshar.shareairline] = airline[0].smallogo.url
+                            dic[codshar.shareairline] = airline.smallogo.url
         return  dic
 
 class Airline(models.Model):

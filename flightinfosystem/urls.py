@@ -42,5 +42,7 @@ urlpatterns = [
     #Табло вылета
     url(r'^tablo/departures/$', views.tablodeparture, name='tablodeparture'),
     #Табло прилета
+    url(r'^tablo/arrivals/$', views.tabloarrival, name='tabloarrival'),
     #Табло досмотра
+    url(r'^tablo/secure/$', views.tablosecure, name='tablosecure'),
 ]

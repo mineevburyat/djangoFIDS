@@ -269,7 +269,7 @@ def tablocheckin(request, id):
         return render(request, 'flightinfosystem/tablocheckinfly.html',
                       {'flight': flight, 'check': check})
 
-def tablodeparture(request, past=10, future=24):
+def tablodeparture(request, past=3, future=22):
     now = timezone.now()
     codshares = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now)
     sharecod = {}
@@ -277,15 +277,60 @@ def tablodeparture(request, past=10, future=24):
     futuretime = now + datetime.timedelta(seconds=future * 3600)
     departflights = Flight.objects.filter(ad=0).filter(timeplan__lt=futuretime). \
         filter(timeplan__gt=pasttime).order_by('timeplan')
-
+    airlinedict = Airline.objects.getsmallogodict(flights=departflights)
     for flight in departflights:
         if flight.iscodshare():
             for codshar in codshares:
                 if flight.fly == codshar.baseairline:
+                    sharlogourl = airlinedict[codshar.shareairline]
                     if flight.fly in sharecod:
-                        sharecod[flight.fly].append(codshar.shareairline)
+                        sharecod[flight.fly].append((codshar.shareairline, sharlogourl))
                     else:
-                        sharecod[flight.fly] = [codshar.shareairline]
-    airlinedict = Airline.objects.getsmallogodict(flights=departflights)
+                        sharecod[flight.fly] = [(codshar.shareairline, sharlogourl)]
+
     return render(request, 'flightinfosystem/tablodeparture.html',
-           {'flights': departflights, 'codshares': sharecod, 'airline': airlinedict})
+           {'flights': departflights, 'codshares': sharecod})
+
+def tabloarrival(request, past=3, future=22):
+    now = timezone.now()
+    codshares = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now)
+    sharecod = {}
+    pasttime = now - datetime.timedelta(seconds=past * 3600)
+    futuretime = now + datetime.timedelta(seconds=future * 3600)
+    arrivalflights = Flight.objects.filter(ad=1).filter(timeplan__lt=futuretime). \
+        filter(timeplan__gt=pasttime).order_by('timeplan')
+    airlinedict = Airline.objects.getsmallogodict(flights=arrivalflights)
+    for flight in arrivalflights:
+        if flight.iscodshare():
+            for codshar in codshares:
+                if flight.fly == codshar.baseairline:
+                    sharlogourl = airlinedict[codshar.shareairline]
+                    if flight.fly in sharecod:
+                        sharecod[flight.fly].append((codshar.shareairline, sharlogourl))
+                    else:
+                        sharecod[flight.fly] = [(codshar.shareairline, sharlogourl)]
+
+    return render(request, 'flightinfosystem/tabloarrival.html',
+           {'flights': arrivalflights, 'codshares': sharecod})
+
+def tablosecure(request, past=4, future=22):
+    now = timezone.now()
+    codshares = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now)
+    sharecod = {}
+    pasttime = now - datetime.timedelta(seconds=past * 3600)
+    futuretime = now + datetime.timedelta(seconds=future * 3600)
+    #Переделать запрос что бы показывались только обслуживаемые рейсы: регистрация, посадка, посадка закрыта
+    secureflights = Flight.objects.filter(ad=0).filter(timeexp__lt=futuretime). \
+        filter(timeexp__gt=pasttime).order_by('timeexp')
+    airlinedict = Airline.objects.getsmallogodict(flights=secureflights)
+    for flight in secureflights:
+        if flight.iscodshare():
+            for codshar in codshares:
+                if flight.fly == codshar.baseairline:
+                    sharlogourl = airlinedict[codshar.shareairline]
+                    if flight.fly in sharecod:
+                        sharecod[flight.fly].append((codshar.shareairline, sharlogourl))
+                    else:
+                        sharecod[flight.fly] = [(codshar.shareairline, sharlogourl)]
+    return render(request, 'flightinfosystem/tablosecure.html',
+           {'flights': secureflights, 'codshares': sharecod})
