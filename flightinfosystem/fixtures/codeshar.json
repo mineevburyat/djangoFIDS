@@ -1,0 +1,152 @@
+[
+  {"model": "flightinfosystem.codeshare",
+  "pk": 1,
+  "fields":
+  {"baseairline": "\u0413\u041b-116",
+    "shareairline": "S7-116",
+    "startdate": "2016-11-14T16:00:00Z",
+    "stopdate": "2026-12-24T04:59:52Z",
+    "description": "\u041f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u043e"
+  }
+},
+{"model": "flightinfosystem.codeshare",
+ "pk": 2,
+ "fields":
+  {"baseairline": "\u0413\u041b-116",
+   "shareairline": "LY-8956",
+   "startdate": "2016-11-14T16:00:00Z",
+   "stopdate": "2026-12-24T04:59:52Z",
+   "description": "\u0438\u0441\u0445. \u211610\u0421-204-16-8327 \u043e\u0442 09.12.2016. \u0418\u0441\u043f.\u041c\u0438\u0445\u0438\u043d\u0430 \u041a.\u0412. k_mikhina@s7.ru, \u0444\u0430\u043a\u0441/\u0442\u0435\u043b.: +7(495)783-31-68"
+  }
+},
+{"model": "flightinfosystem.codeshare",
+ "pk": 3,
+ "fields":
+  {"baseairline": "\u0413\u041b-116",
+   "shareairline": "QR-5783",
+   "startdate": "2015-03-28T16:00:00Z",
+   "stopdate": "2026-12-24T04:59:52Z",
+   "description": "\u0438\u0441\u0445. 10-\u0421-204-16-7120 \u043e\u0442 31.10.16, \u0438\u0441\u043f. \u041c\u0438\u0445\u0438\u043d\u0430 \u041a.\u0412.  k_mikhina@s7.ru, \u0444\u0430\u043a\u0441/\u0442\u0435\u043b.: +7(495)783-31-68"
+  }
+},
+{"model": "flightinfosystem.codeshare",
+ "pk": 4,
+ "fields":
+  {"baseairline": "\u0413\u041b-116",
+   "shareairline": "SQ-1930",
+   "startdate": "2016-10-30T04:59:52Z",
+   "stopdate": "2026-12-24T04:59:52Z",
+   "description": "\u0438\u0441\u0445. \u211610\u0421-204-16-7120 \u043e\u0442 31.10.2016. \u0418\u0441\u043f. \u041c\u0438\u0445\u0438\u043d\u0430 \u041a.\u0412. k_mikhina@s7.ru, \u0444\u0430\u043a\u0441/\u0442\u0435\u043b.: +7(495)783-31-68"
+  }
+},
+{"model": "flightinfosystem.codeshare",
+  "pk": 5,
+  "fields":
+  {"baseairline": "S7-116",
+   "shareairline": "SQ-1930",
+    "startdate": "2016-10-29T16:00:00Z",
+    "stopdate": "2026-12-25T09:15:14Z",
+    "description": "\u0438\u0441\u0445. \u211610\u0421-204-16-7120 \u043e\u0442 31.10.2016. \u0418\u0441\u043f. \u041c\u0438\u0445\u0438\u043d\u0430 \u041a.\u0412. k_mikhina@s7.ru, \u0444\u0430\u043a\u0441/\u0442\u0435\u043b.: +7(495)783-31-68"
+  }
+},
+{"model": "flightinfosystem.codeshare",
+ "pk": 6,
+ "fields":
+ {"baseairline": "S7-116",
+   "shareairline": "QR-5783",
+   "startdate": "2015-03-28T16:00:00Z",
+   "stopdate": "2026-12-25T09:15:14Z",
+   "description": "\u0438\u0441\u0445. 10-\u0421-204-16-7120 \u043e\u0442 31.10.16, \u0438\u0441\u043f. \u041c\u0438\u0445\u0438\u043d\u0430 \u041a.\u0412.  k_mikhina@s7.ru, \u0444\u0430\u043a\u0441/\u0442\u0435\u043b.: +7(495)783-31-68"
+ }
+},
+{"model": "flightinfosystem.codeshare",
+ "pk": 7,
+  "fields":
+  {"baseairline": "S7-116",
+    "shareairline": "LY-8956",
+    "startdate": "2016-11-15T09:15:14Z",
+    "stopdate": "2026-12-25T09:15:14Z",
+    "description": "\u0438\u0441\u0445. \u211610\u0421-204-16-8327 \u043e\u0442 09.12.2016. \u0418\u0441\u043f. \u041c\u0438\u0445\u0438\u043d\u0430 \u041a.\u0412. k_mikhina@s7.ru, \u0444\u0430\u043a\u0441/\u0442\u0435\u043b.: +7(495)783-31-68"
+  }
+},
+{"model": "flightinfosystem.codeshare",
+  "pk": 8,
+  "fields":
+  {"baseairline": "S7-116",
+    "shareairline": "\u0413\u041b-116",
+    "startdate": "2016-01-01T09:15:14Z",
+    "stopdate": "2026-12-25T09:15:14Z",
+    "description": "\u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u043e"}},
+{"model": "flightinfosystem.codeshare",
+  "pk": 9,
+  "fields":
+  {"baseairline": "\u0413\u041b-115",
+   "shareairline": "QR-5780",
+   "startdate": "2015-03-28T16:00:00Z",
+   "stopdate": "2026-12-25T09:15:14Z",
+   "description": "\u0438\u0441\u0445. \u211610\u0421-204-16-7120 \u043e\u0442 31.10.2016. \u0418\u0441\u043f. \u041c\u0438\u0445\u0438\u043d\u0430 \u041a.\u0412. k_mikhina@s7.ru, \u0444\u0430\u043a\u0441/\u0442\u0435\u043b.: +7(495)783-31-68"
+  }
+},
+{"model": "flightinfosystem.codeshare",
+  "pk": 10,
+  "fields":
+  {"baseairline": "\u0413\u041b-115",
+    "shareairline": "SQ-1941",
+    "startdate": "2016-10-29T16:00:00Z",
+    "stopdate": "2026-12-25T09:15:14Z",
+    "description": "\u0438\u0441\u0445. \u211610\u0421-204-16-7120 \u043e\u0442 31.10.2016. \u0418\u0441\u043f. \u041c\u0438\u0445\u0438\u043d\u0430 \u041a.\u0412. k_mikhina@s7.ru, \u0444\u0430\u043a\u0441/\u0442\u0435\u043b.: +7(495)783-31-68"
+ }},
+{"model": "flightinfosystem.codeshare",
+  "pk": 11,
+  "fields":
+  {"baseairline": "\u0413\u041b-115",
+   "shareairline": "LY-8955",
+   "startdate": "2016-11-14T16:00:00Z",
+   "stopdate": "2026-12-25T09:15:14Z",
+   "description": "\u0438\u0441\u0445. \u211610\u0421-204-16-8327 \u043e\u0442 09.12.2016. \u0418\u0441\u043f. \u041c\u0438\u0445\u0438\u043d\u0430 \u041a.\u0412. k_mikhina@s7.ru, \u0444\u0430\u043a\u0441/\u0442\u0435\u043b.: +7(495)783-31-68"
+}},
+{"model": "flightinfosystem.codeshare",
+  "pk": 12,
+  "fields":
+  {"baseairline": "S7-115",
+    "shareairline": "LY-8955",
+    "startdate": "2016-11-14T16:00:00Z",
+    "stopdate": "2026-12-25T09:15:14Z",
+    "description": "\u0438\u0441\u0445. \u211610\u0421-204-16-8327 \u043e\u0442 09.12.2016. \u0418\u0441\u043f. \u041c\u0438\u0445\u0438\u043d\u0430 \u041a.\u0412. k_mikhina@s7.ru, \u0444\u0430\u043a\u0441/\u0442\u0435\u043b.: +7(495)783-31-68"
+  }},
+{"model": "flightinfosystem.codeshare",
+  "pk": 13,
+  "fields":
+  {"baseairline": "S7-115",
+    "shareairline": "QR-5780",
+    "startdate": "2015-03-28T16:00:00Z",
+    "stopdate": "2026-12-25T09:15:14Z",
+    "description": "\u0438\u0441\u0445. \u211610\u0421-204-16-7120 \u043e\u0442 31.10.2016. \u0418\u0441\u043f. \u041c\u0438\u0445\u0438\u043d\u0430 \u041a.\u0412. k_mikhina@s7.ru, \u0444\u0430\u043a\u0441/\u0442\u0435\u043b.: +7(495)783-31-68"
+  }},
+{"model": "flightinfosystem.codeshare",
+  "pk": 14,
+  "fields":
+  {"baseairline": "S7-115",
+    "shareairline": "SQ-1941",
+    "startdate": "2016-10-29T16:00:00Z",
+    "stopdate": "2026-12-25T09:15:14Z",
+    "description": "\u0438\u0441\u0445. \u211610\u0421-204-16-7120 \u043e\u0442 31.10.2016. \u0418\u0441\u043f. \u041c\u0438\u0445\u0438\u043d\u0430 \u041a.\u0412. k_mikhina@s7.ru, \u0444\u0430\u043a\u0441/\u0442\u0435\u043b.: +7(495)783-31-68"
+}},
+{"model": "flightinfosystem.codeshare",
+  "pk": 15,
+  "fields":
+  {"baseairline": "\u0413\u041b-115",
+   "shareairline": "S7-115",
+   "startdate": "2016-03-16T01:49:06Z",
+   "stopdate": "2026-12-26T01:49:06Z",
+   "description": "\u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u043e"
+}},
+{"model": "flightinfosystem.codeshare",
+  "pk": 16,
+  "fields":
+  {"baseairline": "S7-115",
+    "shareairline": "\u0413\u041b-115",
+    "startdate": "2016-03-01T01:49:06Z",
+    "stopdate": "2026-12-26T01:49:06Z",
+    "description": "\u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u043e"}}
+ ]
