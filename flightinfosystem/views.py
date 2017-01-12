@@ -4,7 +4,8 @@ from django.shortcuts import render, get_object_or_404, redirect, render_to_resp
 from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Flight, Checkin, FlightStatus, EventLog, Board, Baggege, Codeshare, Airline
-from .forms import FlightStatusDepartForm, FlightStatusArrivalForm
+from .forms import ArriavalBaggageOpen, ArriavalBaggageClose, \
+    DepartureBoardOpen, DepartureBoardClose
 
 def index(request):
     return render(request, 'flightinfosystem/index.html', {})
@@ -23,14 +24,14 @@ def all_flight(request):
         flights = paginator.page(paginator.num_pages)
     return render_to_response('flightinfosystem/arhiveflights.html', {"flights": flights})
 
-def flight_list(request, past=8, future=26):
+def flight_list(request, past=10, future=28):
     now = timezone.now()
     pasttime = now - datetime.timedelta(seconds=past * 3600)
     futuretime = now + datetime.timedelta(seconds=future * 3600)
     flights = Flight.objects.filter(timeplan__lt=futuretime).filter(timeplan__gt=pasttime).order_by('timeplan')
     return render(request, 'flightinfosystem/flight_list.html', {'flights': flights})
 
-def isg(request, past=15, future=28):
+def isg(request, past=10, future=28):
     if request.method == 'POST':
         flightid = int(request.POST['delete'])
         url = request.path
@@ -44,7 +45,7 @@ def isg(request, past=15, future=28):
         flights = Flight.objects.filter(timeplan__lt=futuretime).filter(timeplan__gt=pasttime).order_by('timeplan')
         return render(request, 'flightinfosystem/isg.html', {'flights': flights})
 
-def spravki(request, past=15, future=28):
+def spravki(request, past=10, future=28):
     now = timezone.now()
     pasttime = now - datetime.timedelta(seconds=past * 3600)
     futuretime = now + datetime.timedelta(seconds=future * 3600)
@@ -52,24 +53,72 @@ def spravki(request, past=15, future=28):
     return render(request, 'flightinfosystem/spravki.html', {'flights': flights})
 
 def spravki_edit(request, id):
-    pass
-#    #url = request.path
-#    flight = get_object_or_404(Flight, id=id)
-#    flightstatus = FlightStatus.objects.get(fly=flight)
-#    if request.method == 'POST':
-#        if flight.isarrivals():
-#            form = FlightStatusArrivalForm(request.POST, instance=flightstatus)
-#        else:
-#            form = FlightStatusDepartForm(request.POST, instance=flightstatus)
-#        if form.is_valid():
-#            form.save()
-#            eventlog = EventLog(fly=flight, event_id=)
-#            return redirect(reverse('fids:spravki'))
-#    if flight.isarrivals():
-#        form = FlightStatusArrivalForm(instance=flightstatus)
-#    else:
-#        form = FlightStatusDepartForm(instance=flightstatus)
-#    return render(request, 'flightinfosystem/spravki_edit.html', {'flight': flight, 'form': form})
+    url = request.path
+    flight = get_object_or_404(Flight, id=id)
+    flightstatus = FlightStatus.objects.get(fly=flight)
+    if request.method == 'POST':
+        if flight.isarrivals():
+            #Что будет если формы не будут правильные? Отработать
+            if request.POST.get('baggageopen', False):
+                form = ArriavalBaggageOpen(request.POST)
+                if form.is_valid():
+                    flightstatus.baggage = True
+                    flightstatus.save()
+                    baggag = Baggege.objects.get(pk=int(request.POST.get('carusel')))
+                    baggag.open(flight)
+                    eventlog = EventLog(fly=flight, event_id=10,
+                                        descript=str(baggag))
+                    eventlog.save()
+                    return redirect(reverse('fids:spravki'))
+            elif request.POST.get('baggageclose', False):
+                form = ArriavalBaggageClose(request.POST)
+                if form.is_valid():
+                    flightstatus.baggagestop = True
+                    flightstatus.save()
+                    baggag = Baggege.objects.get(baggagefly=flight)
+                    baggag.close()
+                    eventlog = EventLog(fly=flight, event_id=11,
+                                        descript=str(baggag))
+                    eventlog.save()
+                    return redirect(reverse('fids:spravki'))
+            else:
+                return redirect(reverse('fids:isg'))
+        elif flight.isdeparture():
+            if request.POST.get('boardopen', False):
+                form = DepartureBoardOpen(request.POST)
+                if form.is_valid():
+                    flightstatus.board = True
+                    flightstatus.save()
+                    gate = Board.objects.get(pk=int(request.POST.get('gate')))
+                    gate.open(flight)
+                    eventlog = EventLog(fly=flight, event_id=8,
+                                        descript=str(gate))
+                    eventlog.save()
+                    return redirect(reverse('fids:spravki'))
+            elif request.POST.get('boardclose', False):
+                form = DepartureBoardClose(request.POST)
+                if form.is_valid():
+                    flightstatus.boardstop = True
+                    flightstatus.save()
+                    gate = Board.objects.get(boardfly=flight)
+                    gate.close()
+                    eventlog = EventLog(fly=flight, event_id=9,
+                                        descript=str(gate))
+                    eventlog.save()
+                    return redirect(reverse('fids:spravki'))
+            else:
+                return redirect(reverse('fids:isg'))
+    if flight.isarrivals():
+        if flightstatus.baggage is False:
+            form = ArriavalBaggageOpen()
+        else:
+            form = ArriavalBaggageClose()
+    else:
+        if flightstatus.board is False:
+            form = DepartureBoardOpen()
+        else:
+            form = DepartureBoardClose()
+    return render(request, 'flightinfosystem/spravki_edit.html', {'flight': flight, 'form': form})
 
 def flight_detail(request, id):
     flight = get_object_or_404(Flight, id=id)
@@ -269,7 +318,7 @@ def tablocheckin(request, id):
         return render(request, 'flightinfosystem/tablocheckinfly.html',
                       {'flight': flight, 'check': check})
 
-def tablodeparture(request, past=3, future=22):
+def tablodeparture(request, past=4, future=22):
     now = timezone.now()
     codshares = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now)
     sharecod = {}
@@ -291,7 +340,7 @@ def tablodeparture(request, past=3, future=22):
     return render(request, 'flightinfosystem/tablodeparture.html',
            {'flights': departflights, 'codshares': sharecod})
 
-def tabloarrival(request, past=3, future=22):
+def tabloarrival(request, past=4, future=22):
     now = timezone.now()
     codshares = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now)
     sharecod = {}

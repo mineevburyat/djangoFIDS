@@ -20,7 +20,19 @@
             <form action="" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-            <input type="submit" value="Submit" />
+                {% if flight.isarrivals %}
+                    {% if flight.isbaggageopen %}
+                        <input type="submit" value="Завершить выдачу багажа"/>
+                    {% else %}
+                        <input type="submit" value="Начать выдачу багажа"/>
+                    {% endif %}
+                {% else %}
+                    {% if flight.isboardopen %}
+                        <input type="submit" value="Завершить посадку"/>
+                    {% else %}
+                        <input type="submit" value="Начать посадку"/>
+                    {% endif %}
+                {% endif %}
             </form>
 
 

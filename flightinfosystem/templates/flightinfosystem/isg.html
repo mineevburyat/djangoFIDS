@@ -47,6 +47,9 @@
                 <td>{{ flight.stateflight }}</td>
                 <td><button name="delete" value="{{ flight.id }}"><img src="{% static "flightinfosystem/img/delete.png" %}" width="20px" height="20px"></button></td>
             </tr>
+            {% if flight.iscodshare %}
+                <tr><td colspan="9">Есть совмещенные рейсы {{ flight.listcodshare }}</td> </tr>
+            {% endif %}
         {% empty %}
             <tr>
                 <td colspan="9">Список рейсов давно не обновлялся</td>

@@ -77,25 +77,37 @@ class Flight(models.Model):
         flightstatus = FlightStatus.objects.get(fly=self)
         return flightstatus.checkinstop
 
+    #Посадка началась
+    def isboardopen(self):
+        flightstatus = FlightStatus.objects.get(fly=self)
+        return not flightstatus.boardstop and flightstatus.board
+
+    #Посадка закрыта
     def isboardclose(self):
         flightstatus = FlightStatus.objects.get(fly=self)
-        return not flightstatus.board and flightstatus.boardstop
+        return flightstatus.board and flightstatus.boardstop
 
+    #Выдача багажа начата
+    def isbaggageopen(self):
+        flightstatus = FlightStatus.objects.get(fly=self)
+        return not flightstatus.baggagestop and flightstatus.baggage
+
+    #Выдача багажа завершена
     def isbaggageclose(self):
         flightstatus = FlightStatus.objects.get(fly=self)
-        return flightstatus.baggagestop
+        return flightstatus.baggagestop and flightstatus.baggage
 
     def istimefact(self):
         if self.timefact is not None:
             return True
         else:
             return False
-
+#Рейс считается закрытым если: для прилетающего рейса завершилась выдача багажа, или прошло
+#достаточно времени с момент прилета. Для вылетающего рейса - если вылетел.
     def isclose(self):
         delta = 60
-        flightstatus = FlightStatus.objects.get(fly=self)
         if self.isarrivals():
-            if flightstatus.baggagestop:
+            if self.isbaggageclose():
                 return True
             else:
                 now = timezone.now()
@@ -240,12 +252,15 @@ class Flight(models.Model):
 
 class FlightStatus(models.Model):
     fly = models.OneToOneField('Flight', verbose_name="Рейс")
+    #Статусы для вылетающего рейса
     checkin = models.BooleanField("Регистрация пассажиров", default=False)
     checkinstop = models.BooleanField("Конец регистрации", default=False)
     board = models.BooleanField("Статус посадки пассажиров", default=False)
     boardstop = models.BooleanField("Конец посадки пассажиров", default=False)
+    #Статусы для прилетающего рейса
     baggage = models.BooleanField("Выдача багажа", default=False)
     baggagestop = models.BooleanField("Конец выдачи багажа", default=False)
+    #Отработка ситуации замены борта
     changeboard = models.BooleanField("Статус замены борта", default=False)
 
     def __str__(self):
@@ -288,6 +303,22 @@ class Board(models.Model):
     starttime = models.DateTimeField("Начало посадки", null=True, blank=True)
     endtime = models.DateTimeField("Конец посадки", null=True, blank=True)
 
+    def __str__(self):
+        return self.fullname + ' ' + str(self.num)
+
+    def open(self, fly):
+        self.boardfly = fly
+        now = timezone.now()
+        self.starttime = now
+        self.endtime = fly.timeexp - DT.timedelta(seconds=7 * 60)
+        self.save()
+
+    def close(self):
+        self.boardfly = None
+        self.starttime = None
+        self.endtime = None
+        self.save()
+
 class Baggege(models.Model):
     baggagefly = models.ForeignKey('Flight', verbose_name="Рейс", blank=True, null=True, on_delete=models.SET_NULL)
     num = models.CharField("Номер карусели", max_length=2)
@@ -295,6 +326,22 @@ class Baggege(models.Model):
     fullname = models.CharField("Терминал", max_length=13)
     starttime = models.DateTimeField("Начало выдачи", null=True, blank=True)
     endtime = models.DateTimeField("Конец выдачи", null=True, blank=True)
+
+    def __str__(self):
+        return self.shortname + ' ' + str(self.num)
+
+    def open(self, fly):
+        self.baggagefly = fly
+        now = timezone.now()
+        self.starttime = now
+        self.endtime = now + DT.timedelta(seconds=20*60)
+        self.save()
+
+    def close(self):
+        self.baggagefly = None
+        self.starttime = None
+        self.endtime = None
+        self.save()
 
 class AirlineManager(models.Manager):
     def getsmallogodict(self, flights):
