@@ -47,8 +47,8 @@
             color: white;
             font-size: 40px;
         }
-        .image {
-            height: 550px;
+        .time {
+            font-size: 140px;
         }
 
     </style>
@@ -57,26 +57,39 @@
         <div class="heighheader">
             <table>
             <tr>
-                <td width="40%">Стойка регистрации</td>
+                <td width="40%">Выход на посадку</td>
                 <td rowspan="2" width="40%"><span class="num"> № {{ check.num }}</span></td>
                 <td>{% now "SHORT_DATE_FORMAT" %}</td>
             </tr>
             <tr>
-                <td>Check-in</td>
+                <td>Boarding</td>
                 <td>{% now "TIME_FORMAT" %}</td>
             </tr>
             </table>
         </div>
-        <div class="image">
-            <table class="image">
-                <tr>
-                    <td>Нет регистрации</td>
-                </tr>
-                <tr>
-                    <td><img src=""></td>
-                </tr>
+        <div class="fly">
+            <table>
+                <tr><td><span>{{ flight.fly }}</span></td></tr>
             </table>
-
+        </div>
+        <div class="distination">
+            <table>
+                <tr><td><span>{{ flight.portdist }}</span></td></tr>
+            </table>
+        </div>
+        <div class="logo">
+        <table>
+            <tr>
+                <td rowspan="2"><img src="{{ flight.getbiglogo }}" width="430px" height="270px"></td>
+                <td colspan="2">{{ check.classcheckin }}</td>
+            </tr>
+            <tr>
+                <td><span class="white">Начало посадки:<br/>start board:<br/></span>
+                    <span class="time">{{ flight.timestartcheckin|time:"H:i" }}</span></td>
+                <td><span class="white">Конец посадки:<br/>end board:<br/></span>
+                    <span class="time">{{ flight.timestopcheckin|time:"H:i" }}</span></td>
+            </tr>
+        </table>
         </div>
 
 </body>

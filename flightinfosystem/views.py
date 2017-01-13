@@ -318,6 +318,26 @@ def tablocheckin(request, id):
         return render(request, 'flightinfosystem/tablocheckinfly.html',
                       {'flight': flight, 'check': check})
 
+def tabloboard(request, id):
+    now = timezone.now()
+    gate = get_object_or_404(Board, id=id)
+    if gate.boardfly is None:
+        return render(request,'flightinfosystem/tabloboardempty.html',{'check':gate})
+    else:
+        flight = gate.boardfly
+        return render(request, 'flightinfosystem/tabloboardfly.html',
+                      {'flight': flight, 'check': gate})
+
+def tablobaggage(request, id):
+    now = timezone.now()
+    carusel = get_object_or_404(Baggege, id=id)
+    if carusel.baggagefly is None:
+        return render(request,'flightinfosystem/tablobaggageempty.html',{'check':carusel})
+    else:
+        flight = carusel.baggagefly
+        return render(request, 'flightinfosystem/tablobaggagefly.html',
+                      {'flight': flight, 'check': carusel})
+
 def tablodeparture(request, past=4, future=22):
     now = timezone.now()
     codshares = Codeshare.objects.filter(startdate__lt=now).filter(stopdate__gt=now)

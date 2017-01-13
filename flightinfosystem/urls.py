@@ -38,7 +38,9 @@ urlpatterns = [
     url(r'^tablo/checkin/(?P<id>[0-9]+)/$', views.tablocheckin, name='tablocheckin'),
     #url(r'^tablo/tst/checkin/(?P<id>[0-9]+)/$', views.tsttablocheckin, name='tablocheckin'),
     #Табло посадки
+    url(r'^tablo/board/(?P<id>[0-9]+)/$', views.tabloboard, name='tabloboard'),
     #Табло карусели багажа
+    url(r'^tablo/baggage/(?P<id>[0-9]+)/$', views.tablobaggage, name='tablobaggage'),
     #Табло вылета
     url(r'^tablo/departures/$', views.tablodeparture, name='tablodeparture'),
     #Табло прилета
